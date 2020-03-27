@@ -46,6 +46,52 @@ const DescriptiveArea = props =>{
     )
 }
 
+const Giver = props =>{
+    const {t, skills } = props
+    return(
+        <>
+            <Typography variant="h6" component="h2">
+                {t('offer')}
+            </Typography>
+            <Breadcrumbs>
+                {skills.map(skills =>
+                <Typography color="textSecondary">{t(skills)}</Typography>
+                )}
+            </Breadcrumbs>
+      </>
+    )
+}
+
+const Receiver = props =>{
+    const {t, interested} = props
+    return(
+        <>
+            <Typography variant="h5" component="h2">
+                {t('interest')}
+            </Typography>
+            <Breadcrumbs>
+                {interested.map(interest =>
+                <Typography color="textSecondary">{interest}</Typography>
+                )}
+            </Breadcrumbs>
+        </>
+    )
+}
+
+const Description = props =>{
+    const { t, description, classes } = props
+    return(
+        <>
+            <Typography className={classes.pos} color="textSecondary">
+                {t('description')}:
+            </Typography>
+            <Typography variant="body2" component="p">
+                {description}
+                <br />
+            </Typography>
+        </>
+    )
+}
 
 const UserCard = props => {
     const { t} = useTranslation()
@@ -56,56 +102,35 @@ const UserCard = props => {
   return (
     
     <Container maxWidth="sm">
-
-    <Card className={classes.root}>
-     
+        <Card className={classes.root}>    
             <CardMedia 
-                className={classes.media}
-                image={data.wallpaper}
-                title="skill"
+                    className={classes.media}
+                    image={data.wallpaper}
+                    title="skill"
+                    />
+            <CardContent>
+                <DescriptiveArea 
+                    descriptive_area={data.descriptive_area}
+                    classes={classes}
+                    t={t}
                 />
-  
-      <CardContent>
-        <DescriptiveArea 
-            descriptive_area={data.descriptive_area}
-            classes={classes}
-            t={t}
-        />
-        <ProfileData name={data.name} img={data.image} />
-        <Typography variant="h6" component="h2">
-          {t('offer')}
-        </Typography>
-        <Breadcrumbs>
-            {data.skills.map(skills =>
-                <Typography color="textSecondary">{t(skills)}</Typography>
-            )}
-        </Breadcrumbs>
-        <br/> 
-        <Typography variant="h5" component="h2">
-          {t('interest')}
-        </Typography>
-        <Breadcrumbs>
-            {data.interested.map(interest =>
-                <Typography color="textSecondary">{interest}</Typography>
-            )}
-        </Breadcrumbs>
-        <br />
-        <Typography className={classes.pos} color="textSecondary">
-          {t('description')}:
-        </Typography>
-        <Typography variant="body2" component="p">
-          {data.description}
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.buttons}>
-        <Button 
-            variant="outlined"
-            color="primary"
-            size="medium">{t('button_contact')}</Button>
-      </CardActions>
-    </Card>
+                <ProfileData name={data.name} img={data.image} />
+                <Giver skills={data.skills} t={t} />
+                <br/> 
+                <Receiver interested={data.interested} t={t} />
+                <br />
+                <Description 
+                    classes={classes} 
+                    t={t} 
+                    description={data.description} />
+            </CardContent>
+            <CardActions className={classes.buttons}>
+                <Button 
+                    variant="outlined"
+                    color="primary"
+                    size="medium">{t('button_contact')}</Button>
+            </CardActions>
+        </Card>
     </Container>
 
   );

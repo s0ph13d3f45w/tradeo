@@ -129,6 +129,11 @@ const UserCard = props => {
                     variant="outlined"
                     color="primary"
                     size="medium">{t('button_contact')}</Button>
+                <Button
+                    variant="outlined"
+                    color="secondary"
+                    size="medium"
+                    onClick={()=> props.removeUser(data)}>Remove</Button>
             </CardActions>
         </Card>
     </Container>

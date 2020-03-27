@@ -9,6 +9,7 @@ export default function(){
         <NavBar />
         <br />
         <br />
+        <br />
         <Feed />
       </Suspense>
     </>

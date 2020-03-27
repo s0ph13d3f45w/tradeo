@@ -1,8 +1,16 @@
 {
+    "button_contact": "contact",
+    "content_writer": "Content writer ✍️",
     "creative_writer": "creative writer ✍️",
     "creative_writer_female": "creative writer ✍️",
     "creative_writer_male": "creative writer ✍️",
+    "description": "description",
     "design": "design 🖍️",
     "design_male": "designer 🖍️",
-    "design_female": "designer 🖍️"
+    "design_female": "designer 🖍️",
+    "interest": "I'm interested in:",
+    "offer": "Services:",
+    "web_dev": "Web development 🌐",
+    "ux_dev": "UX development 📲"
+    
 }

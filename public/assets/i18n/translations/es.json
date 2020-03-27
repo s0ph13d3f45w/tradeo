@@ -1,8 +1,15 @@
-{
+{   
+    "button_contact": "contactar",
+    "content_writer": "Escribir contenido ✍️",
     "creative_writer": "escritor creativo ✍️",
     "creative_writer_female": "escritora creativa ✍️",
     "creative_writer_male": "escritor creativo ✍️",
+    "description": "descripción",
     "design": "diseño 🖍️",
     "design_female": "diseñadora 🖍️",
-    "design_male": "diseañador 🖍️"
+    "design_male": "diseañador 🖍️",
+    "interest": "Me interesa:",
+    "offer": "Servicios:",
+    "web_dev": "Desarrollo web 🌐",
+    "ux_dev": "Desarrollo UX 📲"
 }

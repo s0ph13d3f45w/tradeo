@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react'
-import UserCard from './components/UserCard'
+import Feed from './components/Feed'
 import NavBar from './components/AppBar'
 
 export default function(){
@@ -9,7 +9,7 @@ export default function(){
         <NavBar />
         <br />
         <br />
-        <UserCard />
+        <Feed />
       </Suspense>
     </>
   )

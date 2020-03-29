@@ -1,45 +1,52 @@
 import React, { useReducer, useEffect, useCallback, useState } from 'react'
 
 import UserCard from './UserCard'
+import UserProfile from './UserProfile'
 
-  
+import Drawer from '@material-ui/core/Drawer'
 
-  const feedReducer = (state, action) =>{
-    switch(action.type){
-      case 'SET_LIST_INIT':
-        return {
-          ...state,
-          isLoading: true,
-          isError: false
-        }
-      case 'SET_LIST_SUCCESS':
-        return{
-          ...state,
-          isLoading: false,
-          isError: false,
-          data: action.payload 
-        }
-      case 'SET_LIST_FAILURE':
-        return{
-          ...state,
-          isLoading: false,
-          isError: true
-        }
-      case 'SET_REMOVE_USER':
-        return{
-          ...state,
-          data: state.data.filter(user =>
-            action.payload.id !== user.id
-          )
-        }
-      default: new Error()
+const feedReducer = (state, action) =>{
+  switch(action.type){
+    case 'SET_LIST_INIT':
+      return {
+        ...state,
+        isLoading: true,
+        isError: false
+      }
+    case 'SET_LIST_SUCCESS':
+      return{
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload 
+      }
+    case 'SET_LIST_FAILURE':
+      return{
+        ...state,
+        isLoading: false,
+        isError: true
+      }
+    case 'SET_REMOVE_USER':
+      return{
+        ...state,
+        data: state.data.filter(user =>
+          action.payload.id !== user.id
+        )
+      }
+    case 'SET_DRAWER_USER':
+      return{
+        ...state,
+        user: action.payload
+      }
+    default: new Error()
     }
   }
 
  const initialData = {
    data: [],
    isLoading: false,
-   isError: false
+   isError: false,
+   user: {}
  }
 
  const dataEx = 
@@ -83,6 +90,7 @@ import UserCard from './UserCard'
   export default function(){
     const [ list, dispatch ] = useReducer(feedReducer, initialData)
     const [ localData] = useState(dataEx)
+    const [ state, setState ] = useState(false)
    
     const fetchData = useCallback(() =>{
       dispatch({ type: 'SET_LIST_INIT'})
@@ -107,14 +115,40 @@ import UserCard from './UserCard'
         type: 'SET_REMOVE_USER',
         payload: user
       })
+    
+    const toggleDrawer = () => 
+      setState(!state)
+    
+      
+    const displayUserProfile = user =>{
+      dispatch({
+        type: 'SET_DRAWER_USER',
+        payload: user
+      })
+      toggleDrawer()
+    }
 
-      return(
+    return(
       <>
         {list.isError && <p>Something went wrong...</p>}
         {list.isLoading ? <p>Loading...</p>
         : list.data.map(user =>
-            <UserCard key={user.id} data={user} removeUser={handleRemoveUser} />
+            <UserCard 
+              key={user.id} 
+              data={user} 
+              removeUser={handleRemoveUser}
+              showProfile={displayUserProfile} />
           )
         }
+        <Drawer 
+          anchor={'right'} 
+          open={state} 
+          onClose={toggleDrawer}
+          >
+            <UserProfile user={list.user} />
+        </Drawer>
       </>)
   }
+
+ 
+

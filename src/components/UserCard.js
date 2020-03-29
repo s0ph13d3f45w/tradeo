@@ -54,8 +54,10 @@ const Giver = props =>{
                 {t('offer')}
             </Typography>
             <Breadcrumbs>
-                {skills.map(skills =>
-                <Typography color="textSecondary">{t(skills)}</Typography>
+                {skills.map((skills, index) =>
+                <Typography 
+                    key={index}
+                    color="textSecondary">{t(skills)}</Typography>
                 )}
             </Breadcrumbs>
       </>
@@ -70,8 +72,10 @@ const Receiver = props =>{
                 {t('interest')}
             </Typography>
             <Breadcrumbs>
-                {interested.map(interest =>
-                <Typography color="textSecondary">{interest}</Typography>
+                {interested.map((interest, index) =>
+                <Typography 
+                    key={index}
+                    color="textSecondary">{interest}</Typography>
                 )}
             </Breadcrumbs>
         </>
@@ -96,8 +100,7 @@ const Description = props =>{
 const UserCard = props => {
     const { t} = useTranslation()
     const classes = useStyles();
-    const { data } = props
-
+    const { data, showProfile } = props
 
   return (
     
@@ -114,7 +117,10 @@ const UserCard = props => {
                     classes={classes}
                     t={t}
                 />
-                <ProfileData name={data.name} img={data.image} />
+                <ProfileData 
+                    textSize="h4"
+                    name={data.name} 
+                    img={data.image} />
                 <Giver skills={data.skills} t={t} />
                 <br/> 
                 <Receiver interested={data.interested} t={t} />
@@ -126,6 +132,7 @@ const UserCard = props => {
             </CardContent>
             <CardActions className={classes.buttons}>
                 <Button 
+                    onClick={() => showProfile(data)}
                     variant="outlined"
                     color="primary"
                     size="medium">{t('button_contact')}</Button>

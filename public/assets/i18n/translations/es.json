@@ -4,12 +4,15 @@
     "creative_writer": "escritor creativo ✍️",
     "creative_writer_female": "escritora creativa ✍️",
     "creative_writer_male": "escritor creativo ✍️",
-    "description": "descripción",
+    "description": "Descripción",
     "design": "diseño 🖍️",
     "design_female": "diseñadora 🖍️",
     "design_male": "diseñador 🖍️",
+    "handcraft": "Manualidades 🎨",
     "interest": "Me interesa:",
     "offer": "Te enseño / Ofrezco:",
+    "repairment": "Reparaciones 🛠️",
+    "teaching": "Clases 💻",
     "web_dev": "Desarrollo web 🌐",
     "ux_dev": "Desarrollo UX 📲"
 }

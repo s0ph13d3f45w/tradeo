@@ -11,6 +11,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 const useStyles = makeStyles({
     root: {
@@ -75,7 +77,7 @@ const Receiver = props =>{
                 {interested.map((interest, index) =>
                 <Typography 
                     key={index}
-                    color="textSecondary">{interest}</Typography>
+                    color="textSecondary">{t(interest)}</Typography>
                 )}
             </Breadcrumbs>
         </>
@@ -86,10 +88,13 @@ const Description = props =>{
     const { t, description, classes } = props
     return(
         <>
-            <Typography className={classes.pos} color="textSecondary">
+            <Typography className={classes.pos}>
                 {t('description')}:
             </Typography>
-            <Typography variant="body2" component="p">
+            <Typography 
+                variant="body2" 
+                component="p"
+                color="textSecondary">
                 {description}
                 <br />
             </Typography>
@@ -140,7 +145,9 @@ const UserCard = props => {
                     variant="outlined"
                     color="secondary"
                     size="medium"
-                    onClick={()=> props.removeUser(data)}>Remove</Button>
+                    onClick={()=> props.removeUser(data)}>
+                    <CloseIcon />
+                </Button>
             </CardActions>
         </Card>
     </Container>

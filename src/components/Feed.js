@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useCallback, useState } from 'react'
+import { useTransition, animated } from 'react-spring'
 
 import UserCard from './UserCard'
 import UserProfile from './UserProfile'
@@ -92,6 +93,12 @@ const feedReducer = (state, action) =>{
     const [ list, dispatch ] = useReducer(feedReducer, initialData)
     const [ localData] = useState(dataEx)
     const [ state, setState ] = useState(false)
+
+    const transition = useTransition(list.data, item => item.id, {
+      from: { opacity: 0},
+      enter: { opacity: 1},
+      leave: { opacity: 0}
+    })
    
     const fetchData = useCallback(() =>{
       dispatch({ type: 'SET_LIST_INIT'})
@@ -134,13 +141,22 @@ const feedReducer = (state, action) =>{
 
         {list.isError && <p>Something went wrong...</p>}
         {list.isLoading ? <p>Loading...</p>
-        : list.data.map(user =>
-            <UserCard 
-              key={user.id} 
-              data={user} 
-              removeUser={handleRemoveUser}
-              showProfile={displayUserProfile} />
-          )
+        // : list.data.map(user =>
+        //     <UserCard 
+        //       key={user.id} 
+        //       data={user} 
+        //       removeUser={handleRemoveUser}
+        //       showProfile={displayUserProfile} />
+        //   )
+          : transition.map(({item, key, props}) => (
+            <animated.div key={key} style={props}>
+              <UserCard
+                data={item} 
+                removeUser={handleRemoveUser}
+                showProfile={displayUserProfile} />
+            </animated.div>
+
+          ))
         }
 
         {/* <ProfileDos isOpen={state} close={toggleDrawer}>

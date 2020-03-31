@@ -2,6 +2,7 @@ import React, { useReducer, useEffect, useCallback, useState } from 'react'
 
 import UserCard from './UserCard'
 import UserProfile from './UserProfile'
+import ProfileDos from './DrawerHand'
 
 import Drawer from '@material-ui/core/Drawer'
 
@@ -130,6 +131,7 @@ const feedReducer = (state, action) =>{
 
     return(
       <>
+
         {list.isError && <p>Something went wrong...</p>}
         {list.isLoading ? <p>Loading...</p>
         : list.data.map(user =>
@@ -140,6 +142,11 @@ const feedReducer = (state, action) =>{
               showProfile={displayUserProfile} />
           )
         }
+
+        {/* <ProfileDos isOpen={state} close={toggleDrawer}>
+          <UserProfile user={list.user} close={toggleDrawer} />
+        </ProfileDos> */}
+
         <Drawer 
           anchor={'right'} 
           open={state} 

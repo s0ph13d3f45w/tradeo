@@ -11,7 +11,8 @@ const ProfileData = props =>{
             '& > *': {
                 margin: theme.spacing(1),
               },
-            marginBottom: '20px'
+            marginBottom: '20px',
+            justifyContent: 'center'
         }
     }))
     const classes = useStyles()

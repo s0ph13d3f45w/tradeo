@@ -17,14 +17,20 @@ const useStyles = makeStyles(theme => ({
     avatar:{
         width: theme.spacing(13),
         height: theme.spacing(13),
-        marginBottom: 5
+        marginBottom: 5,
+        border: 1,
+        m: 1,
+        borderColor: 'text.primary'
     }
 }))
 
 const ProfileImage = ({img}) =>{
     const classes = useStyles()
     return(
-        <Avatar src={img} alt="profile" className={classes.avatar} />
+        <Avatar 
+            src={img} 
+            alt="profile" 
+            className={classes.avatar} />
     )
 }
 
@@ -42,10 +48,10 @@ const UserProfile = ({user}) =>{
                 width: '100%',
                 margin: '20, 0',
                 height: 200,
-                backgroundColor: 'tomato',
+                backgroundColor: 'skyblue',
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'flex-end'
             }}>
                 <h2>Galeria</h2>
             </div>

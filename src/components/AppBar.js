@@ -6,7 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import '../i18n'
+import Avatar from '@material-ui/core/Avatar'
+import Icon from '@material-ui/core/Icon'
 import LanguageSelector from '../LanguageSelector'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,8 +35,11 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            tulis♻
+            <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
           </Typography>
+      
+    
+
           <LanguageSelector />
         </Toolbar>
       </AppBar>

@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
     },
     skills:{
         flexShrink: 50,
-        marginRight: 5
+        marginRight: 5,
+        width: '50%'
     },
     stars:{
         flexBasis: 200
@@ -58,18 +59,19 @@ const Rating = ({counter, points, skills, t}) =>{
                 <Giver skills={skills} typeReturn="skills" t={t}/>
             </div>
             <Typography 
-                color="textPrimary">
+                color="textSecondary">
                     <strong>
                     {result}
                     </strong>
             </Typography>
-            <StarRatings 
+             <StarRatings 
                 rating={result}
                 starDimension="20px"
                 starSpacing="2px"
                 starRatedColor="yellow"
                 numberOfStars={5}
-            />     
+            /> 
+               
         </div>
     )
 }

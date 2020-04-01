@@ -1,5 +1,7 @@
 import React from 'react'
-
+import StarRatings from 'react-star-ratings';
+import {useTranslation} from 'react-i18next'
+import Giver from './Giver'
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
@@ -18,10 +20,21 @@ const useStyles = makeStyles(theme => ({
         width: theme.spacing(13),
         height: theme.spacing(13),
         marginBottom: 5,
-        border: 1,
-        m: 1,
-        borderColor: 'text.primary'
+    },
+    rater:{
+        display: 'flex',
+        marginTop: 5,
+        padding: 10,
+        alignSelf: 'end'
+    },
+    skills:{
+        flexShrink: 50,
+        marginRight: 5
+    },
+    stars:{
+        flexBasis: 200
     }
+   
 }))
 
 const ProfileImage = ({img}) =>{
@@ -34,8 +47,36 @@ const ProfileImage = ({img}) =>{
     )
 }
 
+const Rating = ({counter, points, skills, t}) =>{
+    let result = points / counter
+    if (Object.is(result, NaN)) {result = 0}
+
+    const classes = useStyles()
+    return(
+        <div className={classes.rater}>
+            <div className={classes.skills}>
+                <Giver skills={skills} typeReturn="skills" t={t}/>
+            </div>
+            <Typography 
+                color="textPrimary">
+                    <strong>
+                    {result}
+                    </strong>
+            </Typography>
+            <StarRatings 
+                rating={result}
+                starDimension="20px"
+                starSpacing="2px"
+                starRatedColor="yellow"
+                numberOfStars={5}
+            />     
+        </div>
+    )
+}
+
 
 const UserProfile = ({user}) =>{
+    const {t} = useTranslation()
     const classes = useStyles()
     return(
         <Container className={classes.root}>
@@ -55,6 +96,10 @@ const UserProfile = ({user}) =>{
             }}>
                 <h2>Galeria</h2>
             </div>
+            <Rating 
+                {...user.votes} 
+                skills={user.skills} 
+                t={t}/>
         </Container>
     )
 }

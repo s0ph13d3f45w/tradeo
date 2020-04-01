@@ -17,6 +17,7 @@
     "react-i18next": "^11.3.4",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
+    "react-star-ratings": "^2.3.0",
     "react-transition-group": "^4.3.0"
   },
   "scripts": {

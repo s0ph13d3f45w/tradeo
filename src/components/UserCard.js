@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core/styles';
 import ProfileData from './ProfileData'
+import Giver from './Giver'
 
 import Container from '@material-ui/core/Container';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -48,24 +49,6 @@ const DescriptiveArea = props =>{
     )
 }
 
-const Giver = props =>{
-    const {t, skills } = props
-    return(
-        <>
-            <Typography variant="h6" component="h2">
-                {t('offer')}
-            </Typography>
-            <Breadcrumbs>
-                {skills.map((skills, index) =>
-                <Typography 
-                    key={index}
-                    color="textSecondary">{t(skills)}</Typography>
-                )}
-            </Breadcrumbs>
-      </>
-    )
-}
-
 const Receiver = props =>{
     const {t, interested} = props
     return(
@@ -103,7 +86,7 @@ const Description = props =>{
 }
 
 const UserCard = props => {
-    const { t} = useTranslation()
+    const {t} = useTranslation()
     const classes = useStyles();
     const { data, showProfile } = props
 

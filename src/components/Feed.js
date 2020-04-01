@@ -59,6 +59,10 @@ const feedReducer = (state, action) =>{
         descriptive_area: 'design_male',
         skills: ['web_dev'],
         interested: ['handcraft', 'repairment'],
+        votes: {
+          counter: 1,
+          points: 4,
+        },
         email: 'jesuscovam@gmail.com',
           image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
           wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
@@ -70,6 +74,10 @@ const feedReducer = (state, action) =>{
         descriptive_area: 'creative_writer_female',
         skills: ['ux_dev', 'content_writer'],
         interested: ['teaching', 'repairment'],
+        votes: {
+          counter: 1,
+          points: 4,
+        },
         email: 'sophiedefauw@gmail.com',
         image: 'https://i.ibb.co/DYr7RXT/IMG-3-E054-BF552-F8-1.jpg',
         wallpaper: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
@@ -81,6 +89,10 @@ const feedReducer = (state, action) =>{
       descriptive_area: 'design_male',
       skills: ['web_dev'],
       interested: ['handcraft', 'repairment'],
+      votes: {
+        counter: 0,
+        points: 0,
+      },
       email: 'jesuscovam@gmail.com',
         image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
         wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",

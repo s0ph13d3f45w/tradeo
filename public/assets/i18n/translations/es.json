@@ -14,5 +14,18 @@
     "repairment": "Reparaciones 🛠️",
     "teaching": "Clases 💻",
     "web_dev": "Desarrollo web 🌐",
-    "ux_dev": "Desarrollo UX 📲"
+    "ux_dev": "Desarrollo UX 📲",
+    "teaching_music": "Clases de música",
+    "psicologist_male": "Psicólogo"
+    "psicologist_female": "Psicóloga"
+    "doctor_male": "Doctor"
+    "doctor_female": "Doctora"
+    "doctor_alternative_male": "Doctor de medicinas alternativas"
+    "doctor_alternative_female": "Doctora de medicinas alternativas"
+    "doctor_alternative": "Medicinas alternativas"
+    "chef_male": "Cocinero"
+    "chef_female": "Cocinera"
+    "artist": "Artista"
+    "teaching_yoga": "Clases de Yoga"
+    "sewing": "Corte y confección" 
 }

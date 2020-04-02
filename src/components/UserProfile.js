@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import {makeStyles} from '@material-ui/core/styles'
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 const useStyles = makeStyles(theme => ({
     root:{
         display: 'flex',
@@ -23,17 +26,17 @@ const useStyles = makeStyles(theme => ({
     },
     rater:{
         display: 'flex',
+        flexFlow: 'row wrap',
         marginTop: 5,
         padding: 10,
         alignSelf: 'end'
     },
     skills:{
-        flexShrink: 50,
         marginRight: 5,
-        width: '50%'
+        flexBasis: '49%'
     },
     stars:{
-        flexBasis: 200
+
     }
    
 }))
@@ -66,7 +69,7 @@ const Rating = ({counter, points, skills, t}) =>{
             </Typography>
              <StarRatings 
                 rating={result}
-                starDimension="20px"
+                starDimension="18px"
                 starSpacing="2px"
                 starRatedColor="yellow"
                 numberOfStars={5}
@@ -87,17 +90,19 @@ const UserProfile = ({user}) =>{
                 variant="h4"
                 component="h2"
                 color="textPrimary">{user.name}</Typography>
-            <div style={{
-                width: '100%',
-                margin: '20, 0',
-                height: 200,
-                backgroundColor: 'skyblue',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'flex-end'
-            }}>
-                <h2>Galeria</h2>
-            </div>
+            
+            {user.images
+            ? ( <div >
+                <Carousel showThumbs={false} showStatus={false} width="200px">
+                    {user.images.map((image, index)=>
+                    <div key={index}>
+                        <img src={image} alt="user" style={{height: 175, width: 200}} />
+                    </div>
+                    )}
+                </Carousel>
+                </div>)
+            : null}
+           
             <Rating 
                 {...user.votes} 
                 skills={user.skills} 

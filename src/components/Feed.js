@@ -79,6 +79,11 @@ const feedReducer = (state, action) =>{
           points: 4,
         },
         email: 'sophiedefauw@gmail.com',
+        images:[
+          'https://storage.googleapis.com/spec-host/mio-staging%2Fmio-design%2F1584058305895%2Fassets%2F1kVVLIES2HDnnmqXgAvglbAK8a-oVEEh0%2Fintro-illo-motion.png',
+          'https://storage.googleapis.com/spec-host/mio-staging%2Fmio-design%2F1584058305895%2Fassets%2F1Hfurrx3NHOuac_WreNWxG-2qdKjliIx_%2Fintro-illo-metaphor.png',
+          'https://pbs.twimg.com/profile_images/664504497243209728/YAp07ofw_400x400.jpg'
+        ],
         image: 'https://i.ibb.co/DYr7RXT/IMG-3-E054-BF552-F8-1.jpg',
         wallpaper: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
         description: 'Tempor cillum consequat sunt consequat consequat ullamco amet. Laborum pariatur culpa quis nostrud reprehenderit cillum. In do aliqua incididunt nulla. Voluptate Lorem excepteur aute aliquip do et irure laboris officia. Aliquip duis cupidatat enim id voluptate consectetur. Cillum enim sint est esse dolor eiusmod nisi anim magna amet culpa irure aliquip veniam. Anim ad labore labore id id.'

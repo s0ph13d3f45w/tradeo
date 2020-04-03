@@ -29,14 +29,10 @@ const useStyles = makeStyles(theme => ({
         flexFlow: 'row wrap',
         marginTop: 5,
         padding: 10,
-        alignSelf: 'end'
+  
     },
     skills:{
-        marginRight: 5,
-        flexBasis: '49%'
-    },
-    stars:{
-
+    
     }
    
 }))
@@ -51,6 +47,19 @@ const ProfileImage = ({img}) =>{
     )
 }
 
+const SkillsList = ({skills, t}) =>{
+    const classes = useStyles()
+    return(
+        <div className={classes.skills}>
+            {skills.map((skill, index) =>
+                <Typography 
+                    key={index}
+                    color="textSecondary">{t(skill)}</Typography>
+            )}
+        </div>
+    )
+}
+
 const Rating = ({counter, points, skills, t}) =>{
     let result = points / counter
     if (Object.is(result, NaN)) {result = 0}
@@ -58,23 +67,19 @@ const Rating = ({counter, points, skills, t}) =>{
     const classes = useStyles()
     return(
         <div className={classes.rater}>
-            <div className={classes.skills}>
-                <Giver skills={skills} typeReturn="skills" t={t}/>
-            </div>
-            <Typography 
-                color="textSecondary">
-                    <strong>
-                    {result}
-                    </strong>
-            </Typography>
-             <StarRatings 
-                rating={result}
-                starDimension="18px"
-                starSpacing="2px"
-                starRatedColor="yellow"
-                numberOfStars={5}
-            /> 
-               
+                <Typography 
+                    color="textSecondary">
+                        <strong>
+                        {result}
+                        </strong>
+                </Typography>
+                <StarRatings 
+                    rating={result}
+                    starDimension="18px"
+                    starSpacing="2px"
+                    starRatedColor="yellow"
+                    numberOfStars={5}
+                    /> 
         </div>
     )
 }
@@ -107,6 +112,7 @@ const UserProfile = ({user}) =>{
                 {...user.votes} 
                 skills={user.skills} 
                 t={t}/>
+            <SkillsList skills={user.skills} t={t}/>
         </Container>
     )
 }

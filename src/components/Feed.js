@@ -174,7 +174,8 @@ const feedReducer = (state, action) =>{
               <UserCard
                 data={item} 
                 removeUser={handleRemoveUser}
-                showProfile={displayUserProfile} />
+                showProfile={displayUserProfile}
+                theme={theme} />
             </animated.div>
 
           ))

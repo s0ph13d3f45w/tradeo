@@ -85,10 +85,9 @@ const Description = props =>{
     )
 }
 
-const UserCard = props => {
+const UserCard = ({data, showProfile, removeUser, theme}) => {
     const {t} = useTranslation()
     const classes = useStyles();
-    const { data, showProfile } = props
 
   return (
     
@@ -119,16 +118,22 @@ const UserCard = props => {
                     description={data.description} />
             </CardContent>
             <CardActions className={classes.buttons}>
-                <Button 
-                    onClick={() => showProfile(data)}
-                    variant="outlined"
-                    color="inherit"
-                    size="medium">{t('button_contact')}</Button>
+                {theme.palette.type === 'light'
+                    ? (<Button 
+                        onClick={() => showProfile(data)}
+                        variant="outlined"
+                        color="primary"
+                        size="medium">{t('button_contact')}</Button>)
+                    : (<Button 
+                        onClick={() => showProfile(data)}
+                        variant="outlined"
+                        color="inherit"
+                        size="medium">{t('button_contact')}</Button>)}
                 <Button
                     variant="outlined"
                     color="secondary"
                     size="medium"
-                    onClick={()=> props.removeUser(data)}>
+                    onClick={()=> removeUser(data)}>
                     <CloseIcon />
                 </Button>
             </CardActions>

@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography'
 const Giver = ({t, skills, typeReturn}) =>
     typeReturn === 'skills' 
         ? (
-       
-
-           
+         
             <Breadcrumbs>
                 {skills.map((skills, index) =>
                 <Typography 

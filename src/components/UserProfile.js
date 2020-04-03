@@ -1,7 +1,7 @@
 import React from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
-import Giver from './Giver'
+
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
@@ -95,8 +95,8 @@ const UserProfile = ({user}) =>{
             <Typography 
                 variant="h4"
                 component="h2"
-                color="textPrimary">{user.name}</Typography>
-            
+                color="textPrimary">{user.name}
+            </Typography>
             {user.images
             ? ( <div >
                 <Carousel showThumbs={false} showStatus={false} width="200px">

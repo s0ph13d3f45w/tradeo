@@ -5,6 +5,8 @@ import UserCard from './UserCard'
 import UserProfile from './UserProfile'
 import ProfileDos from './DrawerHand'
 
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 import Drawer from '@material-ui/core/Drawer'
 
 const feedReducer = (state, action) =>{
@@ -106,10 +108,19 @@ const feedReducer = (state, action) =>{
 
   ]
 
-  export default function(){
+  const useStyles = makeStyles(theme => ({
+    root:{
+      marginTop: 63,
+      backgroundColor: theme.palette.background.default
+    }
+  }))
+
+
+  export default function({theme}){
     const [ list, dispatch ] = useReducer(feedReducer, initialData)
     const [ localData] = useState(dataEx)
     const [ state, setState ] = useState(false)
+    const classes = useStyles(theme)
 
     const transition = useTransition(list.data, item => item.id, {
       from: { opacity: 0},
@@ -154,17 +165,10 @@ const feedReducer = (state, action) =>{
     }
 
     return(
-      <>
-
+      <Container className={classes.root}>
+        <br />
         {list.isError && <p>Something went wrong...</p>}
         {list.isLoading ? <p>Loading...</p>
-        // : list.data.map(user =>
-        //     <UserCard 
-        //       key={user.id} 
-        //       data={user} 
-        //       removeUser={handleRemoveUser}
-        //       showProfile={displayUserProfile} />
-        //   )
           : transition.map(({item, key, props}) => (
             <animated.div key={key} style={props}>
               <UserCard
@@ -187,7 +191,7 @@ const feedReducer = (state, action) =>{
           >
             <UserProfile user={list.user} />
         </Drawer>
-      </>)
+      </Container>)
   }
 
  

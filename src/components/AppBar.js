@@ -7,13 +7,19 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import '../i18n'
 import Avatar from '@material-ui/core/Avatar'
-import Icon from '@material-ui/core/Icon'
+import {Switch, FormControlLabel} from '@material-ui/core'
+
+import Brightness2Icon from '@material-ui/icons/Brightness2';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+
+
 import LanguageSelector from '../LanguageSelector'
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    marginBottom: '20px'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -24,12 +30,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+
+const ButtonAppBar = ({toggleTheme, theme})=> {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+
+      {theme.palette.type === 'light' 
+      ? (<AppBar position="fixed" color="primary">
+          <Toolbar>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+            </Typography>
+            <FormControlLabel 
+              control={<Switch onClick={toggleTheme}/>}
+            />
+            <LanguageSelector />
+          </Toolbar>
+        </AppBar>)
+    : (<AppBar position="fixed" color="inherit">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -37,12 +60,15 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
           </Typography>
-      
-    
-
+          <FormControlLabel 
+            control={<Switch onClick={toggleTheme}/>}
+          />
           <LanguageSelector />
         </Toolbar>
-      </AppBar>
+      </AppBar>)
+    }     
     </div>
   );
 }
+
+export default ButtonAppBar

@@ -122,7 +122,7 @@ const UserCard = props => {
                 <Button 
                     onClick={() => showProfile(data)}
                     variant="outlined"
-                    color="primary"
+                    color="inherit"
                     size="medium">{t('button_contact')}</Button>
                 <Button
                     variant="outlined"

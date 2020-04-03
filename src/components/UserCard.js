@@ -130,7 +130,6 @@ const UserCard = ({data, showProfile, removeUser, theme}) => {
                         color="inherit"
                         size="medium">{t('button_contact')}</Button>)}
                 <Button
-                    variant="outlined"
                     color="secondary"
                     size="medium"
                     onClick={()=> removeUser(data)}>

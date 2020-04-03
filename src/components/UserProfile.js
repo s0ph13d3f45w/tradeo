@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         marginTop: 5,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        textAlign: 'center'
     },
     avatar:{
         width: theme.spacing(13),
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   
     },
     skills:{
-    
+     
     }
    
 }))

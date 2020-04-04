@@ -65,6 +65,7 @@ const feedReducer = (state, action) =>{
           counter: 1,
           points: 4,
         },
+        number: '+529841466416',
         email: 'jesuscovam@gmail.com',
           image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
           wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
@@ -80,6 +81,7 @@ const feedReducer = (state, action) =>{
           counter: 1,
           points: 4,
         },
+        number: '+393479319226',
         email: 'sophiedefauw@gmail.com',
         images:[
           'https://storage.googleapis.com/spec-host/mio-staging%2Fmio-design%2F1584058305895%2Fassets%2F1kVVLIES2HDnnmqXgAvglbAK8a-oVEEh0%2Fintro-illo-motion.png',
@@ -100,6 +102,7 @@ const feedReducer = (state, action) =>{
         counter: 0,
         points: 0,
       },
+      number: '+529841466416',
       email: 'jesuscovam@gmail.com',
         image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
         wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",

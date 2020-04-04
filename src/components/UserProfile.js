@@ -124,7 +124,10 @@ const UserProfile = ({user}) =>{
                 description={user.description} 
                 classes={classes}/>
             <IconButton 
-                color="primary">
+                color="primary"
+                onClick={() =>{
+                    window.open(`https://api.whatsapp.com/send?phone=${user.number}`)
+                }}>
                 <WhatsAppIcon />
             </IconButton>
         </Container>

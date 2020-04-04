@@ -2,8 +2,8 @@ import React, { useReducer, useEffect, useCallback, useState } from 'react'
 import { useTransition, animated } from 'react-spring'
 
 import UserCard from './UserCard'
-import UserProfile from './UserProfile'
-import ProfileDos from './DrawerHand'
+import UserProfile from '../UserProfile'
+import ProfileDos from '../DrawerHand'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -68,7 +68,7 @@ const feedReducer = (state, action) =>{
         email: 'jesuscovam@gmail.com',
           image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
           wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
-        description: 'Tempor cillum consequat sunt consequat consequat ullamco amet. Laborum pariatur culpa quis nostrud reprehenderit cillum. In do aliqua incididunt nulla. Voluptate Lorem excepteur aute aliquip do et irure laboris officia. Aliquip duis cupidatat enim id voluptate consectetur. Cillum enim sint est esse dolor eiusmod nisi anim magna amet culpa irure aliquip veniam. Anim ad labore labore id id.'
+          description: "Sint adipisicing laborum quis velit et sunt reprehenderit ut cillum."
       },
       {   
         id: 2,
@@ -88,7 +88,7 @@ const feedReducer = (state, action) =>{
         ],
         image: 'https://i.ibb.co/DYr7RXT/IMG-3-E054-BF552-F8-1.jpg',
         wallpaper: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
-        description: 'Tempor cillum consequat sunt consequat consequat ullamco amet. Laborum pariatur culpa quis nostrud reprehenderit cillum. In do aliqua incididunt nulla. Voluptate Lorem excepteur aute aliquip do et irure laboris officia. Aliquip duis cupidatat enim id voluptate consectetur. Cillum enim sint est esse dolor eiusmod nisi anim magna amet culpa irure aliquip veniam. Anim ad labore labore id id.'
+        description: "Sint adipisicing laborum quis velit et sunt reprehenderit ut cillum."
     },
     {   
       id: 3,
@@ -103,7 +103,7 @@ const feedReducer = (state, action) =>{
       email: 'jesuscovam@gmail.com',
         image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
         wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
-      description: 'Tempor cillum consequat sunt consequat consequat ullamco amet. Laborum pariatur culpa quis nostrud reprehenderit cillum. In do aliqua incididunt nulla. Voluptate Lorem excepteur aute aliquip do et irure laboris officia. Aliquip duis cupidatat enim id voluptate consectetur. Cillum enim sint est esse dolor eiusmod nisi anim magna amet culpa irure aliquip veniam. Anim ad labore labore id id.'
+        description: "Sint adipisicing laborum quis velit et sunt reprehenderit ut cillum."
     },
 
   ]

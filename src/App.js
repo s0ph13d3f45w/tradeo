@@ -1,5 +1,5 @@
 import React, {Suspense, useState, useCallback} from 'react'
-import Feed from './components/Feed'
+import Feed from './components/Feed/index'
 import NavBar from './components/AppBar'
 
 import {ThemeProvider} from '@material-ui/core/styles'

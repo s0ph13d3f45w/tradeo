@@ -1,6 +1,7 @@
 import React from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
+import Description from './Feed/Description'
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography'
@@ -32,8 +33,9 @@ const useStyles = makeStyles(theme => ({
         padding: 10,
   
     },
-    skills:{
-     
+    textDescription:{
+        textAlign: 'justify',
+        marginTop: 5
     }
    
 }))
@@ -114,6 +116,9 @@ const UserProfile = ({user}) =>{
                 skills={user.skills} 
                 t={t}/>
             <SkillsList skills={user.skills} t={t}/>
+            <Description 
+                description={user.description} 
+                classes={classes}/>
         </Container>
     )
 }

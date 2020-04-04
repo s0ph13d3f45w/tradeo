@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core/styles';
 import ProfileData from './ProfileData'
 import Giver from './Giver'
+import Description from './Description'
 
 import Container from '@material-ui/core/Container';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -66,25 +67,7 @@ const Receiver = props =>{
         </>
     )
 }
-
-const Description = props =>{
-    const { t, description, classes } = props
-    return(
-        <>
-            <Typography className={classes.pos}>
-                {t('description')}:
-            </Typography>
-            <Typography 
-                variant="body2" 
-                component="p"
-                color="textSecondary">
-                {description}
-                <br />
-            </Typography>
-        </>
-    )
-}
-
+    
 const UserCard = ({data, showProfile, removeUser, theme}) => {
     const {t} = useTranslation()
     const classes = useStyles();
@@ -111,11 +94,6 @@ const UserCard = ({data, showProfile, removeUser, theme}) => {
                 <Giver skills={data.skills} t={t} />
                 <br/> 
                 <Receiver interested={data.interested} t={t} />
-                <br />
-                <Description 
-                    classes={classes} 
-                    t={t} 
-                    description={data.description} />
             </CardContent>
             <CardActions className={classes.buttons}>
                 {theme.palette.type === 'light'

@@ -3,10 +3,14 @@ import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
 import Description from './Feed/Description'
 
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography'
-import Avatar from '@material-ui/core/Avatar'
+import {Container,
+        Typography, 
+        Avatar, 
+        IconButton} from '@material-ui/core';
+
 import {makeStyles} from '@material-ui/core/styles'
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -119,6 +123,10 @@ const UserProfile = ({user}) =>{
             <Description 
                 description={user.description} 
                 classes={classes}/>
+            <IconButton 
+                color="primary">
+                <WhatsAppIcon />
+            </IconButton>
         </Container>
     )
 }

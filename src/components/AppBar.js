@@ -3,14 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import '../i18n'
 import Avatar from '@material-ui/core/Avatar'
 import {Switch, FormControlLabel} from '@material-ui/core'
-
-import Brightness2Icon from '@material-ui/icons/Brightness2';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 
 import LanguageSelector from '../LanguageSelector'
@@ -40,9 +35,6 @@ const ButtonAppBar = ({toggleTheme, theme})=> {
       {theme.palette.type === 'light' 
       ? (<AppBar position="fixed" color="primary">
           <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
             <Typography variant="h6" className={classes.title}>
               <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
             </Typography>
@@ -54,9 +46,6 @@ const ButtonAppBar = ({toggleTheme, theme})=> {
         </AppBar>)
     : (<AppBar position="fixed" color="inherit">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
           </Typography>

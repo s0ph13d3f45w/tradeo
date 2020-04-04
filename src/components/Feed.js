@@ -110,7 +110,7 @@ const feedReducer = (state, action) =>{
 
   const useStyles = makeStyles(theme => ({
     root:{
-      marginTop: 63,
+      marginTop: 50,
       backgroundColor: theme.palette.background.default
     }
   }))
@@ -177,7 +177,6 @@ const feedReducer = (state, action) =>{
                 showProfile={displayUserProfile}
                 theme={theme} />
             </animated.div>
-
           ))
         }
 

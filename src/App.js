@@ -1,7 +1,7 @@
 import React, {Suspense, useState, useCallback} from 'react'
 import Feed from './components/Feed/index'
 import NavBar from './components/AppBar'
-
+import UserProvider from './context/usersContext'
 import {ThemeProvider} from '@material-ui/core/styles'
 import {createMuiTheme} from '@material-ui/core'
 import './App.css'
@@ -33,7 +33,9 @@ export default function(){
       <ThemeProvider theme={theme}>
         <Suspense fallback={null}>
           <NavBar toggleTheme={toggleTheme} theme={theme}/>
-          <Feed theme={theme}/>
+          <UserProvider>
+            <Feed theme={theme}/>
+          </UserProvider>
         </Suspense>
       </ThemeProvider>
   )

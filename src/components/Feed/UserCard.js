@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core/styles';
 import ProfileData from './ProfileData'
 import Giver from './Giver'
-import Description from './Description'
 
 import Container from '@material-ui/core/Container';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -37,6 +36,14 @@ const useStyles = makeStyles({
     },
     media:{
         height: 240
+    },
+    crumbs:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        margin: '0 auto'
+
     }
   });
 
@@ -91,7 +98,7 @@ const UserCard = ({data, showProfile, removeUser, theme}) => {
                     textSize="h4"
                     name={data.name} 
                     img={data.image} />
-                <Giver skills={data.skills} t={t} />
+                <Giver skills={data.skills} t={t} classObj={classes} />
                 <br/> 
                 <Receiver interested={data.interested} t={t} />
             </CardContent>

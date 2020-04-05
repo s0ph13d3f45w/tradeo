@@ -4,6 +4,7 @@ import { useTransition, animated } from 'react-spring'
 import UserCard from './UserCard'
 import UserProfile from '../UserProfile'
 import ProfileDos from '../DrawerHand'
+import FilterCrumb from './FilterCrumb'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -22,7 +23,8 @@ const feedReducer = (state, action) =>{
         ...state,
         isLoading: false,
         isError: false,
-        data: action.payload 
+        data: action.payload,
+        displayList: action.payload
       }
     case 'SET_LIST_FAILURE':
       return{
@@ -42,12 +44,25 @@ const feedReducer = (state, action) =>{
         ...state,
         user: action.payload
       }
+    case 'SET_FILTER':
+      return{
+        ...state,
+        displayList: state.data.filter(user =>
+          action.payload === user.type
+        )
+      }
+    case 'SET_FILTER_ALL':
+      return{
+        ...state,
+        displayList: state.data.concat()
+      }
     default: new Error()
     }
   }
 
  const initialData = {
    data: [],
+   displayList: [],
    isLoading: false,
    isError: false,
    user: {}
@@ -58,6 +73,7 @@ const feedReducer = (state, action) =>{
       {   
         id: 1,
         name: 'Jesus',
+        type: 'services',
         descriptive_area: 'design_male',
         skills: ['web_dev'],
         interested: ['handcraft', 'repairment'],
@@ -74,6 +90,7 @@ const feedReducer = (state, action) =>{
       {   
         id: 2,
         name: 'Sophie',
+        type: 'services',
         descriptive_area: 'creative_writer_female',
         skills: ['ux_dev', 'content_writer'],
         interested: ['teaching', 'repairment'],
@@ -95,6 +112,7 @@ const feedReducer = (state, action) =>{
     {   
       id: 3,
       name: 'Jesus',
+      type: 'services',
       descriptive_area: 'design_male',
       skills: ['web_dev'],
       interested: ['handcraft', 'repairment'],
@@ -106,6 +124,23 @@ const feedReducer = (state, action) =>{
       email: 'jesuscovam@gmail.com',
         image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
         wallpaper: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+        description: "Sint adipisicing laborum quis velit et sunt reprehenderit ut cillum."
+    },
+    {   
+      id: 4,
+      name: 'Leo',
+      type: 'products',
+      descriptive_area: 'design_male',
+      skills: ['food'],
+      interested: ['handcraft', 'repairment'],
+      votes: {
+        counter: 0,
+        points: 0,
+      },
+      number: '+529841466416',
+      email: 'jesuscovam@gmail.com',
+        image: "https://i.imgur.com/FBljCbY.jpg",
+        wallpaper: "https://images.unsplash.com/photo-1584663639452-b79f2cfecb0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
         description: "Sint adipisicing laborum quis velit et sunt reprehenderit ut cillum."
     },
 
@@ -125,7 +160,7 @@ const feedReducer = (state, action) =>{
     const [ state, setState ] = useState(false)
     const classes = useStyles(theme)
 
-    const transition = useTransition(list.data, item => item.id, {
+    const transition = useTransition(list.displayList, item => item.id, {
       from: { opacity: 0},
       enter: { opacity: 1},
       leave: { opacity: 0}
@@ -167,9 +202,22 @@ const feedReducer = (state, action) =>{
       toggleDrawer()
     }
 
+    const setFilter = filter =>{
+      dispatch({
+        type: 'SET_FILTER',
+        payload: filter
+      })
+    }
+
+    const setFilterAll = () =>
+      dispatch({type: 'SET_FILTER_ALL'})
+    
+
+
     return(
       <Container className={classes.root}>
         <br />
+        <FilterCrumb setFilter={setFilter} setFilterAll={setFilterAll}/>
         {list.isError && <p>Something went wrong...</p>}
         {list.isLoading ? <p>Loading...</p>
           : transition.map(({item, key, props}) => (

@@ -54,20 +54,18 @@ const ProfileImage = ({img}) =>{
     )
 }
 
-const SkillsList = ({skills, t}) =>{
-    const classes = useStyles()
-    return(
-        <div className={classes.skills}>
-            {skills.map((skill, index) =>
-                <Typography 
-                    key={index}
-                    color="textSecondary">{t(skill)}</Typography>
-            )}
-        </div>
-    )
-}
+const SkillsList = ({skills, t}) =>
+    <>
+        {skills.map((skill, index) =>
+            <Typography 
+                key={index}
+                color="textSecondary">{t(skill)}</Typography>
+        )}
+    </>
+    
 
-const Rating = ({counter, points, skills, t}) =>{
+
+const Rating = ({counter, points}) =>{
     let result = points / counter
     if (Object.is(result, NaN)) {result = 0}
 
@@ -86,7 +84,7 @@ const Rating = ({counter, points, skills, t}) =>{
                     starSpacing="2px"
                     starRatedColor="yellow"
                     numberOfStars={5}
-                    /> 
+                /> 
         </div>
     )
 }

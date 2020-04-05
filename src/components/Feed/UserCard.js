@@ -107,7 +107,7 @@ const UserCard = ({data, showProfile, removeUser, theme}) => {
                     ? (<Button 
                         onClick={() => showProfile(data)}
                         variant="outlined"
-                        color="primary"
+                        color="inherit"
                         size="medium">{t('button_contact')}</Button>)
                     : (<Button 
                         onClick={() => showProfile(data)}

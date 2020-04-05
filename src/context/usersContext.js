@@ -27,7 +27,7 @@ const feedReducer = (state, action) =>{
       case 'SET_REMOVE_USER':
         return{
           ...state,
-          data: state.data.filter(user =>
+          displayList: state.displayList.filter(user =>
             action.payload.id !== user.id
           )
         }

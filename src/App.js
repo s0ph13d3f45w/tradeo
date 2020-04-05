@@ -9,7 +9,8 @@ import './App.css'
 
 const themeObject = {
   palette:{
-    primary: {main: '#00acc1'},
+    primary: {main: '#006064'},
+    secondary: {main: '#00838f'},
     type:'light'
   }
 }
@@ -23,7 +24,8 @@ export default function(){
       ...theme,
       palette: {
         type: theme.palette.type === 'light' ? 'dark' : 'light',
-        primary: {main: '#00acc1'}}
+        primary: {main: '#006064'},
+        secondary: {main: '#00838f'}}
     })
     setTheme(newTheme)
   }, [theme])

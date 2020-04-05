@@ -38,8 +38,8 @@ const ButtonAppBar = ({toggleTheme, theme})=> {
             <Typography variant="h6" className={classes.title}>
               <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
             </Typography>
-            <FormControlLabel 
-              control={<Switch onClick={toggleTheme}/>}
+            <FormControlLabel
+              control={<Switch onClick={toggleTheme} />}
             />
             <LanguageSelector />
           </Toolbar>

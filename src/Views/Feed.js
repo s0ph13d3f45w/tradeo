@@ -2,6 +2,7 @@ import React, {useEffect, useCallback, useState, useContext } from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { UserContext } from '../context/usersContext'
 import { TemaContext } from '../context/themeContext'
+import { useTranslation } from 'react-i18next'
 import { useTransition, animated } from 'react-spring'
 import UserCard from '../components/Feed/UserCard'
 import UserProfile from '../components/UserProfile'
@@ -24,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     const {theme} = useContext(TemaContext)
     const [ state, setState ] = useState(false)
     const classes = useStyles(theme)
+    const {t} = useTranslation()
 
     const transition = useTransition(list.displayList, item => item.id, {
       from: { opacity: 0},
@@ -67,7 +69,7 @@ const useStyles = makeStyles(theme => ({
       <MainLayout>
         <Container className={classes.root}>
           <br />
-          <FilterCrumb dispatch={dispatch}/>
+          <FilterCrumb dispatch={dispatch} t={t}/>
           {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
             ? <p>Loading...</p>
@@ -77,7 +79,8 @@ const useStyles = makeStyles(theme => ({
                   data={item} 
                   dispatch={dispatch}
                   showProfile={displayUserProfile}
-                  theme={theme} />
+                  theme={theme}
+                  t={t} />
               </animated.div>
             ))
           }

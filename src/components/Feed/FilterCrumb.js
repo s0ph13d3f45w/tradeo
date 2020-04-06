@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Breadcrumbs, IconButton, InputBase, Button} from '@material-ui/core'
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
@@ -55,6 +55,16 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 const Filter = ({dispatch, t}) =>{
+    const [search, setSearch] = useState("")
+
+    const handleSearchBar = e =>
+        setSearch(e.target.value)
+
+    const submitSearch = () =>
+        dispatch({
+            type: 'SET_FILTER_TAGS',
+            payload:  search
+        })
 
     const setFilter = filter =>
         dispatch({
@@ -104,8 +114,12 @@ const Filter = ({dispatch, t}) =>{
                         input: classes.inputInput,
                     }}
                     inputProps={{ 'aria-label': 'search'}}
+                    value={search}
+                    onChange={handleSearchBar}
                 />
-                <Button variant="outlined">{t('search')}</Button>
+                <Button 
+                    variant="outlined"
+                    onClick={submitSearch}>{t('search')}</Button>
             </div>
         </Breadcrumbs>
     )

@@ -53,8 +53,7 @@ const useStyles = makeStyles(theme => ({
     
     const toggleDrawer = () => 
       setState(!state)
-    
-      
+     
     const displayUserProfile = user =>{
       dispatch({
         type: 'SET_DRAWER_USER',
@@ -62,8 +61,6 @@ const useStyles = makeStyles(theme => ({
       })
       toggleDrawer()
     }
-
-  
 
     return(
       <MainLayout>

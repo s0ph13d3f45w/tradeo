@@ -30,7 +30,7 @@ const LanguageSelector = () =>{
 
 
     return(
-        <FormControl component="outlined" className={classes.root}>
+        <FormControl className={classes.root}>
             <TranslateIcon className={classes.icon}/> 
             <Select
                 labelId="language-selector"

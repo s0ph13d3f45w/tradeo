@@ -144,7 +144,7 @@ const UserProvider = ({children}) =>{
     const [localData] = useState(dataEx)
     return(
         <UserContext.Provider value={{list, dispatch, localData}}>
-            ({children})
+            {children}
         </UserContext.Provider>
     )
 }

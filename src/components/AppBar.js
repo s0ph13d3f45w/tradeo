@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {TemaContext} from '../context/themeContext'
 import { makeStyles } from '@material-ui/core/styles';
 import '../i18n'
 import {Switch, 
@@ -26,7 +27,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const ButtonAppBar = ({toggleTheme, theme})=> {
+const ButtonAppBar = ()=> {
+  const {toggleTheme, theme} = useContext(TemaContext)
   const classes = useStyles();
 
   return (

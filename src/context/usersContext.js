@@ -48,6 +48,13 @@ const feedReducer = (state, action) =>{
           ...state,
           displayList: state.data.concat()
         }
+      case 'SET_FILTER_TAGS':
+        return{
+          ...state,
+          displayList: state.data.filter(user =>
+            user.tags.includes(action.payload)
+          )
+        }
       default: new Error()
       }
     }
@@ -73,6 +80,7 @@ const feedReducer = (state, action) =>{
             counter: 1,
             points: 4,
           },
+          tags: ["dev", "web", "pagina web", "development"],
           number: '+529841466416',
           email: 'jesuscovam@gmail.com',
             image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
@@ -92,6 +100,7 @@ const feedReducer = (state, action) =>{
           },
           number: '+393479319226',
           email: 'sophiedefauw@gmail.com',
+          tags: ["ux", "ui", "contenido", "escritos", "write"],
           images:[
             'https://storage.googleapis.com/spec-host/mio-staging%2Fmio-design%2F1584058305895%2Fassets%2F1kVVLIES2HDnnmqXgAvglbAK8a-oVEEh0%2Fintro-illo-motion.png',
             'https://storage.googleapis.com/spec-host/mio-staging%2Fmio-design%2F1584058305895%2Fassets%2F1Hfurrx3NHOuac_WreNWxG-2qdKjliIx_%2Fintro-illo-metaphor.png',
@@ -112,6 +121,7 @@ const feedReducer = (state, action) =>{
           counter: 0,
           points: 0,
         },
+        tags:[],
         number: '+529841466416',
         email: 'jesuscovam@gmail.com',
           image: "https://i.ibb.co/pXqDrvJ/profile.jpg",
@@ -129,6 +139,7 @@ const feedReducer = (state, action) =>{
           counter: 0,
           points: 0,
         },
+        tags: ["chilli"],
         number: '+529841466416',
         email: 'jesuscovam@gmail.com',
           image: "https://i.imgur.com/FBljCbY.jpg",

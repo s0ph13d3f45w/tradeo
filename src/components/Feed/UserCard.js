@@ -1,18 +1,17 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { makeStyles } from '@material-ui/core/styles';
 import ProfileData from './ProfileData'
 import Giver from './Giver'
 
-import Container from '@material-ui/core/Container';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import CardMedia from '@material-ui/core/CardMedia';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {Container,
+        Breadcrumbs,
+        CardMedia,
+        Card,
+        CardActions,
+        CardContent,
+        Button,
+        Typography} from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles({
@@ -48,35 +47,28 @@ const useStyles = makeStyles({
   });
 
 
-const DescriptiveArea = props =>{
-    const { descriptive_area, classes, t } = props 
-    return(
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-            {t(descriptive_area)}
-        </Typography>
-    )
-}
+const DescriptiveArea = ({ descriptive_area, classes, t }) =>
+    <Typography className={classes.title} color="textSecondary" gutterBottom>
+        {t(descriptive_area)}
+    </Typography>
 
-const Receiver = props =>{
-    const {t, interested} = props
-    return(
-        <>
-            <Typography variant="h5" component="h2">
-                {t('interest')}
-            </Typography>
-            <Breadcrumbs>
-                {interested.map((interest, index) =>
-                <Typography 
-                    key={index}
-                    color="textSecondary">{t(interest)}</Typography>
-                )}
-            </Breadcrumbs>
-        </>
-    )
-}
+const Receiver = ({t, interested}) =>
+    <>
+        <Typography variant="h5" component="h2">
+            {t('interest')}
+        </Typography>
+        <Breadcrumbs>
+            {interested.map((interest, index) =>
+            <Typography 
+                key={index}
+                color="textSecondary">{t(interest)}</Typography>
+            )}
+        </Breadcrumbs>
+    </>
+
     
-const UserCard = ({data, showProfile, dispatch, theme}) => {
-    const {t} = useTranslation()
+const UserCard = ({data, showProfile, dispatch, theme, t}) => {
+    
     const classes = useStyles();
 
     const removeUser = user =>

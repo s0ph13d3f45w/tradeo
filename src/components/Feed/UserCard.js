@@ -75,9 +75,15 @@ const Receiver = props =>{
     )
 }
     
-const UserCard = ({data, showProfile, removeUser, theme}) => {
+const UserCard = ({data, showProfile, dispatch, theme}) => {
     const {t} = useTranslation()
     const classes = useStyles();
+
+    const removeUser = user =>
+        dispatch({
+        type: 'SET_REMOVE_USER',
+        payload: user
+        })
 
   return (
     

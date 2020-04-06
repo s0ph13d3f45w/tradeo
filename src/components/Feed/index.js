@@ -45,12 +45,6 @@ const useStyles = makeStyles(theme => ({
     useEffect(() =>{
      fetchData()
     }, [fetchData])
-
-    const handleRemoveUser = user =>
-      dispatch({
-        type: 'SET_REMOVE_USER',
-        payload: user
-      })
     
     const toggleDrawer = () => 
       setState(!state)
@@ -64,29 +58,20 @@ const useStyles = makeStyles(theme => ({
       toggleDrawer()
     }
 
-    const setFilter = filter =>{
-      dispatch({
-        type: 'SET_FILTER',
-        payload: filter
-      })
-    }
-
-    const setFilterAll = () =>
-      dispatch({type: 'SET_FILTER_ALL'})
-    
-
+  
 
     return(
       <Container className={classes.root}>
         <br />
-        <FilterCrumb setFilter={setFilter} setFilterAll={setFilterAll}/>
+        <FilterCrumb dispatch={dispatch}/>
         {list.isError && <p>Something went wrong...</p>}
-        {list.isLoading ? <p>Loading...</p>
+        {list.isLoading 
+          ? <p>Loading...</p>
           : transition.map(({item, key, props}) => (
             <animated.div key={key} style={props}>
               <UserCard
                 data={item} 
-                removeUser={handleRemoveUser}
+                dispatch={dispatch}
                 showProfile={displayUserProfile}
                 theme={theme} />
             </animated.div>
@@ -104,5 +89,6 @@ const useStyles = makeStyles(theme => ({
           >
             <UserProfile user={list.user} />
         </Drawer>
-      </Container>)
+      </Container>
+    )
   }

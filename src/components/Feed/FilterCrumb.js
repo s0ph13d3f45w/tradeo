@@ -12,7 +12,16 @@ const useStyles = makeStyles({
         justifyContent: 'center',
     }
 })
-const Filter = ({setFilter, setFilterAll}) =>{
+const Filter = ({dispatch}) =>{
+
+    const setFilter = filter =>
+        dispatch({
+          type: 'SET_FILTER',
+          payload: filter
+        })
+  
+    const setFilterAll = () =>
+        dispatch({type: 'SET_FILTER_ALL'})
 
     const handleProductToggle = () =>
         setFilter('products')
@@ -27,7 +36,7 @@ const Filter = ({setFilter, setFilterAll}) =>{
             <IconButton
                 id="products"
                 onClick={handleProductToggle}>
-                <EmojiObjectsIcon />
+                <EmojiObjectsIcon id="products" value="products"/>
                 Products
             </IconButton>
             <IconButton

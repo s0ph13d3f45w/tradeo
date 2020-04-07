@@ -9,15 +9,25 @@ import UserProfile from '../components/UserProfile'
 import FilterCrumb from '../components/Feed/FilterCrumb'
 
 import { makeStyles } from '@material-ui/core/styles'
-import {Container, Drawer} from '@material-ui/core'
+import {Container, Drawer, CircularProgress} from '@material-ui/core'
 
 
 const useStyles = makeStyles(theme => ({
   root:{
     marginTop:40,
     backgroundColor: theme.palette.background.default
+  },
+  spinner:{
+    display: 'flex',
+    justifyContent: 'center',
+    margin: theme.spacing(2, 0)
   }
 }))
+
+const Spinner  = ({classObj}) =>
+  <div className={classObj.spinner}>
+    <CircularProgress />
+  </div>
 
 
   export default function(){
@@ -69,7 +79,7 @@ const useStyles = makeStyles(theme => ({
           <FilterCrumb dispatch={dispatch} t={t}/>
           {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
-            ? <p>Loading...</p>
+            ? <Spinner classObj={classes} />
             : transition.map(({item, key, props}) => (
               <animated.div key={key} style={props}>
                 <UserCard

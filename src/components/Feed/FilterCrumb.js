@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Breadcrumbs, IconButton, InputBase, Button} from '@material-ui/core'
+import {Breadcrumbs, IconButton, InputBase, Button, Typography} from '@material-ui/core'
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import AddIcon from '@material-ui/icons/Add';
@@ -11,6 +11,11 @@ const useStyles = makeStyles(theme =>({
     crumbs:{
         display: 'flex',
         justifyContent: 'center',
+    },
+    iconButton:{
+        [theme.breakpoints.up('xs')]:{
+            size: 'small'
+        }
     },
     search:{
         position: 'relative',
@@ -89,42 +94,51 @@ const Filter = ({dispatch, t}) =>{
 
     const classes = useStyles()
     return(
-        <Breadcrumbs aria-label="breadcrumbs" className={classes.crumbs}>
-            <IconButton
-                id="products"
-                onClick={handleProductToggle}>
-                <EmojiObjectsIcon id="products" value="products"/>
-                {t('products')}
-            </IconButton>
-            <IconButton
-                id="services"
-                onClick={handleServiceToggle}>
-                <AccessibilityNewIcon />
-                {t('services')}
-            </IconButton>
-            <IconButton
-                id="all"
-                onClick={setFilterAll}>
-                <AddIcon/>
-                {t('all')}
-            </IconButton>
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
+        <Breadcrumbs 
+            aria-label="breadcrumbs" className={classes.crumbs}>
+            <div >
+                <IconButton
+                    id="products"
+                    onClick={handleProductToggle}>
+                    <EmojiObjectsIcon id="products" value="products"/>
+                    <Typography color="textSecondary">
+                        {t('products')}
+                    </Typography>
+                </IconButton>
+                <IconButton
+                    id="services"
+                    onClick={handleServiceToggle}>
+                    <AccessibilityNewIcon />
+                    <Typography color="textSecondary">
+                        {t('services')}
+                    </Typography>
+                </IconButton>
+                <IconButton
+                    id="all"
+                    onClick={setFilterAll}>
+                    <AddIcon/>
+                    <Typography color="textSecondary">
+                        {t('all')}
+                    </Typography>
+                </IconButton>
+                <div className={classes.search}>
+                    <div className={classes.searchIcon}>
+                        <SearchIcon />
+                    </div>
+                    <InputBase 
+                        placeholder="...marketing"
+                        classes={{
+                            root: classes.inputRoot,
+                            input: classes.inputInput,
+                        }}
+                        inputProps={{ 'aria-label': 'search'}}
+                        value={search}
+                        onChange={handleSearchBar}
+                    />
+                    <Button 
+                        variant="outlined"
+                        onClick={submitSearch}>{t('search')}</Button>
                 </div>
-                <InputBase 
-                    placeholder="...marketing"
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
-                    inputProps={{ 'aria-label': 'search'}}
-                    value={search}
-                    onChange={handleSearchBar}
-                />
-                <Button 
-                    variant="outlined"
-                    onClick={submitSearch}>{t('search')}</Button>
             </div>
         </Breadcrumbs>
     )

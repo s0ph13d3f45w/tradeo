@@ -26,7 +26,12 @@ const useStyles = makeStyles(theme =>({
             width: 'auto'
         },
         [theme.breakpoints.up('md')]:{
-            marginLeft: theme.spacing(2)
+            marginLeft: theme.spacing(2),
+            width: 'auto'
+        },
+        [theme.breakpoints.up('xs')]:{
+            marginLeft: theme.spacing(4),
+            width: 'auto'
         }
     },
     searchIcon:{
@@ -36,7 +41,7 @@ const useStyles = makeStyles(theme =>({
         pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     inputRoot:{
         color: 'inherit'

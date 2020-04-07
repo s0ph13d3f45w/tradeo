@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
   spinner:{
     display: 'flex',
     justifyContent: 'center',
-    margin: theme.spacing(2, 0)
+    margin: theme.spacing(2, 0),
+    height: '100vh'
   }
 }))
 

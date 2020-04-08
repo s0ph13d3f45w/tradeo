@@ -13,20 +13,17 @@ export default function(){
   const {theme} = useContext(TemaContext)
   return(
         <ThemeProvider theme={theme}>
-          <Router>
             <CssBaseline />
             <Suspense fallback={null}>
-              {/* <UserProvider>
-                <Feed />
-              </UserProvider> */}
               <UserProvider>
-                <Switch>
-                  <Route exact path="/" component={SignIn} />
-                  <Route path="/feed" component={Feed} />
-                </Switch>
+                <Router>
+                  <Switch>
+                    <Route exact path="/" component={SignIn} />
+                    <Route path="/feed" component={Feed} />
+                  </Switch>
+                </Router>
               </UserProvider>
             </Suspense>
-          </Router>
         </ThemeProvider>
   )
 }

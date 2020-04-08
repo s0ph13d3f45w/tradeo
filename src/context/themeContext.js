@@ -3,8 +3,8 @@ import {createMuiTheme} from '@material-ui/core'
 
 const themeObject = {
     palette:{
-      primary: {main: '#006064'},
-      secondary: {main: '#00838f'},
+      primary: {main: '#1565c0'},
+      secondary: {main: '#0091ea'},
       type:'light'
     }
   }
@@ -19,8 +19,8 @@ const TemaProvider = ({children}) =>{
         ...theme,
         palette: {
             type: theme.palette.type === 'light' ? 'dark' : 'light',
-            primary: {main: '#006064'},
-            secondary: {main: '#00838f'}}
+            primary: {main: '#1565c0'},
+            secondary: {main: '#0091ea'}}
         })
         setTheme(newTheme)
     }, [theme])

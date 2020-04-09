@@ -7,6 +7,7 @@ import { useTransition, animated } from 'react-spring'
 import UserCard from '../components/Feed/UserCard'
 import UserProfile from '../components/UserProfile'
 import FilterCrumb from '../components/Feed/FilterCrumb'
+import {firestore} from '../firebase'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {Container, Drawer, CircularProgress} from '@material-ui/core'
@@ -32,7 +33,7 @@ const Spinner  = ({classObj}) =>
 
 
   export default function(){
-    const { list, dispatch, localData } = useContext(UserContext)
+    const { list, dispatch} = useContext(UserContext)
     const {theme} = useContext(TemaContext)
     const [ state, setState ] = useState(false)
     const classes = useStyles(theme)
@@ -44,19 +45,19 @@ const Spinner  = ({classObj}) =>
       leave: { opacity: 0}
     })
    
-    const fetchData = useCallback(() =>{
+    const fetchData = useCallback(async () =>{
       dispatch({ type: 'SET_LIST_INIT'})
-      try {
-        setTimeout(()=>{
-          dispatch({ 
-            type: 'SET_LIST_SUCCESS',
-            payload: localData
-          }) 
-        }, 2000) 
+      try { 
+        const snapshot = await firestore.collection('users').get()
+        const users = snapshot.docs.map(user => {return {...user.data()}})
+        dispatch({
+          type: 'SET_LIST_SUCCESS',
+          payload: users
+        })
       } catch (error) {
         dispatch({ type: 'SET_LIST_FAILURE'})
       }
-    },[localData, dispatch])
+    },[dispatch])
  
     useEffect(() =>{
      fetchData()

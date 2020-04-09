@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useTransition, animated } from 'react-spring'
 import UserCard from '../components/Feed/UserCard'
 import UserProfile from '../components/UserProfile'
-import FilterCrumb from '../components/Feed/FilterCrumb'
+import FilterBar from '../components/Feed/FilterBar'
 import {firestore} from '../firebase'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -78,7 +78,8 @@ const Spinner  = ({classObj}) =>
       <MainLayout>
         <Container className={classes.root}>
           <br />
-          <FilterCrumb dispatch={dispatch} t={t}/>
+          {/* <FilterCrumb dispatch={dispatch} t={t}/> */}
+          <FilterBar t={t}/>
           {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
             ? <Spinner classObj={classes} />

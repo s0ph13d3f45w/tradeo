@@ -5,12 +5,14 @@ import { TemaContext } from '../context/themeContext'
 import { useTranslation } from 'react-i18next'
 import { useTransition, animated } from 'react-spring'
 import UserCard from '../components/Feed/UserCard'
-import UserProfile from '../components/UserProfile'
+import UserProfile from '../components/Profiles/UserProfile'
 import FilterBar from '../components/Feed/FilterBar'
+import BottomBar from '../components/Feed/BottomBar'
 import {firestore} from '../firebase'
 
 import { makeStyles } from '@material-ui/core/styles'
-import {Container, Drawer, CircularProgress} from '@material-ui/core'
+import {Container, Drawer, CircularProgress, Grid, Typography} from '@material-ui/core'
+import UserOwnProfile from '../components/Profiles/UserOwnProfile'
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,11 +34,13 @@ const Spinner  = ({classObj}) =>
   </div>
 
 
-  export default function(){
+  const Feed = (props) =>{
     const { list, dispatch} = useContext(UserContext)
     const {theme} = useContext(TemaContext)
     const [ state, setState ] = useState(false)
     const classes = useStyles(theme)
+    const [show, setShow] = useState(false)
+    const toggleShow = () => setShow(!show)
     const {t} = useTranslation()
 
     const transition = useTransition(list.displayList, item => item.id, {
@@ -100,13 +104,19 @@ const Spinner  = ({classObj}) =>
           </ProfileDos> */}
 
           <Drawer 
-            anchor={'right'} 
+            anchor="right"
             open={state} 
             onClose={toggleDrawer}
             >
               <UserProfile user={list.user} />
           </Drawer>
+          <Drawer anchor="left" open={show} onClose={toggleShow}>
+              <UserOwnProfile history={props.history} {...list.userProfile} />
+          </Drawer>
+          <BottomBar t={t} toggleShow={toggleShow}/>
         </Container>
       </MainLayout>
     )
   }
+
+export default Feed

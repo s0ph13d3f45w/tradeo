@@ -77,6 +77,11 @@ const feedReducer = (state, action) =>{
             user.tags.includes(action.payload)
           ))
         }
+      case 'SET_LOGIN_GOOGLE':
+        return{
+          ...state,
+          userProfile: action.payload
+        }
       default: new Error()
       }
     }
@@ -86,7 +91,8 @@ const feedReducer = (state, action) =>{
      displayList: [],
      isLoading: false,
      isError: false,
-     user: {}
+     user: {},
+     userProfile: {}
    }
   
 const UserProvider = ({children}) =>{

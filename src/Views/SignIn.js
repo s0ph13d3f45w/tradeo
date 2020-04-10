@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useContext, useCallback} from 'react'
+import {UserContext} from '../context/usersContext'
 import {useTranslation} from 'react-i18next'
+import {auth, signInWithGoogle} from '../firebase'
 import {useSpring, animated} from 'react-spring'
 import MainLayout from '../layouts/MainLayout'
-import auth from '../auth'
+import authRouter from '../auth'
 import {Avatar,
         Button,
         TextField,
@@ -62,6 +64,26 @@ const useStyles = makeStyles(theme =>({
 
 const SignIn =(props) =>{
     const [login, setLogin] = useState({email: "", password:""})
+    const {dispatch} = useContext(UserContext)
+
+    const googleLogin= useCallback(() =>{
+        auth.onAuthStateChanged(user =>{
+            dispatch({
+                type: 'SET_LOGIN_GOOGLE',
+                payload: user
+            })
+        })
+
+    }, [dispatch])
+
+    useEffect(() =>{
+       googleLogin()
+    }, [googleLogin])
+
+    const loginAndSendGoogle = async () =>{
+        await signInWithGoogle()
+        authRouter.login(props.history.push('/feed'))
+    }
 
     const handleInputs = e =>{
         setLogin({
@@ -76,7 +98,7 @@ const SignIn =(props) =>{
             console.log("missing")
             return
         }
-        auth.login(props.history.push('/feed'))
+        authRouter.login(props.history.push('/feed'))
     }
 
     const {t} = useTranslation()
@@ -132,6 +154,15 @@ const SignIn =(props) =>{
                                         onClick={handleSubmit}
                                     >
                                         {t('signIn')}
+                                    </Button>
+                                    <Button
+                                        fullWidth
+                                        variant="contained"
+                                        color="secondary"
+                                        className={classes.submit}
+                                        onClick={loginAndSendGoogle}
+                                    >
+                                       Google
                                     </Button>
                                 <Grid container>
                                     <Grid item xs>

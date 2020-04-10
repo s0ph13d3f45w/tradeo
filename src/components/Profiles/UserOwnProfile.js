@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme =>({
         display: 'flex',
         width: 320,
         flexDirection: 'column',
-        alignContent: 'center'
+        alignContent: 'center',
+        justifyContent: 'center'
     },
     avatar:{
         width: theme.spacing(13),

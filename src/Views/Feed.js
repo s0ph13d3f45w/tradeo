@@ -77,14 +77,14 @@ const Spinner  = ({classObj}) =>
           {list.isLoading 
             ? <Spinner classObj={classes} />
             : transition.map(({item, key, props}) => (
-              <animated.div key={key} style={props}>
+              item && (<animated.div key={key} style={props}>
                 <UserCard
                   data={item} 
                   dispatch={dispatch}
                   setProfile={() => setProfile(!profile)}
                   theme={theme}
                   t={t} />
-              </animated.div>
+              </animated.div>)
             ))
           }
 

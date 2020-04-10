@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme =>({
 
     search:{
         position: 'relative',
+        marginRight:4,
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
@@ -65,7 +66,7 @@ const SearchBar = ({t}) => {
         })
     const classes = useStyles()
     return (
-        <Grid container>
+        <Grid container style={{paddingRight:10}}>
         <Grid item xs={8} className={classes.search}>
             <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -82,7 +83,7 @@ const SearchBar = ({t}) => {
             />
             
         </Grid>
-        <Grid item>
+        <Grid item style={{margin: 'auto'}}>
             <Button 
                 variant="outlined"
                 size="small"

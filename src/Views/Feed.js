@@ -11,7 +11,7 @@ import BottomBar from '../components/Feed/BottomBar'
 import {firestore} from '../firebase'
 
 import { makeStyles } from '@material-ui/core/styles'
-import {Container, Drawer, CircularProgress, Grid, Typography} from '@material-ui/core'
+import {Container, Drawer, CircularProgress} from '@material-ui/core'
 import UserOwnProfile from '../components/Profiles/UserOwnProfile'
 
 
@@ -113,7 +113,9 @@ const Spinner  = ({classObj}) =>
           <Drawer anchor="left" open={show} onClose={toggleShow}>
               <UserOwnProfile history={props.history} {...list.userProfile} />
           </Drawer>
-          <BottomBar t={t} toggleShow={toggleShow}/>
+          <BottomBar t={t} 
+            toggleShow={toggleShow}
+            profile={list.userProfile.photoURL}/>
         </Container>
       </MainLayout>
     )

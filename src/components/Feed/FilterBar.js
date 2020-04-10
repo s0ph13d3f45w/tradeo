@@ -1,7 +1,9 @@
 import React, {useState, useContext} from 'react'
 import {UserContext} from '../../context/usersContext'
-import{Button, Drawer, Grid} from '@material-ui/core' 
+import{Button, Drawer, Grid, IconButton, Typography} from '@material-ui/core' 
 import {makeStyles} from '@material-ui/core/styles'
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 
 const useStyles = makeStyles(theme =>({
     root:{
@@ -15,8 +17,9 @@ const useStyles = makeStyles(theme =>({
         },
     },
     filters:{
+        height: 30,
         display: 'flext',
-        justifyContent: 'end'
+        justifyContent: 'center'
     }
     
  
@@ -44,16 +47,41 @@ const FilterBar = ({t}) => {
             <Button onClick={toggleShow}>{t('filter')}</Button>
             <Drawer 
                 anchor="top" open={show} onClose={toggleShow}>
+                    <div style={{height: 50}}>
+
+                    
                 <Grid container className={classes.filters}>
                     <Grid item>
-                        <Button 
-                            onClick={filterProducts}>{t('products')}</Button>
+                        <IconButton
+                        id="products"
+                        onClick={filterProducts}>
+                            <EmojiObjectsIcon 
+                                color="secondary"
+                                id="products" value="products"/>
+                            <Typography color="secondary">
+                                {t('products')}
+                            </Typography>
+                        </IconButton>
+                        {/* <Button 
+                            onClick={filterProducts}>{t('products')}</Button> */}
                     </Grid>
                     <Grid item>
-                        <Button
-                            onClick={filterServices}>{t('services')}</Button>
+                        <IconButton
+                        color="secondary"
+                        id="services"
+                        onClick={filterServices}>
+                            <AccessibilityNewIcon />
+                            <Typography color="secondary">
+                                {t('services')}
+                            </Typography>
+                        </IconButton>
+                        {/* <Button
+                            onClick={filterServices}>{t('services')}</Button> */}
                     </Grid>
+                   
+              
                 </Grid>
+                </div>
             </Drawer>
         </div>
     );

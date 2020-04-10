@@ -67,10 +67,17 @@ const Receiver = ({t, interested}) =>
     </>
 
     
-const UserCard = ({data, showProfile, dispatch, theme, t}) => {
+const UserCard = ({data, setProfile, dispatch, theme, t}) => {
     
     const classes = useStyles();
 
+    const openProfile = user =>{
+        dispatch({
+            type: "SET_DRAWER_USER",
+            payload: user
+        })
+        setProfile()
+    }
     const removeUser = user =>
         dispatch({
         type: 'SET_REMOVE_USER',
@@ -103,12 +110,12 @@ const UserCard = ({data, showProfile, dispatch, theme, t}) => {
             <CardActions className={classes.buttons}>
                 {theme.palette.type === 'light'
                     ? (<Button 
-                        onClick={() => showProfile(data)}
+                        onClick={() => openProfile(data)}
                         variant="outlined"
                         color="inherit"
                         size="medium">{t('button_contact')}</Button>)
                     : (<Button 
-                        onClick={() => showProfile(data)}
+                        onClick={() => openProfile(data)}
                         variant="outlined"
                         color="inherit"
                         size="medium">{t('button_contact')}</Button>)}

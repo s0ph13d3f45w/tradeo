@@ -37,11 +37,10 @@ const Spinner  = ({classObj}) =>
   const Feed = (props) =>{
     const { list, dispatch} = useContext(UserContext)
     const {theme} = useContext(TemaContext)
-    const [ state, setState ] = useState(false)
-    const classes = useStyles(theme)
-    const [show, setShow] = useState(false)
-    const toggleShow = () => setShow(!show)
+    const [ profile, setProfile ] = useState(false)
+    const [ownProfile, setOwnProfile] = useState(false)
     const {t} = useTranslation()
+    const classes = useStyles(theme)
 
     const transition = useTransition(list.displayList, item => item.id, {
       from: { opacity: 0},
@@ -66,23 +65,13 @@ const Spinner  = ({classObj}) =>
     useEffect(() =>{
      fetchData()
     }, [fetchData])
-    
-    const toggleDrawer = () => 
-      setState(!state)
-     
-    const displayUserProfile = user =>{
-      dispatch({
-        type: 'SET_DRAWER_USER',
-        payload: user
-      })
-      toggleDrawer()
-    }
+
+    const toggleOwnProfile = () => setOwnProfile(!ownProfile)
 
     return(
       <MainLayout>
         <Container className={classes.root}>
           <br />
-          {/* <FilterCrumb dispatch={dispatch} t={t}/> */}
           <FilterBar t={t}/>
           {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
@@ -92,29 +81,25 @@ const Spinner  = ({classObj}) =>
                 <UserCard
                   data={item} 
                   dispatch={dispatch}
-                  showProfile={displayUserProfile}
+                  setProfile={() => setProfile(!profile)}
                   theme={theme}
                   t={t} />
               </animated.div>
             ))
           }
 
-          {/* <ProfileDos isOpen={state} close={toggleDrawer}>
-            <UserProfile user={list.user} close={toggleDrawer} />
-          </ProfileDos> */}
-
           <Drawer 
             anchor="right"
-            open={state} 
-            onClose={toggleDrawer}
+            open={profile} 
+            onClose={() => setProfile(!profile)}
             >
               <UserProfile user={list.user} />
           </Drawer>
-          <Drawer anchor="left" open={show} onClose={toggleShow}>
+          <Drawer anchor="left" open={ownProfile} onClose={toggleOwnProfile}>
               <UserOwnProfile history={props.history} {...list.userProfile} />
           </Drawer>
           <BottomBar t={t} 
-            toggleShow={toggleShow}
+            toggleShow={toggleOwnProfile}
             profile={list.userProfile.photoURL}/>
         </Container>
       </MainLayout>

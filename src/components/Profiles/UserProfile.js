@@ -1,11 +1,11 @@
 import React from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
-import Description from './Feed/Description'
+import Description from '../Feed/Description'
+import ProfileImage from './ProfileImage'
 
 import {Container,
         Typography, 
-        Avatar, 
         IconButton} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles'
@@ -44,15 +44,7 @@ const useStyles = makeStyles(theme => ({
    
 }))
 
-const ProfileImage = ({img}) =>{
-    const classes = useStyles()
-    return(
-        <Avatar 
-            src={img} 
-            alt="profile" 
-            className={classes.avatar} />
-    )
-}
+
 
 const SkillsList = ({skills, t}) =>
     <>
@@ -95,7 +87,7 @@ const UserProfile = ({user}) =>{
     const classes = useStyles()
     return(
         <Container className={classes.root}>
-            <ProfileImage img={user.image}/>
+            <ProfileImage img={user.image} classes={classes}/>
             <Typography 
                 variant="h4"
                 component="h2"

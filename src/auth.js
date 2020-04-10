@@ -7,9 +7,8 @@ class Auth {
         this.aunthenticated = true
     }
 
-    logout(cb){
+    logout(){
         this.aunthenticated = false
-        cb()
     }
 
     isAunthenticated(){

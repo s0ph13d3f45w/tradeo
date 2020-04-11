@@ -1,4 +1,4 @@
-{
+    {
     
     "button_contact": "Contact",
     "content_writer": "Content writter ✍️",
@@ -100,4 +100,32 @@
     "carpentry":"Carpintry 🔨",
     "carpentry_male":"Carpinter 🔨",
     "carpentry_female":"Carpinter 🔨",
+    "login":"login"
+    "email":"email"
+    "sing_in":"sign in"
+    "password":"password"
+    "google":"google
+    "forgot_password":"Forgot password?"
+    "sing_up":"Don't have an account? Sign up"
+    "Copyright":"Copyright"
+    "search":"SEARCH"
+    "filter":"FILTER"
+    "example_search":"...Corn"
+    "english":"English"
+    "spanish": "Spanish"
+    "Maya":"Mayan"
+    "sign_out":"SING OUT"
+    "products": "Products"
+    "services": "Services"
+    "name": "Name"
+    "surname": "Surname"
+    "phone_number": "Phone number"
+    "photo": "Photo"
+    "accept_terms": "I accept terms and conditions "
+    "age": "Age"
+    "city": "City"
+    "rules": "Tulis rules"
+    "welcome": "Welcome"
+    "what_do_you_offer": "What do you offer?"
+    "What_do_you_need": "What do you need?"
 }

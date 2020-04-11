@@ -87,7 +87,10 @@ const Spinner  = ({classObj}) =>
               </animated.div>)
             ))
           }
-
+          <br />
+          <br />
+          <br />
+          <br />
           <Drawer 
             anchor="right"
             open={profile} 

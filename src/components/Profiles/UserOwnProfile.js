@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme =>({
 const UserOwnProfile = ({displayName,photoURL, email, createdAt, history}) => {
     const classes = useStyles()
     const signOut = async() =>{
-        await auth.signOut()
         authRouter.logout(history.push('/'))
+        await auth.signOut()
     }
     return (
         <Grid container className={classes.root}>

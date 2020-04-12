@@ -8,13 +8,21 @@ import {
         TextField,
         Button,
         Link,
+        Collapse,
         Box
     } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Alert from '@material-ui/lab/Alert';
 import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
-const additionalState = {tags: [], gallery: [], type: ""}
+const additionalState = {
+    tags: {tag1:"", tag2:"", tag3: ""}, 
+    gallery: {image1: "", image2: "", image3:""}, 
+    type: "",
+    subType: "",
+    interest: "",
+}
 
 const SignUp = ({
     t,
@@ -26,6 +34,7 @@ const SignUp = ({
     }) =>{
     
     const [signUp, setSignUp] = useState(initialState)
+    const [alert, setAlert] = useState(false)
 
     const {displayName, email, password, confirmation} = signUp
 
@@ -42,13 +51,18 @@ const SignUp = ({
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            const {tags, gallery, type} = additionalState
-            await createUserProfileDocument(user,{displayName, tags, gallery, type})
+            const {tags, gallery, type, subType} = additionalState
+            await createUserProfileDocument(user,{displayName, tags, gallery, type, subType})
             if(user){
                 authRouter.login(history.push('/feed'))
                 console.log('pushed')
             }
-        } catch (error) {console.error('Error in sign up', error)}
+        } catch (error) {
+            console.error(error.message)
+            if(error.code === "auth/email-already-in-use"){
+                setAlert(true)
+            }
+        }
         
         setSignUp(initialState)
     }
@@ -62,6 +76,9 @@ return(
                 {t('signUp')}
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
+                {alert && <Collapse in={alert}><Alert severity="error">
+                        Email already in use                    
+                    </Alert></Collapse>}
                 <TextField
                     variant="outlined"
                     margin="normal"

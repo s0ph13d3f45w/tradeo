@@ -2,18 +2,21 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
+import 'firebase/analytics'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAf00p7TrnFV-1dMD5dajve5F34RUded94",
-    authDomain: "tradeo-ff7fd.firebaseapp.com",
-    databaseURL: "https://tradeo-ff7fd.firebaseio.com",
-    projectId: "tradeo-ff7fd",
-    storageBucket: "tradeo-ff7fd.appspot.com",
-    messagingSenderId: "212346736314",
-    appId: "1:212346736314:web:519e6e449be4b0de963c83"
-  };
-  // Initialize Firebase
+  apiKey: "AIzaSyAf00p7TrnFV-1dMD5dajve5F34RUded94",
+  authDomain: "tradeo-ff7fd.firebaseapp.com",
+  databaseURL: "https://tradeo-ff7fd.firebaseio.com",
+  projectId: "tradeo-ff7fd",
+  storageBucket: "tradeo-ff7fd.appspot.com",
+  messagingSenderId: "212346736314",
+  appId: "1:212346736314:web:519e6e449be4b0de963c83",
+  measurementId: "G-KNGBDX7SPV"
+};
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 export const createUserProfileDocument = async (user, additionalData) =>{
   if (!user) return;

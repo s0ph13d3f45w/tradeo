@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
+const additionalState = {tags: [], gallery: [], type: ""}
 
 const SignUp = ({
     t,
@@ -41,7 +42,8 @@ const SignUp = ({
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            await createUserProfileDocument(user,{displayName})
+            const {tags, gallery, type} = additionalState
+            await createUserProfileDocument(user,{displayName, tags, gallery, type})
             if(user){
                 authRouter.login(history.push('/feed'))
                 console.log('pushed')

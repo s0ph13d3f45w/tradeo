@@ -1,15 +1,15 @@
 import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
-import {firestore, storage} from '../../firebase'
+import {firestore, storage, auth} from '../../firebase'
 import {Grid, Typography, Button, TextField, Box} from '@material-ui/core'
 
-const initialState={displayName: "",}
+const initialState={displayName: "", tag: ""}
 const EditProfile = ({classes, close}) => {
     const [edit, setEdit] = useState(initialState)
     const [imageAsFile, setImageFile] = useState('')
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
-    const {displayName} = edit
+    const {displayName, tag} = edit
 
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
@@ -21,7 +21,6 @@ const EditProfile = ({classes, close}) => {
 
     const handleSubmit = async e =>{
         e.preventDefault()
-        console.log(edit)
 
         if (displayName){
             userRef.update({displayName})
@@ -58,6 +57,13 @@ const EditProfile = ({classes, close}) => {
                         type="file"
                         />
                 </Box>
+                {/* <TextField
+                    name="tag"
+                    fullWidth
+                    value={tag}
+                    label="Tag"
+                    onChange={handleInputChange}
+                /> */}
                 <Button
                 fullWidth
                 type="submit">

@@ -12,14 +12,18 @@ const useStyles = makeStyles(theme =>({
     root:{
         display: 'flex',
         width: 320,
+        height: '100vh',
+        border: '2px solid #cccc',
         flexDirection: 'column',
+        textAlign: 'center',
         alignContent: 'center',
-        justifyContent: 'center'
     },
     avatar:{
         width: theme.spacing(13),
         height: theme.spacing(13),
-        marginBottom: 5,
+        border: '2px solid #cccc',
+        alignSelf: 'center',
+        margin: theme.spacing(2,0,2)
     },
     modal:{
         display: 'flex',
@@ -75,7 +79,7 @@ const UserOwnProfile = ({history}) => {
     return (
         <Grid container className={classes.root}>
             {photoURL && <ProfileImage classes={classes} img={photoURL} />}
-            <Typography>{displayName}</Typography>
+            <Typography variant="h6"><strong>{displayName}</strong></Typography>
             <Typography>{email}</Typography>
             <Button color="secondary" onClick={handleToggleEdit}>Edit profile</Button>
             <Modal 

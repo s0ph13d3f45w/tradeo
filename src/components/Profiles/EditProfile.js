@@ -1,11 +1,12 @@
 import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
-import {firestore} from '../../firebase'
-import {Grid, Typography, Button, TextField} from '@material-ui/core'
+import {firestore, storage} from '../../firebase'
+import {Grid, Typography, Button, TextField, Box} from '@material-ui/core'
 
 const initialState={displayName: "",}
 const EditProfile = ({classes, close}) => {
     const [edit, setEdit] = useState(initialState)
+    const [imageAsFile, setImageFile] = useState('')
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
     const {displayName} = edit
@@ -13,12 +14,27 @@ const EditProfile = ({classes, close}) => {
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
+    const handleImageChange = e =>{
+        const image = e.target.files[0]
+        setImageFile(imageUrl => (image))
+    }
+
     const handleSubmit = async e =>{
         e.preventDefault()
         console.log(edit)
-        try {
-            await userRef.update({displayName})
-        } catch (error) {console.error('Error editing profile', error)}
+
+        if (displayName){
+            userRef.update({displayName})
+        }
+
+        if(imageAsFile !== ''){
+            storage.ref(`profileAvatars/${user.uid}/${imageAsFile.name}`)
+            .put(imageAsFile)
+            .then(response => response.ref.getDownloadURL())
+            .then(photoURL => userRef.update({photoURL}))
+            .catch(error => console.error('Error updating avatar image', error))
+        }
+
         close()
     }
     return (
@@ -33,6 +49,15 @@ const EditProfile = ({classes, close}) => {
                     label="Name"
                     onChange={handleInputChange}
                 />
+                <Box className={classes.input}>
+                    <Typography variant="subtitle2" color="textSecondary">Avatar Image:</Typography>
+                    <input
+                        placeholder="avatar"
+                        multiple={false}
+                        onChange={handleImageChange}
+                        type="file"
+                        />
+                </Box>
                 <Button
                 fullWidth
                 type="submit">

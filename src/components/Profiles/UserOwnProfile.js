@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme =>({
         border: '2px solid #000',
         boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, .2)',
         padding: theme.spacing(2,4,3)
+    },
+    input:{
+        margin: theme.spacing(1,0,1)
     }
 }))
 

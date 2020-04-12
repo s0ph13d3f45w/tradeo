@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {auth} from '../../firebase'
 import authRouter from '../../auth'
 import {makeStyles} from '@material-ui/core/styles'
 import {Grid, Typography, Button} from '@material-ui/core'
 import ProfileImage from './ProfileImage'
+import { UserSessionContext } from '../../context/userSessionContext'
 
 const useStyles = makeStyles(theme =>({
     root:{
@@ -20,7 +21,10 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
-const UserOwnProfile = ({displayName,photoURL, email, createdAt, history}) => {
+const UserOwnProfile = ({history}) => {
+    const {user}= useContext(UserSessionContext)
+
+    const {displayName,photoURL, email} = user
     const classes = useStyles()
     const signOut = async() =>{
         authRouter.logout(history.push('/'))
@@ -31,7 +35,6 @@ const UserOwnProfile = ({displayName,photoURL, email, createdAt, history}) => {
             {photoURL && <ProfileImage classes={classes} img={photoURL} />}
             <Typography>{displayName}</Typography>
             <Typography>{email}</Typography>
-            <Typography>{createdAt}</Typography>
             <Button onClick={signOut}>Sign out</Button>
         </Grid>
     );

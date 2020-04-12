@@ -13,6 +13,7 @@ import {firestore} from '../firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import {Container, Drawer, CircularProgress} from '@material-ui/core'
 import UserOwnProfile from '../components/Profiles/UserOwnProfile'
+import { UserSessionContext } from '../context/userSessionContext'
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,6 +37,7 @@ const Spinner  = ({classObj}) =>
 
   const Feed = (props) =>{
     const { list, dispatch} = useContext(UserContext)
+    const {user} = useContext(UserSessionContext)
     const {theme} = useContext(TemaContext)
     const [ profile, setProfile ] = useState(false)
     const [ownProfile, setOwnProfile] = useState(false)
@@ -52,7 +54,7 @@ const Spinner  = ({classObj}) =>
       dispatch({ type: 'SET_LIST_INIT'})
       try { 
         const snapshot = await firestore.collection('users').get()
-        const users = snapshot.docs.map(user => {return {...user.data()}})
+        const users = snapshot.docs.map(user => {return {uid: user.uid, ...user.data()}})
         dispatch({
           type: 'SET_LIST_SUCCESS',
           payload: users
@@ -73,7 +75,7 @@ const Spinner  = ({classObj}) =>
         <Container className={classes.root}>
           <br />
           <FilterBar t={t}/>
-          {list.isError && <p>Something went wrong...</p>}
+          {/* {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
             ? <Spinner classObj={classes} />
             : transition.map(({item, key, props}) => (
@@ -86,7 +88,7 @@ const Spinner  = ({classObj}) =>
                   t={t} />
               </animated.div>)
             ))
-          }
+          } */}
           <br />
           <br />
           <br />
@@ -99,11 +101,16 @@ const Spinner  = ({classObj}) =>
               <UserProfile user={list.user} />
           </Drawer>
           <Drawer anchor="left" open={ownProfile} onClose={toggleOwnProfile}>
-              <UserOwnProfile history={props.history} {...list.userProfile} />
+              <UserOwnProfile history={props.history}/>
           </Drawer>
-          <BottomBar t={t} 
+          {user
+          ? <BottomBar t={t} 
             toggleShow={toggleOwnProfile}
-            profile={list.userProfile.photoURL}/>
+            profile={user.photoURL}/>
+          : <BottomBar t={t} 
+          toggleShow={toggleOwnProfile}
+          profile={list.userProfile}/>}
+       
         </Container>
       </MainLayout>
     )

@@ -1,7 +1,7 @@
 import React, {Suspense, useContext} from 'react'
 import {TemaContext} from './context/themeContext'
 import Feed from './Views/Feed'
-import SignIn from './Views/SignIn'
+import Login from './Views/Login'
 import Admin from './Views/Admin'
 import UserProvider from './context/usersContext'
 import {ThemeProvider} from '@material-ui/core/styles'
@@ -19,7 +19,7 @@ export default function(){
               <UserProvider>
                 <Router>
                   <Switch>
-                    <Route exact path="/" component={SignIn} />
+                    <Route exact path="/" component={Login} />
                     <Route path="/feed" component={Feed} />
                     <Route path="/admin" component={Admin}/>
                   </Switch>

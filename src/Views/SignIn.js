@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
-const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAndSendGoogle}) =>{
+const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAndSendGoogle, toggle}) =>{
 
 return(
     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -124,7 +124,7 @@ return(
                         </Link>
                     </Grid>
                     <Grid item>
-                        <Link href="#" variant="body2" color="inherit">
+                        <Link href="#" variant="body2" color="inherit" onClick={toggle}>
                             {"Don't have an account? Sign Up"}
                         </Link>
                     </Grid>
@@ -138,9 +138,89 @@ return(
     )
 }
 
+const SignUp = ({t,classes,handleInputs, email, password, handleSubmit, loginAndSendGoogle, toggle}) =>{
+
+    return(
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    {t('signUp')}
+                </Typography>
+                <form className={classes.form} noValidate>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id='email'
+                        label={t('email')}
+                        name="email"
+                        autoComplete={t("email")}
+                        autoFocus
+                        value={email}
+                        onChange={handleInputs}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        type="password"
+                        id="password"
+                        name="password"
+                        label={t('password')}
+                        autoComplete={t('password')}
+                        value={password}
+                        onChange={handleInputs}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={handleSubmit}
+                    >
+                        {t('signUp')}
+                    </Button>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        color="secondary"
+                        className={classes.submit}
+                        onClick={loginAndSendGoogle}
+                    >
+                        Google
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <Link href="#" variant="body2" color="inherit">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link href="#" variant="body2" color="inherit" onClick={toggle}>
+                                {"Already have an account? SignIn"}
+                            </Link>
+                        </Grid>
+                        </Grid>
+                            <Box mt={5}>
+                                <Copyright />
+                            </Box>
+                        </form>
+                    </div>
+            </Grid>
+        )
+    }
 
 const Login =(props) =>{
     const [login, setLogin] = useState({email: "", password:""})
+    const [showSignUp, setShow] = useState(true)
+
+    const toggleShow = () => setShow(!showSignUp)
 
     const loginAndSendGoogle = async () =>{
         await signInWithGoogle()
@@ -172,7 +252,8 @@ const Login =(props) =>{
             <animated.div style={fade}>   
                 <Grid container component="main" className={classes.root}>
                     <Grid item xs={false} sm={4} md={7} className={classes.image}/>
-                    <SignIn 
+                    {showSignUp 
+                    ?   <SignUp
                         classes={classes}
                         t={t}
                         handleSubmit={handleSignInSubmit}
@@ -180,7 +261,21 @@ const Login =(props) =>{
                         loginAndSendGoogle={loginAndSendGoogle}
                         email={login.email}
                         password={login.password}
+                        toggle={toggleShow}
+                        />
+                    :  <SignIn 
+                        classes={classes}
+                        t={t}
+                        handleSubmit={handleSignInSubmit}
+                        handleInputs={handleSignInInputs}
+                        loginAndSendGoogle={loginAndSendGoogle}
+                        email={login.email}
+                        password={login.password}
+                        toggle={toggleShow}
                     />
+                    }
+                   
+                    
                 </Grid>
             </animated.div>
 

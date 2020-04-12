@@ -1,6 +1,7 @@
 {   
     "all": "Todo",
     "button_contact": "contactar",
+    "confirm": "confirmar contraseña",
     "content_writer": "Escribir contenido ✍️",
     "creative_writer": "escritor creativo ✍️",
     "creative_writer_female": "escritora creativa ✍️",
@@ -17,6 +18,7 @@
     "name": "nombre",
     "offer": "Te enseño / Ofrezco:",
     "password": "contraseña",
+    "passwordMust": "Contraseña debe ser mayor a 6 caracteres e incluir 1 caracter especial !#$%*",
     "products": "Productos",
     "profile": "Perfil",
     "search": "Buscar",

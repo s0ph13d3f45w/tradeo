@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
+import {auth, createUserProfileDocument} from '../../firebase'
 import {
         Grid,
         Paper,
         Avatar,
         Typography,
-        FormControl,
         TextField,
         Button,
         Link,
@@ -13,16 +13,20 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Copyright from './Copyright'
 
+const initialState = {displayName: "", email:"", password: "", confirmation: ""}
+
 const SignUp = ({
     t,
     classes,
     loginAndSendGoogle, 
     toggle,
-    submit}) =>{
+    history,
+    authRouter,
+    }) =>{
     
-    const [signUp, setSignUp] = useState({name: "", email:"", password: "", confirmation: ""})
+    const [signUp, setSignUp] = useState(initialState)
 
-    const {name, email, password, confirmation} = signUp
+    const {displayName, email, password, confirmation} = signUp
 
     const handleInputs = e =>{
         setSignUp({
@@ -31,10 +35,20 @@ const SignUp = ({
         })
     }
 
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
         e.preventDefault()
         if (password !== confirmation) return;
-        console.log(signUp)
+
+        try {
+            const {user} = await auth.createUserWithEmailAndPassword(email, password)
+            await createUserProfileDocument(user,{displayName})
+            if(user){
+                authRouter.login(history.push('/feed'))
+                console.log('pushed')
+            }
+        } catch (error) {console.error('Error in sign up', error)}
+        
+        setSignUp(initialState)
     }
 return(
     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -51,12 +65,12 @@ return(
                     margin="normal"
                     required
                     fullWidth
-                    id='name'
+                    id='displayName'
                     label={t('name')}
-                    name="name"
+                    name="displayName"
                     autoComplete={t("name")}
                     autoFocus
-                    value={name}
+                    value={displayName}
                     onChange={handleInputs}
                 />
                  <TextField

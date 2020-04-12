@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {auth} from '../../firebase'
 import {
         Grid,
         Paper,
@@ -12,8 +13,25 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Copyright from './Copyright'
 
-const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAndSendGoogle, toggle}) =>{
+const initialState = { email:"", password: ""}
 
+
+const SignIn = ({t,classes, loginAndSendGoogle, toggle, authRouter, history}) =>{
+    const [signIn, setSignIn] = useState(initialState)
+    const {email, password} = signIn
+
+    const handleInputChange = e =>
+        setSignIn({...signIn, [e.target.name] : e.target.value})
+
+    const handleSubmit = async e =>{
+        e.preventDefault()
+        try {
+            const {user} = await auth.signInWithEmailAndPassword(email, password)
+            if (user){
+                authRouter.login(history.push('/feed'))
+            }
+        } catch (error) {console.error('Error in sign in', error)}
+    }
     return(
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
             <div className={classes.paper}>
@@ -23,7 +41,7 @@ const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAnd
                 <Typography component="h1" variant="h5">
                     {t('signIn')}
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -35,7 +53,7 @@ const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAnd
                         autoComplete={t("email")}
                         autoFocus
                         value={email}
-                        onChange={handleInputs}
+                        onChange={handleInputChange}
                     />
                     <TextField
                         variant="outlined"
@@ -48,7 +66,7 @@ const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAnd
                         label={t('password')}
                         autoComplete={t('password')}
                         value={password}
-                        onChange={handleInputs}
+                        onChange={handleInputChange}
                     />
                     <Button
                         type="submit"

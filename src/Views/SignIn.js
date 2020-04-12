@@ -60,39 +60,101 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
+const SignIn = ({t,classes,handleInputs, email, password, handleSubmit, loginAndSendGoogle}) =>{
+
+return(
+    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+                {t('signIn')}
+            </Typography>
+            <form className={classes.form} noValidate>
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id='email'
+                    label={t('email')}
+                    name="email"
+                    autoComplete={t("email")}
+                    autoFocus
+                    value={email}
+                    onChange={handleInputs}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    type="password"
+                    id="password"
+                    name="password"
+                    label={t('password')}
+                    autoComplete={t('password')}
+                    value={password}
+                    onChange={handleInputs}
+                />
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={handleSubmit}
+                >
+                    {t('signIn')}
+                </Button>
+                <Button
+                    fullWidth
+                    variant="contained"
+                    color="secondary"
+                    className={classes.submit}
+                    onClick={loginAndSendGoogle}
+                >
+                    Google
+                </Button>
+                <Grid container>
+                    <Grid item xs>
+                        <Link href="#" variant="body2" color="inherit">
+                            Forgot password?
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link href="#" variant="body2" color="inherit">
+                            {"Don't have an account? Sign Up"}
+                        </Link>
+                    </Grid>
+                    </Grid>
+                        <Box mt={5}>
+                            <Copyright />
+                        </Box>
+                    </form>
+                </div>
+        </Grid>
+    )
+}
 
 
-const SignIn =(props) =>{
+const Login =(props) =>{
     const [login, setLogin] = useState({email: "", password:""})
-    const {dispatch} = useContext(UserContext)
-
-    const googleLogin= useCallback(() =>{
-        auth.onAuthStateChanged(user =>{
-            dispatch({
-                type: 'SET_LOGIN_GOOGLE',
-                payload: user
-            })
-        })
-
-    }, [dispatch])
-
-    useEffect(() =>{
-       googleLogin()
-    }, [googleLogin])
 
     const loginAndSendGoogle = async () =>{
         await signInWithGoogle()
         authRouter.login(props.history.push('/feed'))
     }
 
-    const handleInputs = e =>{
+    const handleSignInInputs = e =>{
         setLogin({
             ...login,
             [e.target.id] : e.target.value
         })
     }
 
-    const handleSubmit = e =>{
+    const handleSignInSubmit = e =>{
         e.preventDefault()
         if (login.email !== "admin@gmail.com" && login.password !== 1234){
             console.log("missing")
@@ -110,79 +172,15 @@ const SignIn =(props) =>{
             <animated.div style={fade}>   
                 <Grid container component="main" className={classes.root}>
                     <Grid item xs={false} sm={4} md={7} className={classes.image}/>
-                    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                        <div className={classes.paper}>
-                            <Avatar className={classes.avatar}>
-                                <LockOutlinedIcon />
-                            </Avatar>
-                            <Typography component="h1" variant="h5">
-                                {t('signIn')}
-                            </Typography>
-                            <form className={classes.form} noValidate>
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id='email'
-                                    label={t('email')}
-                                    name="email"
-                                    autoComplete={t("email")}
-                                    autoFocus
-                                    value={login.email}
-                                    onChange={handleInputs}
-                                />
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    label={t('password')}
-                                    autoComplete={t('password')}
-                                    value={login.password}
-                                    onChange={handleInputs}
-                                />
-                                     <Button
-                                        type="submit"
-                                        fullWidth
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.submit}
-                                        onClick={handleSubmit}
-                                    >
-                                        {t('signIn')}
-                                    </Button>
-                                    <Button
-                                        fullWidth
-                                        variant="contained"
-                                        color="secondary"
-                                        className={classes.submit}
-                                        onClick={loginAndSendGoogle}
-                                    >
-                                       Google
-                                    </Button>
-                                <Grid container>
-                                    <Grid item xs>
-                                        <Link href="#" variant="body2" color="inherit">
-                                            Forgot password?
-                                        </Link>
-                                    </Grid>
-                                    <Grid item>
-                                        <Link href="#" variant="body2" color="inherit">
-                                            {"Don't have an account? Sign Up"}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
-
-                                <Box mt={5}>
-                                    <Copyright />
-                                </Box>
-                            </form>
-                        </div>
-                    </Grid>
+                    <SignIn 
+                        classes={classes}
+                        t={t}
+                        handleSubmit={handleSignInSubmit}
+                        handleInputs={handleSignInInputs}
+                        loginAndSendGoogle={loginAndSendGoogle}
+                        email={login.email}
+                        password={login.password}
+                    />
                 </Grid>
             </animated.div>
 
@@ -191,4 +189,4 @@ const SignIn =(props) =>{
     )
 }
 
-export default SignIn
+export default Login

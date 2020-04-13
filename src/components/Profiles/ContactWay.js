@@ -14,7 +14,7 @@ const ContactWay = ({classes, user}) => {
     }, [contact, userRef])
     return (
         <FormControl className={classes.contact}>
-        <InputLabel>Contact way</InputLabel>
+        <InputLabel>Contact method</InputLabel>
         <Select
             labelId="contact-selector"
             id="contact-selector"

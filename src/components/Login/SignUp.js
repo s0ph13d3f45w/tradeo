@@ -17,11 +17,16 @@ import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
 const additionalState = {
-    tags: {tag1:"", tag2:"", tag3: ""}, 
-    gallery: {image1: "", image2: "", image3:""}, 
+    tag1: "", 
+    tag2:"", 
+    tag3:"",
+    whatsapp: "",
+    image1: "",
+    image2: "",
+    image3: "",
     type: "",
     subType: "",
-    interest: "",
+    wallpaper: "",
 }
 
 const SignUp = ({
@@ -36,7 +41,12 @@ const SignUp = ({
     const [signUp, setSignUp] = useState(initialState)
     const [alert, setAlert] = useState(false)
 
-    const {displayName, email, password, confirmation} = signUp
+    const {
+            displayName, 
+            email, 
+            password, 
+            confirmation,
+           } = signUp
 
     const handleInputs = e =>{
         setSignUp({
@@ -51,8 +61,28 @@ const SignUp = ({
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            const {tags, gallery, type, subType} = additionalState
-            await createUserProfileDocument(user,{displayName, tags, gallery, type, subType})
+            const { tag1,
+                    tag2,
+                    tag3, 
+                    whatsapp,
+                    image1,
+                    image2,
+                    image3,
+                    type,
+                    subType,
+                    wallpaper} = additionalState
+            await createUserProfileDocument(user,{
+                displayName, 
+                tag1,
+                tag2,
+                tag3,
+                image1,
+                image2,
+                image3,
+                type, 
+                subType,
+                whatsapp,
+                wallpaper})
             if(user){
                 authRouter.login(history.push('/feed'))
                 console.log('pushed')

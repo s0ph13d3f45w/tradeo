@@ -27,6 +27,7 @@ export const createUserProfileDocument = async (user, additionalData) =>{
     const {displayName, email, photoURL} = user
     const uid = snapshot.id
     const createdAt = new Date()
+    const contact = "email"
 
     try{
       await userRef.set({
@@ -35,6 +36,7 @@ export const createUserProfileDocument = async (user, additionalData) =>{
         email,
         photoURL,
         createdAt,
+        contact,
         ...additionalData
       })
     } catch(error) {console.error('Error creating user', error)}

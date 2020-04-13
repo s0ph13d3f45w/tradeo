@@ -5,6 +5,9 @@ import authRouter from '../../auth'
 import {makeStyles} from '@material-ui/core/styles'
 import {Grid, Typography, Button, Modal, Backdrop} from '@material-ui/core'
 import ProfileImage from './ProfileImage'
+import WhatsappIcon from './WhatsappIcon'
+import Gallery from './Gallery'
+import ContactWay from './ContactWay'
 import EditProfile from './EditProfile'
 import { UserSessionContext } from '../../context/userSessionContext'
 
@@ -23,7 +26,14 @@ const useStyles = makeStyles(theme =>({
         height: theme.spacing(13),
         border: '2px solid #cccc',
         alignSelf: 'center',
-        margin: theme.spacing(2,0,2)
+        margin: theme.spacing(1,0,1)
+    },
+    contact:{
+        display: 'flex',
+        alignContent: 'center',
+        textAlign: 'center',
+        margin: theme.spacing(1,0,1,3),
+        width: theme.spacing(20)
     },
     modal:{
         display: 'flex',
@@ -68,7 +78,7 @@ const Fade = forwardRef((props, ref) =>{
 const UserOwnProfile = ({history}) => {
     const [showEdit, setEdit] = useState(false)
     const {user}= useContext(UserSessionContext)
-    const {displayName,photoURL, email} = user
+    const {displayName,photoURL, email, whatsapp, image1} = user
     const classes = useStyles()
 
     const handleToggleEdit = () => setEdit(!showEdit)
@@ -80,7 +90,10 @@ const UserOwnProfile = ({history}) => {
         <Grid container className={classes.root}>
             {photoURL && <ProfileImage classes={classes} img={photoURL} />}
             <Typography variant="h6"><strong>{displayName}</strong></Typography>
-            <Typography>{email}</Typography>
+            <Typography variant="subtitle1" color="textSecondary">{email}</Typography>
+            {whatsapp && <WhatsappIcon number={whatsapp} showNumber={true} />}
+            {whatsapp && <ContactWay classes={classes} user={user}/>}
+            {image1 && <Gallery user={user} />}
             <Button color="secondary" onClick={handleToggleEdit}>Edit profile</Button>
             <Modal 
                 aria-labelledby="spring-modal-title"

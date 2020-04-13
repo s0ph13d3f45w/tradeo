@@ -48,6 +48,22 @@ const useStyles = makeStyles(theme =>({
     },
     input:{
         margin: theme.spacing(1,0,1)
+    },
+    inputImage:{
+        width: '0.1px',
+        height: '0.1px',
+	    opacity: 0,
+	    overflow: 'hidden',
+	    position: 'absolute',
+        zIndex: '-1',
+    },
+    inputLabel:{
+        cursor: 'pointer',
+        fontSize: '1.25em',
+        fontWeight: 700,
+        color: 'white',
+        backgroundColor: 'black',
+        display: 'inline-block'
     }
 }))
 

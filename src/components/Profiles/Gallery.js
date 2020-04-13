@@ -6,7 +6,7 @@ const Gallery = ({user}) => {
     const images = [image1, image2, image3]
 
     return (
-        <div style={{border: "2px solid #cccc"}}>
+        <div style={{border: "2px solid #cccc", width: "200px"}}>
         <Carousel showThumbs={false} showStatus={false} width="200px" style={{border: '2px solid black'}}>   
             {images.map(image => 
                 <div key={image}>

@@ -109,21 +109,26 @@ const EditProfile = ({classes, close}) => {
         <div className={classes.paper}>
             <Grid container>
                 <form onSubmit={handleSubmit}>
-                <Typography variant="h6">Edit Profile</Typography>
-                <TextField
-                    name="displayName"
-                    fullWidth
-                    value={displayName}
-                    label="Name"
-                    onChange={handleInputChange}
-                />
+                <Grid item>
+                    <Typography variant="h6">Edit Profile</Typography>
+                </Grid>
+                <Grid item>
+                    <TextField
+                        name="displayName"
+                        value={displayName}
+                        label="Name"
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid>
                 <TextField
                     name="whatsapp"
-                    fullWidth
+                    
                     value={whatsapp}
                     label="Whatsapp"
                     onChange={handleInputChange}
                 />
+                </Grid>
                 <Box className={classes.input}>
                     <Typography variant="subtitle2" color="textSecondary">Avatar Image:</Typography>
                     <input
@@ -133,9 +138,11 @@ const EditProfile = ({classes, close}) => {
                         onChange={handleInputChange}
                         type="file"
                         />
+
                 </Box>
                 <Box className={classes.input}>
                     <Typography variant="subtitle2" color="textSecondary">Wallpaper Image:</Typography>
+                    <Button>
                     <input
                         placeholder="wallpaper"
                         name="wallpaper"
@@ -143,6 +150,7 @@ const EditProfile = ({classes, close}) => {
                         onChange={handleInputChange}
                         type="file"
                         />
+                    </Button>
                 </Box>
                 <Box className={classes.input}>
                     <Typography variant="subtitle2" color="textSecondary">Gallery image 1:</Typography>

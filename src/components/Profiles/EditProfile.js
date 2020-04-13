@@ -6,9 +6,7 @@ import {Grid, Typography, Button, TextField, Box} from '@material-ui/core'
 
 const initialState={
     displayName: "", 
-    tag1: "", 
-    tag2:"", 
-    tag3:"",
+    tag:"",
     whatsapp: "",
     type: "",
     subType: "",
@@ -28,9 +26,7 @@ const EditProfile = ({classes, close}) => {
     const userRef = firestore.doc(`users/${user.uid}`)
     const {
             displayName, 
-            tag1,
-            tag2,
-            tag3, 
+            tag,
             whatsapp,
             type,
             subType,
@@ -50,14 +46,8 @@ const EditProfile = ({classes, close}) => {
         if (displayName){
             userRef.update({displayName})
         }
-        if(tag1){
-            userRef.update({tag1})
-        }
-        if(tag2){
-            userRef.update({tag2})
-        }
-        if(tag3){
-            userRef.update({tag3})
+        if(tag){
+            userRef.update({tag})
         }
         if(type){
             userRef.update({type})
@@ -130,6 +120,14 @@ const EditProfile = ({classes, close}) => {
                     onChange={handleInputChange}
                 />
                 </Grid>
+                <Grid>
+                <TextField
+                    name="tag"
+                    value={tag}
+                    label="Special Tag"
+                    onChange={handleInputChange}
+                />
+                </Grid>
                 <ImageSelector classes={classes} handleInputChange={handleInputChange} />
                 {/* <TextField
                     name="tag"
@@ -139,7 +137,7 @@ const EditProfile = ({classes, close}) => {
                     onChange={handleInputChange}
                 /> */}
                 <Button
-                fullWidth
+                color="secondary"
                 type="submit">
                     Submit
                 </Button>

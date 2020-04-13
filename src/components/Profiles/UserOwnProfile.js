@@ -110,7 +110,7 @@ const UserOwnProfile = ({history}) => {
             {whatsapp && <WhatsappIcon number={whatsapp} showNumber={true} />}
             {whatsapp && <ContactWay classes={classes} user={user}/>}
             {image1 && <Gallery user={user} />}
-            <Button color="secondary" onClick={handleToggleEdit}>Edit profile</Button>
+            <Button color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit profile</Button>
             <Modal 
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"

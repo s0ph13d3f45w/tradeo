@@ -17,9 +17,7 @@ import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
 const additionalState = {
-    tag1: "", 
-    tag2:"", 
-    tag3:"",
+    tag: "",
     whatsapp: "",
     image1: "",
     image2: "",
@@ -61,9 +59,7 @@ const SignUp = ({
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            const { tag1,
-                    tag2,
-                    tag3, 
+            const { tag, 
                     whatsapp,
                     image1,
                     image2,
@@ -73,9 +69,7 @@ const SignUp = ({
                     wallpaper} = additionalState
             await createUserProfileDocument(user,{
                 displayName, 
-                tag1,
-                tag2,
-                tag3,
+                tag,
                 image1,
                 image2,
                 image3,

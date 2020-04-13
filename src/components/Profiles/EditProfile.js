@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
+import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
 import {Grid, Typography, Button, TextField, Box} from '@material-ui/core'
 
@@ -129,59 +130,7 @@ const EditProfile = ({classes, close}) => {
                     onChange={handleInputChange}
                 />
                 </Grid>
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Avatar Image:</Typography>
-                    <input
-                        placeholder="avatar"
-                        name="photoURL"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-
-                </Box>
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Wallpaper Image:</Typography>
-                    <Button>
-                    <input
-                        placeholder="wallpaper"
-                        name="wallpaper"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-                    </Button>
-                </Box>
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Gallery image 1:</Typography>
-                    <input
-                        placeholder="image1"
-                        name="image1"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-                </Box>
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Gallery Image 2:</Typography>
-                    <input
-                        placeholder="image2"
-                        name="image2"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-                </Box>
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Gallery Image 3:</Typography>
-                    <input
-                        placeholder="image3"
-                        name="image3"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-                </Box>
+                <ImageSelector classes={classes} handleInputChange={handleInputChange} />
                 {/* <TextField
                     name="tag"
                     fullWidth

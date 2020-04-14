@@ -1,12 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, forwardRef} from 'react'
+import {useSpring, animated} from 'react-spring'
 import {auth, createUserProfileDocument} from '../../firebase'
 import {
         Grid,
         Paper,
+        Backdrop,
         Avatar,
         Typography,
         TextField,
         Button,
+        Radio,
+        Modal,
         Link,
         Collapse,
         Box
@@ -27,6 +31,30 @@ const additionalState = {
     wallpaper: "",
 }
 
+const Fade = forwardRef((props, ref) =>{
+    const {in: open, children, onEnter, onExited, ...other} = props;
+    const style = useSpring({
+        from: {opacity: 0},
+        to: {opacity: open ? 1: 0},
+        onStart: () =>{
+            if (open && onEnter){
+                onEnter()
+            }
+        },
+        onRest: () =>{
+            if (!open  && onExited){
+                onExited()
+            }
+        }
+    })
+
+    return(
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    )
+})
+
 const SignUp = ({
     t,
     classes,
@@ -38,6 +66,10 @@ const SignUp = ({
     
     const [signUp, setSignUp] = useState(initialState)
     const [alert, setAlert] = useState(false)
+    const [terms, setTerms] = useState(false)
+    const [openTerms, setOpenTerms] = useState(false)
+    const toggleTermsModal = () => setOpenTerms(!openTerms)
+    const toggleTerms = () => setTerms(!terms)
 
     const {
             displayName, 
@@ -126,7 +158,6 @@ return(
                     label={t('email')}
                     name="email"
                     autoComplete={t("email")}
-                    autoFocus
                     value={email}
                     onChange={handleInputs}
                 />
@@ -159,7 +190,26 @@ return(
                     value={confirmation}
                     onChange={handleInputs}
                 />
+                <Grid style={{display: 'flex'}} onClick={toggleTerms}>
+                    <Radio 
+                        onChange={toggleTerms}
+                        value={terms}
+                        checked={terms}
+                    />
+                    <Typography 
+                        style={{marginTop: 10}}
+                        variant="subtitle2" color="textSecondary">
+                        {t("terms")} 
+                    </Typography>
+                    <Link 
+                        onClick={toggleTermsModal}
+                        style={{marginTop: 11, marginLeft: 10}}
+                        >
+                        read them
+                    </Link>
+                </Grid>
                 <Button
+                    disabled={!terms}
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -169,6 +219,7 @@ return(
                     {t('signUp')}
                 </Button>
                 <Button
+                    disabled={!terms}
                     fullWidth
                     variant="contained"
                     color="secondary"
@@ -178,23 +229,35 @@ return(
                     Google
                 </Button>
                 <Grid container>
-                    <Grid item xs>
-                        <Link href="#" variant="body2" color="inherit">
-                            Forgot password?
-                        </Link>
-                    </Grid>
                     <Grid item>
                         <Link href="#" variant="body2" color="inherit" onClick={toggle}>
-                            {"Already have an account? SignIn"}
+                            {t("alreadyUser")}
                         </Link>
                     </Grid>
-                    </Grid>
-                        <Box mt={5}>
-                            <Copyright />
-                        </Box>
-                    </form>
-                </div>
-        </Grid>
+                </Grid>
+                    <Box mt={5}>
+                        <Copyright />
+                    </Box>
+            </form>
+            <Modal 
+                aria-labelledby="spring-modal-title"
+                aria-describedby="spring-modal-description"
+                className={classes.modal}
+                open={openTerms}
+                onClose={toggleTermsModal}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{timeout: 500}}
+            >
+                <Fade in={openTerms}>
+                    <div className={classes.paperTerms}>
+
+                        <h2>Terms</h2>
+                    </div>
+                </Fade>
+            </Modal>
+        </div>
+    </Grid>
     )
 }
 

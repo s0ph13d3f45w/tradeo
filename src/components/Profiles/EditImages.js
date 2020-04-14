@@ -2,15 +2,7 @@ import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
-import {Grid, Typography, Button, TextField, Box} from '@material-ui/core'
-
-const initialState={
-    displayName: "", 
-    tag:"",
-    whatsapp: "",
-    type: "",
-    subType: "",
-    }
+import {Grid, Typography, Button} from '@material-ui/core'
 
 const initialImages = {
     photoURL: "",
@@ -19,45 +11,18 @@ const initialImages = {
     image3: "",
     wallpaper: "",
 }
-const EditProfile = ({classes, close}) => {
-    const [edit, setEdit] = useState(initialState)
+const EditImages = ({classes, close}) => {
     const [images, setImages] = useState(initialImages)
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
-    const {
-            displayName, 
-            tag,
-            whatsapp,
-            type,
-            subType,
-            } = edit
+  
     const {image1, image2, image3, photoURL, wallpaper} = images
 
-    const handleInputChange = e =>{
-        e.target.type === "file"
-        ? setImages({...images, [e.target.name] : e.target.files[0]})
-        : setEdit({...edit, [e.target.name] : e.target.value})
-
-    }
+    const handleInputChange = e =>
+         setImages({...images, [e.target.name] : e.target.files[0]})
 
     const handleSubmit = async e =>{
         e.preventDefault()
-
-        if (displayName){
-            userRef.update({displayName})
-        }
-        if(tag){
-            userRef.update({tag})
-        }
-        if(type){
-            userRef.update({type})
-        }
-        if(subType){
-            userRef.update({subType})
-        }
-        if(whatsapp){
-            userRef.update({whatsapp})
-        }
 
         if(photoURL !== ''){
             storage.ref(`profileAvatars/${user.uid}/${photoURL.name}`)
@@ -103,39 +68,7 @@ const EditProfile = ({classes, close}) => {
                 <Grid item>
                     <Typography variant="h6">Edit Profile</Typography>
                 </Grid>
-                <Grid item>
-                    <TextField
-                        name="displayName"
-                        value={displayName}
-                        label="Name"
-                        onChange={handleInputChange}
-                    />
-                </Grid>
-                <Grid>
-                <TextField
-                    name="whatsapp"
-                    
-                    value={whatsapp}
-                    label="Whatsapp"
-                    onChange={handleInputChange}
-                />
-                </Grid>
-                <Grid>
-                <TextField
-                    name="tag"
-                    value={tag}
-                    label="Special Tag"
-                    onChange={handleInputChange}
-                />
-                </Grid>
                 <ImageSelector classes={classes} handleInputChange={handleInputChange} />
-                {/* <TextField
-                    name="tag"
-                    fullWidth
-                    value={tag}
-                    label="Tag"
-                    onChange={handleInputChange}
-                /> */}
                 <Button
                 color="secondary"
                 type="submit">
@@ -147,4 +80,4 @@ const EditProfile = ({classes, close}) => {
     );
 }
 
-export default EditProfile;
+export default EditImages;

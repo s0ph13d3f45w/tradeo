@@ -101,11 +101,11 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                 />
                 <ProfileData 
                     textSize="h4"
-                    name={data.name} 
-                    img={data.image} />
-                <Giver skills={data.skills} t={t} classObj={classes} />
+                    name={data.displayName} 
+                    img={data.photoURL} />
+                {/* <Giver skills={data.skills} t={t} classObj={classes} />
                 <br/> 
-                <Receiver interested={data.interested} t={t} />
+                <Receiver interested={data.interested} t={t} /> */}
             </CardContent>
             <CardActions className={classes.buttons}>
                 {theme.palette.type === 'light'

@@ -75,7 +75,7 @@ const Spinner  = ({classObj}) =>
         <Container className={classes.root}>
           <br />
           <FilterBar t={t}/>
-          {/* {list.isError && <p>Something went wrong...</p>}
+          {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
             ? <Spinner classObj={classes} />
             : transition.map(({item, key, props}) => (
@@ -88,7 +88,7 @@ const Spinner  = ({classObj}) =>
                   t={t} />
               </animated.div>)
             ))
-          } */}
+          }
           <br />
           <br />
           <br />

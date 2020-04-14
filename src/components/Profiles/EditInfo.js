@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import {firestore} from '../../firebase'
-import {Grid, Typography, Button, TextField} from '@material-ui/core'
+import {Grid, Typography, Button, TextField, FormControl,FormControlLabel, Select, MenuItem,} from '@material-ui/core'
 
 const initialState={
     displayName: "", 
@@ -11,8 +11,52 @@ const initialState={
     subType: "",
     }
 
+const Type = ({t, setEdit, edit}) =>{
+    const handleSelectChange = e =>{
+        e.target.value === "products"
+        ? setEdit({...edit, type: "products"})
+        : setEdit({...edit, type: "services"})
 
-const EditInfo = ({classes, close}) => {
+        console.log(edit)
+    }
+    return(
+        <FormControl style={{marginTop: 10}}>
+            <Typography color="textSecondary">Account type:</Typography>
+            <Select onChange={handleSelectChange}>
+                <MenuItem value="products">
+                    <Typography color="textSecondary">{t("products")}</Typography>
+                </MenuItem>
+                <MenuItem value="services">
+                    <Typography color="textSecondary">{t("services")}</Typography>
+                </MenuItem>
+            </Select>
+        </FormControl>
+    )
+}
+
+const subType = ({t, setEdit,}) =>{
+    const handleSelectChange = e =>{
+        e.target.value === "products"
+        ? console.log("clock")
+        : console.log("clock")
+
+    }
+    return(
+        <FormControl style={{marginTop: 10}}>
+            <Typography color="textSecondary">Account type:</Typography>
+            <Select onChange={handleSelectChange}>
+                <MenuItem value="products">
+                    <Typography color="textSecondary">{t("products")}</Typography>
+                </MenuItem>
+                <MenuItem value="services">
+                    <Typography color="textSecondary">{t("services")}</Typography>
+                </MenuItem>
+            </Select>
+        </FormControl>
+    )
+}
+
+const EditInfo = ({classes, close, t}) => {
     const [edit, setEdit] = useState(initialState)
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
@@ -80,6 +124,9 @@ const EditInfo = ({classes, close}) => {
                     label="Special Tag"
                     onChange={handleInputChange}
                 />
+                </Grid>
+                <Grid>
+                    <Type t={t} setEdit={setEdit} edit={edit}/>
                 </Grid>
                 <Button
                 color="secondary"

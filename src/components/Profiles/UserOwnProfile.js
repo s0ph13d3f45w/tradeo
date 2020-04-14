@@ -92,7 +92,7 @@ const Fade = forwardRef((props, ref) =>{
     )
 })
 
-const UserOwnProfile = ({history}) => {
+const UserOwnProfile = ({history, t}) => {
     const [showEdit, setEdit] = useState(false)
     const [editImages, setImages] = useState(false)
 
@@ -115,7 +115,7 @@ const UserOwnProfile = ({history}) => {
             {number && <WhatsappIcon number={number} showNumber={true} />}
             {/* {whatsapp && <ContactWay classes={classes} user={user}/>}
             {image1 && <Gallery user={user} />} */}
-            <Button style={{marginBottom: 4}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>
+            <Button style={{marginBottom: 8}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>
             <Button color="secondary" variant="contained" size="small" onClick={handleToggleImages}>Edit Images</Button>
             <Modal 
                 aria-labelledby="spring-modal-title"
@@ -128,7 +128,10 @@ const UserOwnProfile = ({history}) => {
                 BackdropProps={{timeout: 500}}
             >
                 <Fade in={showEdit}>
-                  <EditInfo classes={classes} close={handleToggleEdit} />
+                  <EditInfo  
+                    t={t}
+                    classes={classes} 
+                    close={handleToggleEdit} />
                 </Fade>
             </Modal>
             <Modal 

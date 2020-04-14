@@ -14,20 +14,13 @@
     "design_female": "diseñadora 🖍️",
     "design_male": "diseñador 🖍️",
     "dontHaveAccount": "¿No tienes una cuenta?",
-    "email": "correo",
-    "filter": "filtrar",
     "forgotPassword": "¿Olvidaste la contraseña?",
     "food": "Comida 🥫",
     "handcraft": "Manualidades 🎨",
     "interest": "Me interesa:",
-    "name": "nombre",
     "offer": "Te enseño / Ofrezco:",
-    "password": "contraseña",
     "passwordMust": "Contraseña debe ser mayor a 6 caracteres e incluir 1 caracter especial !#$%*",
-    "products": "Productos",
     "profile": "Perfil",
-    "search": "Buscar",
-    "services": "Servicios",
     "signIn": "Iniciar Sesión",
     "signUp": "Regístrate",
     "readTerms": "leerlos",
@@ -51,7 +44,6 @@
     "teaching_music_male": "Profesor de música 🎵",
     "teaching_music_female": "Profesora de música 🎵",
     "teaching_language": "Clases de idiomas 📓",
-    "teaching_language_male": "Profesor de idiomas 📓",
     "teaching_language_male": "Profesora de idiomas 📓",
     "teaching_academic": "Clases académicas 📚",
     "teaching_academic_male": "Profesor académico 📚",
@@ -81,7 +73,7 @@
     "teaching_photos": "Clases de fotografía 📷 ",
     "teaching_photos_male": "Profesor de fotografía 📷 ",
     "teaching_photos_female": "Profesora de fotografía 📷 ",
-    "Coach”: “Coaching 🙌",
+    "Coach": "Coaching 🙌",
     "coach_person":"Coach🙌",
     "Spiritual_guide”": "Guía espiritual",
     "spiritual_religion": "Espiritualidad y Religión",
@@ -121,33 +113,33 @@
     "carpentry":"Carpintería 🔨",
     "carpentry_male":"Carpintero 🔨",
     "carpentry_female":"Carpintera 🔨",
-    "login":"Iniciar sesión"
-    "email":"correo"
-    "sing_in":"Iniciar sesión"
-    "password":"contraseña"
-    "google":"google"
-    "forgot_password":"Has olvidado tu contraseña?"
-    "sing_up":"No tienes una cuenta aún? inscríbete"
-    "Copyright":"Derechos de autor"
-    "search":"BUSCAR"
-    "filter":"FILTRAR"
-    "example_search":"...Maíz"
-    "english":"Inglés"
-    "spanish": "Español"
-    "Maya":"Maya"
-    "sign_out":"CERRAR SESIÓN"
-    "products": "Productos"
-    "services": "Servicios"
-    "name": "Nombre"
-    "surname": "Apellido"
-    "phone_number": "Número de Whatsapp"
-    "photo": "Foto"
-    "accept_terms": "Aceptar terminos y condiciones"
-    "age": "Edad"
-    "city": "Ciudad"
-    "descripction": "Descripción"
-    "rules": "Reglas de Tulis"
-    "welcome": "Bienvenid@"
-    "what_do_you_offer": "Qué ofreces?"
+    "login":"Iniciar sesión",
+    "email":"correo",
+    "sing_in":"Iniciar sesión",
+    "password":"contraseña",
+    "google":"google",
+    "forgot_password":"Has olvidado tu contraseña?",
+    "sing_up":"No tienes una cuenta aún? inscríbete",
+    "Copyright":"Derechos de autor",
+    "search":"BUSCAR",
+    "filter":"FILTRAR",
+    "example_search":"...Maíz",
+    "english":"Inglés",
+    "spanish": "Español",
+    "Maya":"Maya",
+    "sign_out":"CERRAR SESIÓN",
+    "products": "Productos",
+    "services": "Servicios",
+    "name": "Nombre",
+    "surname": "Apellido",
+    "phone_number": "Número de Whatsapp",
+    "photo": "Foto",
+    "accept_terms": "Aceptar terminos y condiciones",
+    "age": "Edad",
+    "city": "Ciudad",
+    "descripction": "Descripción",
+    "rules": "Reglas de Tulis",
+    "welcome": "Bienvenid@",
+    "what_do_you_offer": "Qué ofreces?",
     "What_do_you_need": "Qué necesitas?"
 }

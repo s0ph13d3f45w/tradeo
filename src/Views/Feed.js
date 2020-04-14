@@ -104,7 +104,7 @@ const Spinner  = ({classObj}) =>
               <UserProfile user={list.user} />
           </Drawer>
           <Drawer anchor="left" open={ownProfile} onClose={toggleOwnProfile}>
-              <UserOwnProfile history={props.history}/>
+              <UserOwnProfile history={props.history} t={t}/>
           </Drawer>
           {user
           ? <BottomBar t={t} 

@@ -37,6 +37,8 @@ const Spinner  = ({classObj}) =>
 
   const Feed = (props) =>{
     const { list, dispatch} = useContext(UserContext)
+    const users = [...list.displayList]
+    console.log(users)
     const {user} = useContext(UserSessionContext)
     const {theme} = useContext(TemaContext)
     const [ profile, setProfile ] = useState(false)
@@ -44,7 +46,7 @@ const Spinner  = ({classObj}) =>
     const {t} = useTranslation()
     const classes = useStyles(theme)
 
-    const transition = useTransition(list.displayList, item => item.id, {
+    const transition = useTransition(users, item => item.uid, {
       from: { opacity: 0},
       enter: { opacity: 1},
       leave: { opacity: 0}
@@ -55,6 +57,7 @@ const Spinner  = ({classObj}) =>
       try { 
         const snapshot = await firestore.collection('users').get()
         const users = snapshot.docs.map(user => {return {uid: user.uid, ...user.data()}})
+
         dispatch({
           type: 'SET_LIST_SUCCESS',
           payload: users

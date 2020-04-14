@@ -50,7 +50,7 @@ const feedReducer = (state, action) =>{
         return{
           ...state,
           displayList: state.displayList.filter(user =>
-            action.payload.id !== user.id
+            action.payload.uid !== user.uid
           )
         }
       case 'SET_DRAWER_USER':

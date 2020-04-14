@@ -1,20 +1,22 @@
 import React from 'react'
-import Breadcrumbs from '@material-ui/core/Breadcrumbs'
-import Typography from '@material-ui/core/Typography'
+import {Breadcrumbs, Typography, List} from '@material-ui/core'
 
-const Giver = ({t, skills, typeReturn}) =>
+const Giver = ({t, skills, typeReturn, classObj}) =>
     typeReturn === 'skills' 
         ? (
-       
-
-           
-            <Breadcrumbs>
+    
+            <Breadcrumbs 
+                aria-label="breadcrumbs">
+                <List className={classObj.crumbs}
+                aria-label="typography">
                 {skills.map((skills, index) =>
                 <Typography 
+                    align="center"
                     variant="subtitle2"
                     key={index}
                     color="textSecondary">{t(skills)}</Typography>
                 )}
+                </List>
             </Breadcrumbs>
 
 

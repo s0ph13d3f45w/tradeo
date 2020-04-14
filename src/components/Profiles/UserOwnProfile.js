@@ -97,7 +97,7 @@ const UserOwnProfile = ({history}) => {
     const [editImages, setImages] = useState(false)
 
     const {user}= useContext(UserSessionContext)
-    const {displayName,photoURL, email, whatsapp, image1} = user
+    const {displayName,photoURL, email, number, } = user
     const classes = useStyles()
 
     const handleToggleEdit = () => setEdit(!showEdit)
@@ -112,7 +112,7 @@ const UserOwnProfile = ({history}) => {
             {photoURL && <ProfileImage classes={classes} img={photoURL} />}
             <Typography variant="h6"><strong>{displayName}</strong></Typography>
             <Typography variant="subtitle1" color="textSecondary">{email}</Typography>
-            {whatsapp && <WhatsappIcon number={whatsapp} showNumber={true} />}
+            {number && <WhatsappIcon number={number} showNumber={true} />}
             {/* {whatsapp && <ContactWay classes={classes} user={user}/>}
             {image1 && <Gallery user={user} />} */}
             <Button style={{marginBottom: 4}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>

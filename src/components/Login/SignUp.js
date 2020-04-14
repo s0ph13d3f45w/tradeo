@@ -22,7 +22,7 @@ import Copyright from './Copyright'
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
 const additionalState = {
     tag: "",
-    whatsapp: "",
+    number: "",
     image1: "",
     image2: "",
     image3: "",
@@ -92,7 +92,7 @@ const SignUp = ({
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
             const { tag, 
-                    whatsapp,
+                    number,
                     image1,
                     image2,
                     image3,
@@ -107,7 +107,7 @@ const SignUp = ({
                 image3,
                 type, 
                 subType,
-                whatsapp,
+                number,
                 wallpaper})
             if(user){
                 authRouter.login(history.push('/feed'))

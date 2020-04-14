@@ -132,24 +132,6 @@ const UserOwnProfile = ({history, t}) => {
                     classes={classes} 
                     close={handleToggleEdit} />
             </Dialog>
-{/*             
-            <Modal 
-                aria-labelledby="spring-modal-title"
-                aria-describedby="spring-modal-description"
-                className={classes.modal}
-                open={showEdit}
-                onClose={handleToggleEdit}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{timeout: 500}}
-            >
-                <Fade in={showEdit}>
-                  <EditInfo  
-                    t={t}
-                    classes={classes} 
-                    close={handleToggleEdit} />
-                </Fade>
-            </Modal> */}
             <Modal 
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"

@@ -1,7 +1,7 @@
 import React from 'react'
 import {DialogContent,DialogTitle, DialogContentText, DialogActions, Button} from '@material-ui/core'
 
-const Terms = ({onClose}) =>{
+const Terms = ({onClose, t}) =>{
     return(
         <>
   
@@ -57,7 +57,7 @@ const Terms = ({onClose}) =>{
                     En caso de fusión, venta, donación, intercambio y/o herencia de tulis, los nuevos adquisitores obtendrán toda la información relativa a los usuarios, sus datos y sus acciones realizadas en tulis (sean pasados, actuales y/o futuros) así mismo que la libertad de cambiar los termino y condiciones, servicios, funciones y/o filosofía de tulis siempre cuando los miembros del comité obtengan el 50 +1 % de unanimidad. 
             </DialogContentText>
             <DialogActions>
-                <Button variant="contained" color="secondary" onClick={onClose}>Accept</Button>
+                <Button variant="contained" color="secondary" onClick={onClose}>{t("accept")}</Button>
             </DialogActions>
         </DialogContent>
     </>

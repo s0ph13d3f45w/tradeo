@@ -205,7 +205,7 @@ return(
                         onClick={toggleTermsModal}
                         style={{marginTop: 11, marginLeft: 10}}
                         >
-                        read them
+                        {t("readTerms")}
                     </Link>
                 </Grid>
                 <Button
@@ -250,7 +250,7 @@ return(
             >
                 <Fade in={openTerms}>
                     <div className={classes.paperTerms}>
-                        <Terms onClose={toggleTermsModal}/>
+                        <Terms onClose={toggleTermsModal} t={t}/>
                     </div>
                 </Fade>
             </Dialog>

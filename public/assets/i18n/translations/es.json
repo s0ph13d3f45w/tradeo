@@ -1,4 +1,5 @@
 {   
+    "accept": "Aceptar",
     "all": "Todo",
     "alreadyUser": "¿Ya tienes una cuenta?",
     "button_contact": "contactar",
@@ -28,6 +29,7 @@
     "services": "Servicios",
     "signIn": "Iniciar Sesión",
     "signUp": "Regístrate",
+    "readTerms": "leerlos",
     "repairment": "Reparaciones 🛠️",
     "teaching": "Clases 💻",
     "terms": "Aceptar terminos 📖",

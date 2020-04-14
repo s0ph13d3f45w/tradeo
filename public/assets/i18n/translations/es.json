@@ -1,3 +1,4 @@
+
 {   
     "accept": "Aceptar",
     "all": "Todo",
@@ -35,5 +36,118 @@
     "terms": "Aceptar terminos y condiciones 📖",
     "type": "tipo",
     "web_dev": "Desarrollo web 🌐",
-    "ux_dev": "Desarrollo UX 📲"
+    "ux_dev": "Desarrollo UX 📲",
+    "teaching_cocking": "Clases de cocina 🍳 ",
+    "teaching_cocking_male": "Profesor de cocina 🍳",
+    "teaching_cocking_female": "Profesora de cocina 🍳",
+    "cocking_male": "Cocinero 🍳 ",
+    "cocking_female": "Cocinera 🍳 ",
+    "baking_male": "Panadero 🥖 ",
+    "baking_female": "Panadera 🥖",
+    "baking": "Panadería 🥖 ",
+    "music": "Música 🎵",
+    "music_person": "Músico 🎵",
+    "teaching_music": "Clases de música 🎵",
+    "teaching_music_male": "Profesor de música 🎵",
+    "teaching_music_female": "Profesora de música 🎵",
+    "teaching_language": "Clases de idiomas 📓",
+    "teaching_language_male": "Profesor de idiomas 📓",
+    "teaching_language_male": "Profesora de idiomas 📓",
+    "teaching_academic": "Clases académicas 📚",
+    "teaching_academic_male": "Profesor académico 📚",
+    "teaching_academic_female": "Profesora académica 📚",
+    "teaching_yoga": "Clases de yoga 🍃",
+    "teaching_yoga_male": "Profesor de yoga 🧘‍",
+    "teaching_yoga_female": "Profesora de yoga 🧘‍",
+    "teaching_sports": "Clases de deportes 🏀",
+    "teaching_sports_male": "Profesor de deportes 🏀",
+    "teaching_sports_female": "Profesora de deportes 🏀 ",
+    "health": "salud",
+    "medicine": "Medicina 🌡",
+    "alternative_medicine": "Medicina Alternativa🌿",
+    "doctor_male": "Doctor🌡",
+    "doctor_female": "Doctora🌡",
+    "programmer_male": "Programador 💻",
+    "programmer_female": "Programadora 💻",
+    "teaching_programing": "Clases de Programación 💻",
+    "art": "artes 🖌",
+    "art_person": "artista 🖌",
+    "teaching_art": "Clases de arte 🖌",
+    "teaching_art_male": "Profesor de arte 🖌",
+    "teaching_art_female": "Profesora de arte 🖌",
+    "photos":"Fotos 📷 ",
+    "photographer_male":"Fotografo 📷 ",
+    "photographer_female":"Fotografa 📷 ",
+    "teaching_photos": "Clases de fotografía 📷 ",
+    "teaching_photos_male": "Profesor de fotografía 📷 ",
+    "teaching_photos_female": "Profesora de fotografía 📷 ",
+    "Coach”: “Coaching 🙌",
+    "coach_person":"Coach🙌",
+    "Spiritual_guide”": "Guía espiritual",
+    "spiritual_religion": "Espiritualidad y Religión",
+    "cristian_guide": "Pastor",
+    "jewish_guide": "Rabino",
+    "muslim_guide": "Iman",
+    "psicology": "Psicología 🧠",
+    "psicology_male": "Psicologo 🧠",
+    "psicology_female": "Psicologa 🧠",
+    "Nutritionist": "Nutricionista 🥬",
+    "Nutrition": "Nutrición 🥬",
+    "jardiner_male":"Jardinero 🌳",
+    "jardiner_female":"Jardinera 🌳",
+    "Veterinary_male":"Veterinario 🐕",
+    "Veterinary_female":"Veterinaria 🐕",
+    "engineering":"ingeniería ⚙️",
+    "engineering_male":"ingeniero ⚙️",
+    "engineering_female":"ingeniera ⚙️",
+    "chemist_male": "Químico 🧪",
+    "chemist_female": "Química 🧪",
+    "sewing": "Corte y confeción 🧵",
+    "sewing_male": "costurero 🧵",
+    "sewing_female": "Costurera 🧵",
+    "actor_male":"Actor 🎭",
+    "actor_female":"Actríz 🎭",
+    "acting":"Actuación 🎭",
+    "digital_music_production": "Producción musical digital 🎧",
+    "digital_music_production_male": "Productor de música digital 🎧",
+    "digital_music_production_female": "Productora de música digital 🎧",
+    "dj":"DJ 🎧",
+    "video_editor": "Edición de videos 🎬 ",
+    "video_editor_male": "Editor de videos 🎬 ",
+    "video_editor_female": "Editora de videos 🎬 ",
+    "content_editor": "Edición de contenido ✏️",
+    "content_editor_male": "Editor de contenido ✏️",
+    "content_editor_female": "Editora de contenido ✏️",
+    "carpentry":"Carpintería 🔨",
+    "carpentry_male":"Carpintero 🔨",
+    "carpentry_female":"Carpintera 🔨",
+    "login":"Iniciar sesión"
+    "email":"correo"
+    "sing_in":"Iniciar sesión"
+    "password":"contraseña"
+    "google":"google"
+    "forgot_password":"Has olvidado tu contraseña?"
+    "sing_up":"No tienes una cuenta aún? inscríbete"
+    "Copyright":"Derechos de autor"
+    "search":"BUSCAR"
+    "filter":"FILTRAR"
+    "example_search":"...Maíz"
+    "english":"Inglés"
+    "spanish": "Español"
+    "Maya":"Maya"
+    "sign_out":"CERRAR SESIÓN"
+    "products": "Productos"
+    "services": "Servicios"
+    "name": "Nombre"
+    "surname": "Apellido"
+    "phone_number": "Número de Whatsapp"
+    "photo": "Foto"
+    "accept_terms": "Aceptar terminos y condiciones"
+    "age": "Edad"
+    "city": "Ciudad"
+    "descripction": "Descripción"
+    "rules": "Reglas de Tulis"
+    "welcome": "Bienvenid@"
+    "what_do_you_offer": "Qué ofreces?"
+    "What_do_you_need": "Qué necesitas?"
 }

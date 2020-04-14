@@ -3,7 +3,7 @@ import {auth} from '../../firebase'
 import {useSpring, animated} from 'react-spring'
 import authRouter from '../../auth'
 import {makeStyles} from '@material-ui/core/styles'
-import {Grid, Typography, Button, Modal, Backdrop} from '@material-ui/core'
+import {Grid, Typography, Button, Modal, Backdrop, Dialog} from '@material-ui/core'
 import ProfileImage from './ProfileImage'
 import WhatsappIcon from './WhatsappIcon'
 import Gallery from './Gallery'
@@ -117,6 +117,22 @@ const UserOwnProfile = ({history, t}) => {
             {image1 && <Gallery user={user} />} */}
             <Button style={{marginBottom: 8}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>
             <Button color="secondary" variant="contained" size="small" onClick={handleToggleImages}>Edit Images</Button>
+            <Dialog
+                aria-labelledby="spring-dialog-title"
+                aria-describedby="spring-dialog-description"
+                className={classes.modal}
+                onClose={handleToggleEdit}
+                open={showEdit}
+                scroll="paper"
+                closeAfterTransition
+       
+            >
+            <EditInfo  
+                    t={t}
+                    classes={classes} 
+                    close={handleToggleEdit} />
+            </Dialog>
+{/*             
             <Modal 
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
@@ -133,7 +149,7 @@ const UserOwnProfile = ({history, t}) => {
                     classes={classes} 
                     close={handleToggleEdit} />
                 </Fade>
-            </Modal>
+            </Modal> */}
             <Modal 
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"

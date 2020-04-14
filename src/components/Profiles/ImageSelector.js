@@ -20,19 +20,9 @@ const ImageSelector = ({classes, handleInputChange}) => {
                         Wallpaper
                         </Typography>
                     </MenuItem>
-                    <MenuItem value="image1">
+                    <MenuItem value="gallery">
                         <Typography variant="subtitle2" color="textSecondary">
-                            Gallery image1
-                        </Typography>
-                    </MenuItem>
-                    <MenuItem value="image2">
-                        <Typography variant="subtitle2" color="textSecondary">
-                        Gallery image2
-                        </Typography>
-                    </MenuItem>
-                    <MenuItem value="image3">
-                        <Typography variant="subtitle2" color="textSecondary">
-                        Gallery image3
+                            Gallery
                         </Typography>
                     </MenuItem>
                 </Select>
@@ -64,42 +54,41 @@ const ImageSelector = ({classes, handleInputChange}) => {
                     </Button>
             </Box>
             }
-            {state === "image1" &&
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Gallery image 1:</Typography>
-                    <input
-                        placeholder="image1"
-                        name="image1"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-            </Box>
+            {state === "gallery" &&
+                <>
+                    <Box className={classes.input}>
+                        <Typography variant="subtitle2" color="textSecondary">Gallery image 1:</Typography>
+                        <input
+                            placeholder="image1"
+                            name="image1"
+                            multiple={false}
+                            onChange={handleInputChange}
+                            type="file"
+                            />
+                    </Box>
+                    <Box className={classes.input}>
+                        <Typography variant="subtitle2" color="textSecondary">Gallery Image 2:</Typography>
+                        <input
+                            placeholder="image2"
+                            name="image2"
+                            multiple={false}
+                            onChange={handleInputChange}
+                            type="file"
+                            />
+                    </Box>
+                    <Box className={classes.input}>
+                        <Typography variant="subtitle2" color="textSecondary">Gallery Image 3:</Typography>
+                        <input
+                            placeholder="image3"
+                            name="image3"
+                            multiple={false}
+                            onChange={handleInputChange}
+                            type="file"
+                            />
+                    </Box>
+                </>
             }
-            {state === "image2" &&
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Gallery Image 2:</Typography>
-                    <input
-                        placeholder="image2"
-                        name="image2"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-                </Box>
-            }
-            {state === "image3" &&
-                <Box className={classes.input}>
-                    <Typography variant="subtitle2" color="textSecondary">Gallery Image 3:</Typography>
-                    <input
-                        placeholder="image3"
-                        name="image3"
-                        multiple={false}
-                        onChange={handleInputChange}
-                        type="file"
-                        />
-                </Box>
-            }
+          
         </div>
     );
 }

@@ -83,7 +83,7 @@ const Rating = ({counter, points}) =>{
 
 
 const UserProfile = ({user}) =>{
-    const {photoURL, displayName, number} = user
+    const {photoURL, displayName, whatsapp} = user
     const {t} = useTranslation()
     const classes = useStyles()
     return(
@@ -117,7 +117,7 @@ const UserProfile = ({user}) =>{
             {<IconButton 
                 color="primary"
                 onClick={() =>{
-                    window.open(`https://api.whatsapp.com/send?phone=${number}`)
+                    window.open(`https://api.whatsapp.com/send?phone=${whatsapp}`)
                 }}>
             <WhatsAppIcon />
             </IconButton>

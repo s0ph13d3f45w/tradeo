@@ -38,9 +38,11 @@ const useStyles = makeStyles(theme =>({
         margin: theme.spacing(3, 0, 2)
     },
     modal:{
-        display: 'flex',
+        display: 'block',
         alignItems: 'center',
-        justifyContent: 'center'
+        position: 'absolute',
+        justifyContent: 'center',
+        overflow: 'scroll'
     },
     paperTerms: {
         backgroundColor: theme.palette.background.default,

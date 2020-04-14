@@ -3,20 +3,20 @@ import {useSpring, animated} from 'react-spring'
 import {auth, createUserProfileDocument} from '../../firebase'
 import {
         Grid,
+        Dialog,
         Paper,
-        Backdrop,
         Avatar,
         Typography,
         TextField,
         Button,
         Radio,
-        Modal,
         Link,
         Collapse,
         Box
     } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Alert from '@material-ui/lab/Alert';
+import Terms from './terms'
 import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
@@ -239,23 +239,21 @@ return(
                         <Copyright />
                     </Box>
             </form>
-            <Modal 
-                aria-labelledby="spring-modal-title"
-                aria-describedby="spring-modal-description"
+            <Dialog
+                aria-labelledby="spring-dialog-title"
+                aria-describedby="spring-dialog-description"
                 className={classes.modal}
                 open={openTerms}
-                onClose={toggleTermsModal}
+                scroll="paper"
                 closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{timeout: 500}}
+       
             >
                 <Fade in={openTerms}>
                     <div className={classes.paperTerms}>
-
-                        <h2>Terms</h2>
+                        <Terms onClose={toggleTermsModal}/>
                     </div>
                 </Fade>
-            </Modal>
+            </Dialog>
         </div>
     </Grid>
     )

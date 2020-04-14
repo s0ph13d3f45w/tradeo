@@ -8,8 +8,9 @@ import ProfileImage from './ProfileImage'
 import WhatsappIcon from './WhatsappIcon'
 import Gallery from './Gallery'
 import ContactWay from './ContactWay'
-import EditProfile from './EditProfile'
+import EditInfo from './EditInfo'
 import { UserSessionContext } from '../../context/userSessionContext'
+import EditImages from './EditImages'
 
 const useStyles = makeStyles(theme =>({
     root:{
@@ -93,11 +94,15 @@ const Fade = forwardRef((props, ref) =>{
 
 const UserOwnProfile = ({history}) => {
     const [showEdit, setEdit] = useState(false)
+    const [editImages, setImages] = useState(false)
+
     const {user}= useContext(UserSessionContext)
     const {displayName,photoURL, email, whatsapp, image1} = user
     const classes = useStyles()
 
     const handleToggleEdit = () => setEdit(!showEdit)
+    const handleToggleImages = () => setImages(!editImages)
+
     const signOut = async() =>{
         authRouter.logout(history.push('/'))
         await auth.signOut()
@@ -108,9 +113,10 @@ const UserOwnProfile = ({history}) => {
             <Typography variant="h6"><strong>{displayName}</strong></Typography>
             <Typography variant="subtitle1" color="textSecondary">{email}</Typography>
             {whatsapp && <WhatsappIcon number={whatsapp} showNumber={true} />}
-            {whatsapp && <ContactWay classes={classes} user={user}/>}
-            {image1 && <Gallery user={user} />}
-            <Button color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit profile</Button>
+            {/* {whatsapp && <ContactWay classes={classes} user={user}/>}
+            {image1 && <Gallery user={user} />} */}
+            <Button style={{marginBottom: 4}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>
+            <Button color="secondary" variant="contained" size="small" onClick={handleToggleImages}>Edit Images</Button>
             <Modal 
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
@@ -122,7 +128,21 @@ const UserOwnProfile = ({history}) => {
                 BackdropProps={{timeout: 500}}
             >
                 <Fade in={showEdit}>
-                  <EditProfile classes={classes} close={handleToggleEdit} />
+                  <EditInfo classes={classes} close={handleToggleEdit} />
+                </Fade>
+            </Modal>
+            <Modal 
+                aria-labelledby="spring-modal-title"
+                aria-describedby="spring-modal-description"
+                className={classes.modal}
+                open={editImages}
+                onClose={handleToggleImages}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{timeout: 500}}
+            >
+                <Fade in={editImages}>
+                  <EditImages classes={classes} close={handleToggleImages} />
                 </Fade>
             </Modal>
             <Button onClick={signOut}>Sign out</Button>

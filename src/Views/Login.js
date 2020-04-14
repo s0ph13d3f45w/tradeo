@@ -37,6 +37,17 @@ const useStyles = makeStyles(theme =>({
     submit:{
         margin: theme.spacing(3, 0, 2)
     },
+    modal:{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    paperTerms: {
+        backgroundColor: theme.palette.background.default,
+        border: '2px solid #000',
+        boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, .2)',
+        padding: theme.spacing(2,4,3)
+    },
   
 }))
 

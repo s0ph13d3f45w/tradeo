@@ -1,5 +1,6 @@
 {   
     "all": "Todo",
+    "alreadyUser": "¿Ya tienes una cuenta?",
     "button_contact": "contactar",
     "confirm": "confirmar contraseña",
     "content_writer": "Escribir contenido ✍️",
@@ -10,8 +11,10 @@
     "design": "diseño 🖍️",
     "design_female": "diseñadora 🖍️",
     "design_male": "diseñador 🖍️",
+    "dontHaveAccount": "¿No tienes una cuenta?",
     "email": "correo",
     "filter": "filtrar",
+    "forgotPassword": "¿Olvidaste la contraseña?",
     "food": "Comida 🥫",
     "handcraft": "Manualidades 🎨",
     "interest": "Me interesa:",
@@ -27,6 +30,7 @@
     "signUp": "Regístrate",
     "repairment": "Reparaciones 🛠️",
     "teaching": "Clases 💻",
+    "terms": "Aceptar terminos 📖",
     "type": "tipo",
     "web_dev": "Desarrollo web 🌐",
     "ux_dev": "Desarrollo UX 📲"

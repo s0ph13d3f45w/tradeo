@@ -90,12 +90,12 @@ const SignIn = ({t,classes, loginAndSendGoogle, toggle, authRouter, history}) =>
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2" color="inherit">
-                                Forgot password?
+                                {t("forgotPassword")}
                             </Link>
                         </Grid>
                         <Grid item>
                             <Link href="#" variant="body2" color="inherit" onClick={toggle}>
-                                {"Don't have an account? Sign Up"}
+                                {t("dontHaveAccount")}
                             </Link>
                         </Grid>
                         </Grid>

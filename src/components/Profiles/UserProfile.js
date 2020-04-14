@@ -83,17 +83,18 @@ const Rating = ({counter, points}) =>{
 
 
 const UserProfile = ({user}) =>{
+    const {photoURL, displayName, number} = user
     const {t} = useTranslation()
     const classes = useStyles()
     return(
         <Container className={classes.root}>
-            <ProfileImage img={user.image} classes={classes}/>
+            <ProfileImage img={photoURL} classes={classes}/>
             <Typography 
                 variant="h4"
                 component="h2"
-                color="textPrimary">{user.name}
+                color="textPrimary">{displayName}
             </Typography>
-            {user.images
+            {/* {user.images
             ? ( <div >
                 <Carousel showThumbs={false} showStatus={false} width="200px">
                     {user.images.map((image, index)=>
@@ -103,23 +104,24 @@ const UserProfile = ({user}) =>{
                     )}
                 </Carousel>
                 </div>)
-            : null}
+            : null} */}
            
-            <Rating 
+            {/* <Rating 
                 {...user.votes} 
                 skills={user.skills} 
                 t={t}/>
             <SkillsList skills={user.skills} t={t}/>
             <Description 
                 description={user.description} 
-                classes={classes}/>
-            <IconButton 
+                classes={classes}/> */}
+            {<IconButton 
                 color="primary"
                 onClick={() =>{
-                    window.open(`https://api.whatsapp.com/send?phone=${user.number}`)
+                    window.open(`https://api.whatsapp.com/send?phone=${number}`)
                 }}>
-                <WhatsAppIcon />
+            <WhatsAppIcon />
             </IconButton>
+            }
         </Container>
     )
 }

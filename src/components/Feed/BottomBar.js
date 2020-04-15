@@ -1,5 +1,6 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core/styles'
+import {useTranslation} from 'react-i18next'
 import {AppBar, Toolbar, Grid, Avatar} from '@material-ui/core'
 import SearchBar from './SearchBar'
 import PersonIcon from '@material-ui/icons/Person';
@@ -19,8 +20,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const BottomBar = ({t, toggleShow, photoURL}) =>{
-    
+const BottomBar = ({ toggleShow, photoURL}) =>{
+    const {t} = useTranslation()
     const classes = useStyles()
 
     return(

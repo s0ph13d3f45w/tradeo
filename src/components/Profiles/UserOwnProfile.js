@@ -11,6 +11,7 @@ import ContactWay from './ContactWay'
 import EditInfo from './EditInfo'
 import { UserSessionContext } from '../../context/userSessionContext'
 import EditImages from './EditImages'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme =>({
     root:{
@@ -103,29 +104,28 @@ const Fade = forwardRef((props, ref) =>{
     )
 })
 
-const UserOwnProfile = forwardRef(({history, t}, ref) => {
+const UserOwnProfile = forwardRef(({history, user, t}, ref) => {
     const [showEdit, setEdit] = useState(false)
     const [editImages, setImages] = useState(false)
-
-    const {user}= useContext(UserSessionContext)
-    const {displayName,photoURL, email, number, } = user
+    const {displayName, number, photoURL, email} = user
     const classes = useStyles()
     const editImageRef = createRef()
 
-    const handleToggleEdit = () => setEdit(!showEdit)
+    const handleToggleEdit = () => history.push('/userEdit')
     const handleToggleImages = () => setImages(!editImages)
 
-    const signOut = async() =>{
+    const signOut = () =>{
         authRouter.logout(history.push('/'))
-        await auth.signOut()
+        auth.signOut()
     }
     return (
         <Grid container className={classes.root} ref={ref}>
-            {photoURL && <ProfileImage classes={classes} img={photoURL} />}
+            { photoURL  &&<ProfileImage classes={classes} img={photoURL} />}
+            
             <Typography variant="h6"><strong>{displayName}</strong></Typography>
             <Typography variant="subtitle1" color="textSecondary">{email}</Typography>
             {number && <WhatsappIcon number={number} showNumber={true} />}
-            {/* {whatsapp && <ContactWay classes={classes} user={user}/>}
+              {/* {whatsapp && <ContactWay classes={classes} user={user}/>}
             {image1 && <Gallery user={user} />} */}
             <Button style={{marginBottom: 8}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>
             <Button color="secondary" variant="contained" size="small" onClick={handleToggleImages}>Edit Images</Button>

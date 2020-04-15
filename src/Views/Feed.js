@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback, useState, useContext, createRef } from 'react'
+import React, {useEffect, useCallback, useState, useContext } from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { UserContext } from '../context/usersContext'
 import { TemaContext } from '../context/themeContext'
@@ -7,14 +7,11 @@ import { useTransition, animated } from 'react-spring'
 import UserCard from '../components/Feed/UserCard'
 import UserProfile from '../components/Profiles/UserProfile'
 import FilterBar from '../components/Feed/FilterBar'
-import BottomBar from '../components/Feed/BottomBar'
 import {firestore} from '../firebase'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {Container, Drawer, CircularProgress} from '@material-ui/core'
-import UserOwnProfile from '../components/Profiles/UserOwnProfile'
-import { UserSessionContext } from '../context/userSessionContext'
 
+const AnimatedUserCard = animated(UserCard)
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -35,19 +32,16 @@ const Spinner  = ({classObj}) =>
   </div>
 
 
-  const Feed = (props) =>{
+  const Feed = () =>{
     const { list, dispatch} = useContext(UserContext)
-    const users = [...list.displayList]
-
-    const {user} = useContext(UserSessionContext)
     const {theme} = useContext(TemaContext)
     const [ profile, setProfile ] = useState(false)
-    const [ownProfile, setOwnProfile] = useState(false)
+    const toggleProfile = () => setProfile(!profile)
     const {t} = useTranslation()
     const classes = useStyles(theme)
-    const userOwnProfileRef = createRef()
 
-    const transition = useTransition(users, item => item.uid, {
+
+    const transition = useTransition(list.displayList, item => item.uid, {
       from: { opacity: 0},
       enter: { opacity: 1},
       leave: { opacity: 0}
@@ -72,8 +66,6 @@ const Spinner  = ({classObj}) =>
      fetchData()
     }, [fetchData])
 
-    const toggleOwnProfile = () => setOwnProfile(!ownProfile)
-
     return(
       <MainLayout>
         <Container className={classes.root}>
@@ -83,15 +75,17 @@ const Spinner  = ({classObj}) =>
           {list.isLoading 
             ? <Spinner classObj={classes} />
             : transition.map(({item, key, props}) => (
-              item && (<animated.div key={key} style={props}>
-                <UserCard
-                  data={item} 
-                  dispatch={dispatch}
-                  setProfile={() => setProfile(!profile)}
-                  theme={theme}
-                  t={t} />
-              </animated.div>)
-            ))
+              <AnimatedUserCard 
+                key={key} 
+                style={props}
+                data={item} 
+                dispatch={dispatch}
+                setProfile={toggleProfile}
+                theme={theme}
+                t={t} 
+                />
+             )
+            )
           }
           <br />
           <br />
@@ -100,22 +94,10 @@ const Spinner  = ({classObj}) =>
           <Drawer 
             anchor="right"
             open={profile} 
-            onClose={() => setProfile(!profile)}
+            onClose={toggleProfile}
             >
               <UserProfile user={list.user} />
           </Drawer>
-          <Drawer anchor="left" open={ownProfile} onClose={toggleOwnProfile}>
-              <UserOwnProfile ref={userOwnProfileRef} history={props.history} t={t}/>
-          </Drawer>
-          {user
-            ? <BottomBar t={t} 
-                toggleShow={toggleOwnProfile}
-                photoURL={user.photoURL}/>
-            : <BottomBar t={t} 
-                toggleShow={toggleOwnProfile}
-                profile={list.userProfile}/>
-          }
-       
         </Container>
       </MainLayout>
     )

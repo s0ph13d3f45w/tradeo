@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, createRef} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
@@ -15,6 +15,7 @@ const EditImages = ({classes, close}) => {
     const [images, setImages] = useState(initialImages)
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
+    const imageSelectorRef = createRef()
   
     const {image1, image2, image3, photoURL, wallpaper} = images
 
@@ -68,7 +69,7 @@ const EditImages = ({classes, close}) => {
                 <Grid item>
                     <Typography variant="h6">Edit Profile</Typography>
                 </Grid>
-                <ImageSelector classes={classes} handleInputChange={handleInputChange} />
+                <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
                 <Button
                 color="secondary"
                 type="submit">

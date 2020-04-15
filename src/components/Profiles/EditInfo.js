@@ -1,10 +1,9 @@
-import React, {useState, useContext, forwardRef, createRef} from 'react';
+import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import {firestore} from '../../firebase'
-import {Grid, Typography, Button, TextField, FormControl,
-        DialogContent,DialogTitle, DialogContentText, 
-        DialogActions, Select, MenuItem,} from '@material-ui/core'
-import SelectSubtype from './SelectSubtype'
+import {Grid, Typography, Button, TextField, DialogContent,} from '@material-ui/core'
+
+import SelectTypes from './SelectTypes'
 
 const initialState={
     displayName: "", 
@@ -12,6 +11,7 @@ const initialState={
     number: "",
     type: "",
     subType: "",
+    serviceSkill: "",
     }
 const initialProducts = [
         { type:"food"}, 
@@ -29,43 +29,18 @@ const initialServices = [
         { type:"health"}, 
         { type:"creative"}, 
         { type:"supplements"}, 
-        { type: "tecnics"},
+        { type: "technicians"},
         { type: "digital"},
-        { type: "transport"},
+        { type: "procedureTransport"},
         { type: "class" },
     ]
-
-const Type = ({t, setEdit, edit, userRef}) =>{
-    const handleSelectChange = e =>{
-        e.target.value === "products"
-        ? setEdit({...edit, type: "products"})
-        : setEdit({...edit, type: "services"})
-        
-
-    }
-    return(
-        <FormControl variant="outlined" style={{marginTop: 10}} fullWidth>
-            <Typography color="textSecondary">What I offer:</Typography>
-            <Select onChange={handleSelectChange}>
-                <MenuItem value="products">
-                    <Typography color="textSecondary">{t("products")}</Typography>
-                </MenuItem>
-                <MenuItem value="services">
-                    <Typography color="textSecondary">{t("services")}</Typography>
-                </MenuItem>
-            </Select>
-        </FormControl>
-    )
-}
-
 
 
 const EditInfo = ({classes, close, t}) => {
     const [edit, setEdit] = useState(initialState)
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
-    const servicesRef = createRef()
-    const productsRef = createRef()
+
     const {
             displayName, 
             tag,
@@ -134,16 +109,9 @@ const EditInfo = ({classes, close, t}) => {
                     </Typography>
                 </Grid>
                 <Grid>
-                    <Type t={t} setEdit={setEdit} edit={edit}/>
+                    <SelectTypes t={t} setEdit={setEdit} edit={edit} initialValues={initialProducts}/>
                 </Grid>
-                <Grid item>
-                    {edit.type ?
-                        edit.type === "products"
-                        ? <SelectSubtype ref={productsRef} initialValues={initialProducts}setEdit={setEdit} edit={edit}/>
-                        : <SelectSubtype ref={servicesRef} initialValues={initialServices}setEdit={setEdit} edit={edit}/>
-                    : null
-                    }
-                </Grid>
+       
                 <Grid item style={{marginBottom: 10}}>
                 <TextField
                     name="tag"

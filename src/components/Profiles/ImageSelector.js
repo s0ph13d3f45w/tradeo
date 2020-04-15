@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, forwardRef} from 'react';
 import {FormControl, Select, MenuItem, InputLabel, Typography, Box, Button} from '@material-ui/core'
 
-const ImageSelector = ({classes, handleInputChange}) => {
+const ImageSelector = forwardRef(({classes, handleInputChange}, ref) => {
     const [state, setState] = useState("avatar")
     const handleSelectChange = e =>
         setState(e.target.value)
     return (
-        <div>
+        <div ref={ref}>
             <FormControl style={{width: '12em', marginTop: 2}}>
                 <InputLabel>Load Image</InputLabel>
                 <Select onChange={handleSelectChange} value={state}>
@@ -91,6 +91,6 @@ const ImageSelector = ({classes, handleInputChange}) => {
           
         </div>
     );
-}
+})
 
 export default ImageSelector;

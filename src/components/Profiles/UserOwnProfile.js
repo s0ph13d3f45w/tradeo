@@ -1,4 +1,4 @@
-import React, {useContext, useState, forwardRef} from 'react'
+import React, {useContext, useState, forwardRef, createRef} from 'react'
 import {auth} from '../../firebase'
 import {useSpring, animated} from 'react-spring'
 import authRouter from '../../auth'
@@ -45,7 +45,18 @@ const useStyles = makeStyles(theme =>({
         backgroundColor: theme.palette.background.default,
         border: '2px solid #000',
         boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, .2)',
-        padding: theme.spacing(2,4,3)
+        padding: theme.spacing(2,4,3),
+    },
+    dialog:{
+        display: 'block',
+        alignItems: 'center',
+        position: 'absolute',
+        justifyContent: 'center',
+        overflow: 'scroll'
+    },
+    inputInfo:{
+        padding: theme.spacing(5,0, 5)
+
     },
     input:{
         margin: theme.spacing(1,0,1)
@@ -92,13 +103,14 @@ const Fade = forwardRef((props, ref) =>{
     )
 })
 
-const UserOwnProfile = ({history, t}) => {
+const UserOwnProfile = forwardRef(({history, t}, ref) => {
     const [showEdit, setEdit] = useState(false)
     const [editImages, setImages] = useState(false)
 
     const {user}= useContext(UserSessionContext)
     const {displayName,photoURL, email, number, } = user
     const classes = useStyles()
+    const editImageRef = createRef()
 
     const handleToggleEdit = () => setEdit(!showEdit)
     const handleToggleImages = () => setImages(!editImages)
@@ -108,7 +120,7 @@ const UserOwnProfile = ({history, t}) => {
         await auth.signOut()
     }
     return (
-        <Grid container className={classes.root}>
+        <Grid container className={classes.root} ref={ref}>
             {photoURL && <ProfileImage classes={classes} img={photoURL} />}
             <Typography variant="h6"><strong>{displayName}</strong></Typography>
             <Typography variant="subtitle1" color="textSecondary">{email}</Typography>
@@ -120,19 +132,19 @@ const UserOwnProfile = ({history, t}) => {
             <Dialog
                 aria-labelledby="spring-dialog-title"
                 aria-describedby="spring-dialog-description"
-                className={classes.modal}
+                className={classes.dialog}
                 onClose={handleToggleEdit}
                 open={showEdit}
                 scroll="paper"
                 closeAfterTransition
-       
             >
-            <EditInfo  
-                    t={t}
-                    classes={classes} 
-                    close={handleToggleEdit} />
+                <EditInfo  
+                        t={t}
+                        classes={classes} 
+                        close={handleToggleEdit} />
             </Dialog>
             <Modal 
+                ref={editImageRef}
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
                 className={classes.modal}
@@ -149,6 +161,6 @@ const UserOwnProfile = ({history, t}) => {
             <Button onClick={signOut}>Sign out</Button>
         </Grid>
     );
-}
+})
 
 export default UserOwnProfile;

@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback, useState, useContext } from 'react'
+import React, {useEffect, useCallback, useState, useContext, createRef } from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { UserContext } from '../context/usersContext'
 import { TemaContext } from '../context/themeContext'
@@ -38,13 +38,14 @@ const Spinner  = ({classObj}) =>
   const Feed = (props) =>{
     const { list, dispatch} = useContext(UserContext)
     const users = [...list.displayList]
-    console.log(users)
+
     const {user} = useContext(UserSessionContext)
     const {theme} = useContext(TemaContext)
     const [ profile, setProfile ] = useState(false)
     const [ownProfile, setOwnProfile] = useState(false)
     const {t} = useTranslation()
     const classes = useStyles(theme)
+    const userOwnProfileRef = createRef()
 
     const transition = useTransition(users, item => item.uid, {
       from: { opacity: 0},
@@ -104,15 +105,16 @@ const Spinner  = ({classObj}) =>
               <UserProfile user={list.user} />
           </Drawer>
           <Drawer anchor="left" open={ownProfile} onClose={toggleOwnProfile}>
-              <UserOwnProfile history={props.history} t={t}/>
+              <UserOwnProfile ref={userOwnProfileRef} history={props.history} t={t}/>
           </Drawer>
           {user
-          ? <BottomBar t={t} 
-            toggleShow={toggleOwnProfile}
-            profile={user.photoURL}/>
-          : <BottomBar t={t} 
-          toggleShow={toggleOwnProfile}
-          profile={list.userProfile}/>}
+            ? <BottomBar t={t} 
+                toggleShow={toggleOwnProfile}
+                photoURL={user.photoURL}/>
+            : <BottomBar t={t} 
+                toggleShow={toggleOwnProfile}
+                profile={list.userProfile}/>
+          }
        
         </Container>
       </MainLayout>

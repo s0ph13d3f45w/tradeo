@@ -19,27 +19,27 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const BottomBar = ({t, toggleShow, profile}) =>{
+const BottomBar = ({t, toggleShow, photoURL}) =>{
     
     const classes = useStyles()
 
     return(
         <>
             <AppBar 
-                fixed 
+                fixed="true" 
                 className={classes.appBar}
                 color="inherit">
                 <Toolbar>
                     <Grid container>
-                        <Grid item xs="10">
+                        <Grid item xs={10}>
                             <SearchBar t={t} />
                         </Grid>
                         <Grid item style={{margin: 'auto'}}>
-                            {profile 
+                            {photoURL 
                             ?   <IconButton
                                     onClick={toggleShow}
                                     size="small">
-                                    <Avatar src={profile}className={classes.avatar}/>
+                                    <Avatar src={photoURL}className={classes.avatar} alt="photoURL"/>
                                 </IconButton>
                             :   <IconButton 
                                     onClick={toggleShow}

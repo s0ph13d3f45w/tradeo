@@ -77,8 +77,8 @@ const EditInfo = ({classes, close, t}) => {
         close()
     }
     return (
-        <div className={classes.paper}>
-            <DialogContent className={classes.inputInfo}>
+        // <div className={classes.paper}>
+            <DialogContent>
                 <form onSubmit={handleSubmit} >
                 <Grid item>
                     <Typography variant="subtitle2" color="textSecondary">
@@ -128,7 +128,7 @@ const EditInfo = ({classes, close, t}) => {
                 </Button>
                 </form>
             </DialogContent>
-        </div>
+        // </div>
     );
 }
 

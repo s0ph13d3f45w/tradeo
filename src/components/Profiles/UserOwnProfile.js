@@ -1,17 +1,11 @@
-import React, {useContext, useState, forwardRef, createRef} from 'react'
+import React, {useState, forwardRef,} from 'react'
 import {auth} from '../../firebase'
-import {useSpring, animated} from 'react-spring'
 import authRouter from '../../auth'
 import {makeStyles} from '@material-ui/core/styles'
-import {Grid, Typography, Button, Modal, Backdrop, Dialog} from '@material-ui/core'
+import {Grid, Typography, Button} from '@material-ui/core'
 import ProfileImage from './ProfileImage'
 import WhatsappIcon from './WhatsappIcon'
-import Gallery from './Gallery'
-import ContactWay from './ContactWay'
-import EditInfo from './EditInfo'
-import { UserSessionContext } from '../../context/userSessionContext'
-import EditImages from './EditImages'
-import { useTranslation } from 'react-i18next'
+
 
 const useStyles = makeStyles(theme =>({
     root:{
@@ -42,12 +36,6 @@ const useStyles = makeStyles(theme =>({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    paper: {
-        backgroundColor: theme.palette.background.default,
-        border: '2px solid #000',
-        boxShadow: '12px 12px 2px 1px rgba(0, 0, 255, .2)',
-        padding: theme.spacing(2,4,3),
-    },
     dialog:{
         display: 'block',
         alignItems: 'center',
@@ -55,10 +43,7 @@ const useStyles = makeStyles(theme =>({
         justifyContent: 'center',
         overflow: 'scroll'
     },
-    inputInfo:{
-        padding: theme.spacing(5,0, 5)
-
-    },
+   
     input:{
         margin: theme.spacing(1,0,1)
     },
@@ -80,36 +65,10 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
-const Fade = forwardRef((props, ref) =>{
-    const {in: open, children, onEnter, onExited, ...other} = props;
-    const style = useSpring({
-        from: {opacity: 0},
-        to: {opacity: open ? 1: 0},
-        onStart: () =>{
-            if (open && onEnter){
-                onEnter()
-            }
-        },
-        onRest: () =>{
-            if (!open  && onExited){
-                onExited()
-            }
-        }
-    })
-
-    return(
-        <animated.div ref={ref} style={style} {...other}>
-            {children}
-        </animated.div>
-    )
-})
-
 const UserOwnProfile = forwardRef(({history, user, t}, ref) => {
-    const [showEdit, setEdit] = useState(false)
     const [editImages, setImages] = useState(false)
     const {displayName, number, photoURL, email} = user
     const classes = useStyles()
-    const editImageRef = createRef()
 
     const handleToggleEdit = () => history.push('/userEdit')
     const handleToggleImages = () => setImages(!editImages)
@@ -129,35 +88,6 @@ const UserOwnProfile = forwardRef(({history, user, t}, ref) => {
             {image1 && <Gallery user={user} />} */}
             <Button style={{marginBottom: 8}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Info</Button>
             <Button color="secondary" variant="contained" size="small" onClick={handleToggleImages}>Edit Images</Button>
-            <Dialog
-                aria-labelledby="spring-dialog-title"
-                aria-describedby="spring-dialog-description"
-                className={classes.dialog}
-                onClose={handleToggleEdit}
-                open={showEdit}
-                scroll="paper"
-                closeAfterTransition
-            >
-                <EditInfo  
-                        t={t}
-                        classes={classes} 
-                        close={handleToggleEdit} />
-            </Dialog>
-            <Modal 
-                ref={editImageRef}
-                aria-labelledby="spring-modal-title"
-                aria-describedby="spring-modal-description"
-                className={classes.modal}
-                open={editImages}
-                onClose={handleToggleImages}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{timeout: 500}}
-            >
-                <Fade in={editImages}>
-                  <EditImages classes={classes} close={handleToggleImages} />
-                </Fade>
-            </Modal>
             <Button onClick={signOut}>Sign out</Button>
         </Grid>
     );

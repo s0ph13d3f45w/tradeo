@@ -16,16 +16,13 @@ const initialState={
     service: "",
     }
 
-const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert}) => {
+const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
     const [edit, setEdit] = useState(initialState)
-   
-    const {user} = useContext(UserSessionContext)
-    
 
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
-    const handleSubmit = async e =>{
+    const handleSubmit = e =>{
         e.preventDefault()
 
         const userRef = firestore.doc(`users/${user.uid}`)

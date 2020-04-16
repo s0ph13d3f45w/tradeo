@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const ImageSelector = forwardRef(({handleInputChange}, ref) => {
+const ImageSelector = forwardRef(({handleInputChange}) => {
     const classes = useStyles()
     const [state, setState] = useState("avatar")
     const handleSelectChange = e =>

@@ -1,9 +1,7 @@
-import React, {useState, useContext, createRef} from 'react';
-import {UserSessionContext} from '../../context/userSessionContext'
+import React, {useState, createRef} from 'react';
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
 import {Typography, Button} from '@material-ui/core'
-import {makeStyles} from '@material-ui/core/styles'
 
 const initialImages = {
     photoURL: "",
@@ -13,16 +11,10 @@ const initialImages = {
     wallpaper: "",
 }
 
-const useStyles = makeStyles(theme =>({
-
-}))
-const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert}) => {
+const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert, user}) => {
     const [images, setImages] = useState(initialImages)
-    const {user} = useContext(UserSessionContext)
     
     const imageSelectorRef = createRef()
-  
-    
 
     const handleInputChange = e =>
          setImages({...images, [e.target.name] : e.target.files[0]})

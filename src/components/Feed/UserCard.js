@@ -2,15 +2,7 @@ import React from 'react'
 import {animated} from 'react-spring'
 import ProfileData from './ProfileData'
 import Giver from './Giver'
-
-import {Container,
-        Breadcrumbs,
-        CardMedia,
-        Card,
-        CardActions,
-        CardContent,
-        Button,
-        Typography} from '@material-ui/core/';
+import {Container,Breadcrumbs,CardMedia,Card,CardActions,CardContent,Button,Typography} from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -47,11 +39,10 @@ const useStyles = makeStyles({
     }
   });
 
+const SelfTag = ({t,subType}) =>
+    subType ?  <Typography variant="subtitle2" color='textSecondary'>{t(subType)}</Typography>
+            : null
 
-const DescriptiveArea = ({ descriptive_area, classes, t }) =>
-    <Typography className={classes.title} color="textSecondary" gutterBottom>
-        {t(descriptive_area)}
-    </Typography>
 
 const Receiver = ({t, interested}) =>
     <>
@@ -80,10 +71,11 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
         setProfile()
     }
     const removeUser = user =>
-        dispatch({
-        type: 'SET_REMOVE_USER',
-        payload: user
-        })
+        // dispatch({
+        // type: 'SET_REMOVE_USER',
+        // payload: user
+        // })
+        console.log(user)
 
   return (
     <Container maxWidth="sm">
@@ -99,6 +91,7 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                     classes={classes}
                     t={t}
                 /> */}
+                <SelfTag subType={data.subType} t={t}/>
                 <ProfileData 
                     textSize="h4"
                     name={data.displayName} 

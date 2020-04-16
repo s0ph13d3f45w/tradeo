@@ -26,35 +26,35 @@ const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert, user}) => {
         const {image1, image2, image3, photoURL, wallpaper} = images
 
         if(photoURL !== ''){
-            storage.ref(`profileAvatars/${user.uid}/${photoURL.name}`)
+            storage.ref(`profileAvatars/${user.uid}`)
             .put(photoURL)
             .then(response => response.ref.getDownloadURL())
             .then(photoURL => userRef.update({photoURL}))
             .catch(error => console.error('Error updating avatar image', error))
         }
         if(image1 !== ''){
-            storage.ref(`galleryImages/${user.uid}/${image1.name}`)
+            storage.ref(`galleryImage1/${user.uid}`)
             .put(image1)
             .then(response => response.ref.getDownloadURL())
             .then(image1 => userRef.update({image1}))
             .catch(error => console.error('Error updating image1', error))
         }
         if(image2 !== ''){
-            storage.ref(`galleryImages/${user.uid}/${image2.name}`)
+            storage.ref(`galleryImage2/${user.uid}`)
             .put(image2)
             .then(response => response.ref.getDownloadURL())
             .then(image2 => userRef.update({image2}))
             .catch(error => console.error('Error updating image2', error))
         }
         if(image3 !== ''){
-            storage.ref(`galleryImages/${user.uid}/${image3.name}`)
+            storage.ref(`galleryImage3/${user.uid}`)
             .put(image3)
             .then(response => response.ref.getDownloadURL())
             .then(image3 => userRef.update({image3}))
             .catch(error => console.error('Error updating image3', error))
         }
         if(wallpaper !== ''){
-            storage.ref(`wallpapers/${user.uid}/${wallpaper.name}`)
+            storage.ref(`wallpapers/${user.uid}`)
             .put(wallpaper)
             .then(response => response.ref.getDownloadURL())
             .then(wallpaper => userRef.update({wallpaper}))

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FormControl, Typography, Select, MenuItem} from '@material-ui/core'
+import {FormControl, Typography, Select, MenuItem, ListItem} from '@material-ui/core'
 
 const initialProducts = [
     { type:"food"}, 
@@ -50,13 +50,21 @@ const SelectTypes = ({t, setEdit, edit, classes}) =>{
     const [products] = useState(initialProducts)
     const [services] = useState(serviceSkills)
     const handleChange= e =>{
-        setEdit({...edit, subType: e.target.value})
+        setEdit({...edit, subType: e.target.value, skill: ""})
+    }
+
+    const handleChangeService = e =>{
+        setEdit({...edit, subType:e.target.value.type, skill: e.target.value.area})
     }
 
     const handleSelectChange = e =>{
         e.target.value === "products"
         ? setEdit({...edit, type: "products"})
         : setEdit({...edit, type: "services"})
+    }
+
+    const search = service =>{
+
     }
 
         return(
@@ -76,9 +84,9 @@ const SelectTypes = ({t, setEdit, edit, classes}) =>{
                 ? edit.type === "products"
                     ?   <FormControl variant="outlined" className={classes.formControl}>
                             <Typography color="textSecondary">products areas:</Typography>
-                            <Select variant="outlined" onChange={handleChange} value={edit.subType}>
+                            <Select variant="outlined" onChange={handleChange} value={edit.subType.type}>
                                         {products.map((product, index) =>
-                                            <MenuItem key={`${product}${index}`} id={product.area} value={product.type}>
+                                            <MenuItem key={`${product}${index}`} name={product.type} value={product.type}>
                                                 <Typography color="textSecondary">{product.type}</Typography>
                                             </MenuItem>
                                         )}
@@ -86,11 +94,12 @@ const SelectTypes = ({t, setEdit, edit, classes}) =>{
                             </FormControl>
                     :   <FormControl variant="outlined" className={classes.formControl}>
                             <Typography color="textSecondary">services areas:</Typography>
-                            <Select variant="outlined" onChange={handleChange} value={edit.subType}>
+                            <Select variant="outlined" onChange={handleChangeService} value={edit.subType.type}>
                                         {services.map((service, index) =>
-                                            <MenuItem key={`${service}${index}`} id={service.area} value={service.type}>
-                                                <Typography color="textSecondary">{service.type}</Typography>
+                                            <MenuItem key={`${service}${index}`} name={service.type} value={service}>
+                                                <Typography color="textSecondary" >{service.type}</Typography>
                                             </MenuItem>
+                                          
                                         )}
                                     </Select>
                         </FormControl>

@@ -5,38 +5,19 @@ import {Typography, Button, TextField,} from '@material-ui/core'
 
 import SelectTypes from './SelectTypes'
 
+
 const initialState={
     displayName: "", 
     tag:"",
     number: "",
     type: "",
     subType: "",
-    serviceSkill: "",
+    service: "",
     }
-const initialProducts = [
-        { type:"food"}, 
-        { type:"prime"}, 
-        { type:"supplements"}, 
-        { type: "home"},
-        { type: "books"},
-        { type: "clothing"},
-        { type: "sport" },
-        { type: "toys" },
-        { type: "electronics" },
-        { type: "videogames"}
-    ]
-const initialServices = [
-        { type:"health"}, 
-        { type:"creative"}, 
-        { type:"supplements"}, 
-        { type: "technicians"},
-        { type: "digital"},
-        { type: "procedureTransport"},
-        { type: "class" },
-    ]
 
 
-const EditInfo = ({classes, close, t}) => {
+
+const EditInfo = ({classes, t}) => {
     const [edit, setEdit] = useState(initialState)
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
@@ -47,6 +28,7 @@ const EditInfo = ({classes, close, t}) => {
             number,
             type,
             subType,
+            skill
             } = edit
 
     const handleInputChange = e =>
@@ -66,12 +48,15 @@ const EditInfo = ({classes, close, t}) => {
             userRef.update({type})
         }
         if(subType){
-            userRef.update({subType})
+            userRef.update({subType, skill: ""})
         }
         if(number){
             userRef.update({number})
         }
-        close()
+        if(skill){
+            userRef.update({skill})
+        }
+        setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", skill: ""})
     }
     return (
             <form onSubmit={handleSubmit}className={classes.paper} >
@@ -92,12 +77,9 @@ const EditInfo = ({classes, close, t}) => {
                     label="Whatsapp"
                     onChange={handleInputChange}
                 />
-                <Typography variant="subtitle2" color="textSecondary">
-                    <strong>tulis info</strong>
-                </Typography>
                 <SelectTypes 
                     classes={classes}
-                    t={t} setEdit={setEdit} edit={edit} initialValues={initialProducts}/>
+                    t={t} setEdit={setEdit} edit={edit} />
                 <TextField
                     name="tag"
                     value={tag}

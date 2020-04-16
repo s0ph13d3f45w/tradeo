@@ -8,8 +8,6 @@ const ImageSelector = forwardRef(({classes, handleInputChange}, ref) => {
     return (
         <>
             <FormControl className={classes.formControl}>
-                <InputLabel>Load Image 
-               </InputLabel>
                 <Select onChange={handleSelectChange} value={state}>
                     <MenuItem value="avatar">
                         <Typography variant="subtitle2" color="textSecondary">

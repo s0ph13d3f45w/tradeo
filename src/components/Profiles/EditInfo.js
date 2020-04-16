@@ -1,7 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import {firestore} from '../../firebase'
-import {Typography, Button, TextField,} from '@material-ui/core'
+import {Typography, Button, TextField} from '@material-ui/core'
+
 
 import SelectTypes from './SelectTypes'
 
@@ -15,28 +16,21 @@ const initialState={
     service: "",
     }
 
-
-
-const EditInfo = ({classes, t}) => {
+const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert}) => {
     const [edit, setEdit] = useState(initialState)
+   
     const {user} = useContext(UserSessionContext)
-    const userRef = firestore.doc(`users/${user.uid}`)
-
-    const {
-            displayName, 
-            tag,
-            number,
-            type,
-            subType,
-            skill
-            } = edit
+    
 
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
-    
     const handleSubmit = async e =>{
         e.preventDefault()
+
+        const userRef = firestore.doc(`users/${user.uid}`)
+
+        const { displayName, tag, number, type, subType, skill } = edit
 
         if (displayName){
             userRef.update({displayName})
@@ -57,9 +51,11 @@ const EditInfo = ({classes, t}) => {
             userRef.update({skill})
         }
         setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", skill: ""})
+        toggleAlert()
     }
+
     return (
-            <form onSubmit={handleSubmit}className={classes.paper} >
+        user ? <form onSubmit={handleSubmit}className={classes.paper} >
                 <Typography variant="h6" color="textSecondary">
                     <strong>Personal Info
                     <span role="img" aria-label="memo">📝</span>
@@ -67,13 +63,13 @@ const EditInfo = ({classes, t}) => {
                 </Typography>
                 <TextField
                     name="displayName"
-                    value={displayName}
+                    value={edit.displayName}
                     label="Name"
                     onChange={handleInputChange}
                 />
                 <TextField
                     name="whatsapp"
-                    value={number}
+                    value={edit.number}
                     label="Whatsapp"
                     onChange={handleInputChange}
                 />
@@ -82,11 +78,11 @@ const EditInfo = ({classes, t}) => {
                     t={t} setEdit={setEdit} edit={edit} />
                 <TextField
                     name="tag"
-                    value={tag}
+                    value={edit.tag}
                     label="Special Tag"
                     onChange={handleInputChange}
                 />
-               
+                <AlertSubmit alert={showAlert}>Info submitted!</AlertSubmit>
                 <Button
                 className={classes.button}
                 variant="contained"
@@ -95,6 +91,8 @@ const EditInfo = ({classes, t}) => {
                     Submit
                 </Button>
             </form>
+        
+        : <p>Loading...</p>
   
     );
 }

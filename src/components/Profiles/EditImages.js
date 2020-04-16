@@ -11,19 +11,22 @@ const initialImages = {
     image3: "",
     wallpaper: "",
 }
-const EditImages = ({classes}) => {
+const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert}) => {
     const [images, setImages] = useState(initialImages)
     const {user} = useContext(UserSessionContext)
-    const userRef = firestore.doc(`users/${user.uid}`)
+    
     const imageSelectorRef = createRef()
   
-    const {image1, image2, image3, photoURL, wallpaper} = images
+    
 
     const handleInputChange = e =>
          setImages({...images, [e.target.name] : e.target.files[0]})
 
     const handleSubmit = async e =>{
         e.preventDefault()
+
+        const userRef = firestore.doc(`users/${user.uid}`)
+        const {image1, image2, image3, photoURL, wallpaper} = images
 
         if(photoURL !== ''){
             storage.ref(`profileAvatars/${user.uid}/${photoURL.name}`)
@@ -60,6 +63,7 @@ const EditImages = ({classes}) => {
             .then(wallpaper => userRef.update({wallpaper}))
             .catch(error => console.error('Error updating image3', error))
         }
+        toggleAlert()
 
     }
     return (
@@ -68,6 +72,7 @@ const EditImages = ({classes}) => {
                 <strong>Account Images  <span role="img" aria-label="picture">🖼️</span></strong>
             </Typography>
             <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
+            <AlertSubmit alert={showAlert}>Images submitted!</AlertSubmit>
             <Button
                 className={classes.button}
                 variant="contained"

@@ -1,35 +1,14 @@
 import React, {useState, forwardRef} from 'react'
 import {useSpring, animated} from 'react-spring'
 import {auth, createUserProfileDocument} from '../../firebase'
-import {
-        Grid,
-        Dialog,
-        Paper,
-        Avatar,
-        Typography,
-        TextField,
-        Button,
-        Radio,
-        Link,
-        Collapse,
-        Box
-    } from '@material-ui/core'
+import { Grid,Dialog,Paper,Avatar,Typography,TextField,Button,Radio,Link,Collapse,Box} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Alert from '@material-ui/lab/Alert';
 import Terms from './terms'
 import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
-const additionalState = {
-    tag: "",
-    number: "",
-    image1: "",
-    image2: "",
-    image3: "",
-    type: "",
-    subType: "",
-    wallpaper: "",
-}
+const additionalState = {tag: "",number: "",image1: "",image2: "",image3: "",type: "",subType: "",wallpaper: "",}
 
 const Fade = forwardRef((props, ref) =>{
     const {in: open, children, onEnter, onExited, ...other} = props;
@@ -55,15 +34,7 @@ const Fade = forwardRef((props, ref) =>{
     )
 })
 
-const SignUp = ({
-    t,
-    classes,
-    loginAndSendGoogle, 
-    toggle,
-    history,
-    authRouter,
-    }) =>{
-    
+const SignUp = ({t,classes,loginAndSendGoogle, toggle,history,authRouter,}) =>{
     const [signUp, setSignUp] = useState(initialState)
     const [alert, setAlert] = useState(false)
     const [terms, setTerms] = useState(false)
@@ -71,12 +42,7 @@ const SignUp = ({
     const toggleTermsModal = () => setOpenTerms(!openTerms)
     const toggleTerms = () => setTerms(!terms)
 
-    const {
-            displayName, 
-            email, 
-            password, 
-            confirmation,
-           } = signUp
+    const {displayName, email, password, confirmation,} = signUp
 
     const handleInputs = e =>{
         setSignUp({
@@ -91,30 +57,13 @@ const SignUp = ({
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            const { tag, 
-                    number,
-                    image1,
-                    image2,
-                    image3,
-                    type,
-                    subType,
-                    wallpaper} = additionalState
-            await createUserProfileDocument(user,{
-                displayName, 
-                tag,
-                image1,
-                image2,
-                image3,
-                type, 
-                subType,
-                number,
-                wallpaper})
+            const { tag, number,image1,image2,image3,type,subType,wallpaper} = additionalState
+            await createUserProfileDocument(user,{displayName, tag,image1,image2,image3,type, subType,number,wallpaper})
             if(user){
                 authRouter.login(history.push('/feed'))
                 console.log('pushed')
             }
         } catch (error) {
-            console.error(error.message)
             if(error.code === "auth/email-already-in-use"){
                 setAlert(true)
             }
@@ -223,7 +172,7 @@ return(
                     fullWidth
                     variant="contained"
                     color="secondary"
-                    className={classes.submit}
+                    className={classes.submitGoogle}
                     onClick={loginAndSendGoogle}
                 >
                     Google

@@ -37,6 +37,9 @@ const useStyles = makeStyles(theme =>({
     submit:{
         margin: theme.spacing(3, 0, 2)
     },
+    submitGoogle:{
+        margin: theme.spacing(1, 0, 10)
+    },
     modal:{
         display: 'block',
         alignItems: 'center',

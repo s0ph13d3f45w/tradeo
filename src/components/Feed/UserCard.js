@@ -1,4 +1,5 @@
 import React from 'react'
+import {animated} from 'react-spring'
 import ProfileData from './ProfileData'
 import Giver from './Giver'
 
@@ -85,7 +86,6 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
         })
 
   return (
-    
     <Container maxWidth="sm">
         <Card className={classes.root}>    
             <CardMedia 
@@ -94,11 +94,11 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                     title="skill"
                     />
             <CardContent>
-                <DescriptiveArea 
+                {/* <DescriptiveArea 
                     descriptive_area={data.descriptive_area}
                     classes={classes}
                     t={t}
-                />
+                /> */}
                 <ProfileData 
                     textSize="h4"
                     name={data.displayName} 
@@ -128,7 +128,6 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
             </CardActions>
         </Card>
     </Container>
-
   );
   }
 

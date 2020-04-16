@@ -46,7 +46,7 @@ const serviceSkills = [
     { type:"techniques", area: "class"},
 ]
 
-const SelectTypes = ({t, setEdit, edit}) =>{
+const SelectTypes = ({t, setEdit, edit, classes}) =>{
     const [products] = useState(initialProducts)
     const [services] = useState(serviceSkills)
     const handleChange= e =>{
@@ -60,8 +60,8 @@ const SelectTypes = ({t, setEdit, edit}) =>{
     }
 
         return(
-            <>
-            <FormControl variant="outlined" style={{marginTop: 10}} fullWidth>
+            <div className={classes.selects}>
+            <FormControl variant="outlined" className={classes.formControl} >
                 <Typography color="textSecondary">What I offer:</Typography>
                 <Select onChange={handleSelectChange}>
                     <MenuItem value="products">
@@ -74,7 +74,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
             </FormControl>
                 {edit.type 
                 ? edit.type === "products"
-                    ?   <FormControl>
+                    ?   <FormControl variant="outlined" className={classes.formControl}>
                             <Typography color="textSecondary">products areas:</Typography>
                             <Select variant="outlined" onChange={handleChange} value={edit.subType}>
                                         {products.map((product, index) =>
@@ -84,7 +84,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                                         )}
                                     </Select>
                             </FormControl>
-                    :   <FormControl>
+                    :   <FormControl variant="outlined" className={classes.formControl}>
                             <Typography color="textSecondary">services areas:</Typography>
                             <Select variant="outlined" onChange={handleChange} value={edit.subType}>
                                         {services.map((service, index) =>
@@ -95,7 +95,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                                     </Select>
                         </FormControl>
                 :null}
-            </>
+            </div>
         )
     }
 

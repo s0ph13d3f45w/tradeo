@@ -6,9 +6,10 @@ const ImageSelector = forwardRef(({classes, handleInputChange}, ref) => {
     const handleSelectChange = e =>
         setState(e.target.value)
     return (
-        <div ref={ref}>
-            <FormControl style={{width: '12em', marginTop: 2}}>
-                <InputLabel>Load Image</InputLabel>
+        <>
+            <FormControl className={classes.formControl}>
+                <InputLabel>Load Image 
+               </InputLabel>
                 <Select onChange={handleSelectChange} value={state}>
                     <MenuItem value="avatar">
                         <Typography variant="subtitle2" color="textSecondary">
@@ -89,7 +90,7 @@ const ImageSelector = forwardRef(({classes, handleInputChange}, ref) => {
                 </>
             }
           
-        </div>
+        </>
     );
 })
 

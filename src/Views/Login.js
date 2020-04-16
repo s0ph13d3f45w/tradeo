@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {signInWithGoogle} from '../firebase'
 import {Grid} from '@material-ui/core'
 import {useSpring, animated} from 'react-spring'
-import MainLayout from '../layouts/MainLayout'
+import SignOutLayout from '../layouts/SignOutLayout'
 import SignUp from '../components/Login/SignUp'
 import SignIn from '../components/Login/SignIn'
 import authRouter from '../auth'
@@ -65,7 +65,7 @@ const Login =(props) =>{
         authRouter.login(props.history.push('/feed'))
     }
     return(
-        <MainLayout>
+        <SignOutLayout>
                 
             <animated.div style={fade}>   
                 <Grid container component="main" className={classes.root}>
@@ -93,7 +93,7 @@ const Login =(props) =>{
                 </Grid>
             </animated.div>
 
-        </MainLayout>
+        </SignOutLayout>
         
     )
 }

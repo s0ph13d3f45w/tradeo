@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {FormControl, Typography, Select, MenuItem, ListItem} from '@material-ui/core'
+import {FormControl, Typography, Select, MenuItem} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 
 const initialProducts = [
     { type:"food"}, 
@@ -46,7 +47,20 @@ const serviceSkills = [
     { type:"techniques", area: "class"},
 ]
 
-const SelectTypes = ({t, setEdit, edit, classes}) =>{
+const useStyles = makeStyles(theme => ({
+    selects:{
+        padding: theme.spacing(2,2),
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignContent: 'center', 
+        justifyContent: 'center'
+    },
+    formControl:{
+        margin: theme.spacing(1,1),
+        minWidth: 200
+    },
+}))
+const SelectTypes = ({t, setEdit, edit}) =>{
     const [products] = useState(initialProducts)
     const [services] = useState(serviceSkills)
     const handleChange= e =>{
@@ -63,14 +77,12 @@ const SelectTypes = ({t, setEdit, edit, classes}) =>{
         : setEdit({...edit, type: "services"})
     }
 
-    const search = service =>{
-
-    }
+    const classes = useStyles()
 
         return(
             <div className={classes.selects}>
             <FormControl variant="outlined" className={classes.formControl} >
-                <Typography color="textSecondary">What I offer:</Typography>
+                <Typography color="textSecondary">Choose Provider:</Typography>
                 <Select onChange={handleSelectChange}>
                     <MenuItem value="products">
                         <Typography color="textSecondary">{t("products")}</Typography>
@@ -83,7 +95,7 @@ const SelectTypes = ({t, setEdit, edit, classes}) =>{
                 {edit.type 
                 ? edit.type === "products"
                     ?   <FormControl variant="outlined" className={classes.formControl}>
-                            <Typography color="textSecondary">products areas:</Typography>
+                            <Typography color="textSecondary">Products area:</Typography>
                             <Select variant="outlined" onChange={handleChange} value={edit.subType.type}>
                                         {products.map((product, index) =>
                                             <MenuItem key={`${product}${index}`} name={product.type} value={product.type}>
@@ -93,7 +105,7 @@ const SelectTypes = ({t, setEdit, edit, classes}) =>{
                                     </Select>
                             </FormControl>
                     :   <FormControl variant="outlined" className={classes.formControl}>
-                            <Typography color="textSecondary">services areas:</Typography>
+                            <Typography color="textSecondary">Service area:</Typography>
                             <Select variant="outlined" onChange={handleChangeService} value={edit.subType.type}>
                                         {services.map((service, index) =>
                                             <MenuItem key={`${service}${index}`} name={service.type} value={service}>

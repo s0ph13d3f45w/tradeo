@@ -28,24 +28,28 @@ const AlertSubmit = ({alert, children}) =>
 const useStyles = makeStyles(theme => ({
     root:{
         height: '100vh',
-     
     },
-    paper:{
-        margin: theme.spacing(15,10),
+    paperInfo:{
+        margin: theme.spacing(8,5, 1, 3),
+        padding: theme.spacing(2, 2),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         border: '2px solid #cccc',
-        borderRadius: '25px'
+        borderRadius: '25px',
     },
-    selects:{
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignContent: 'center', 
-        justifyContent: 'center'
-    },
-    formControl:{
-        minWidth: 200
+    paperImage:{
+        margin: theme.spacing(3,5, 9, 3),
+        padding: theme.spacing(2, 2),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        border: '2px solid #cccc',
+        borderRadius: '25px',
+        [theme.breakpoints.up("sm")]:{
+            margin: theme.spacing(8,5, 1, 3),
+
+        }
     },
     input:{
         margin: theme.spacing(5,10)
@@ -104,10 +108,10 @@ const EditProfile = () =>{
     return(
         <MainLayout>
             <Grid container component="main" className={classes.root}>
-                <Grid item xs={12} sm={12} md={6} square >
+                <Grid item xs={12} sm={6} md={6} square >
                     <EditInfo classes={classes} t={t} AlertSubmit={AlertSubmit} showAlert={alertInfo} toggleAlert={toggleAlertInfo}/>
                 </Grid>
-                <Grid item xs={12} sm={12} md={6} square >
+                <Grid item xs={12} sm={6} md={6} square >
                     <EditImages classes={classes} t={t} AlertSubmit={AlertSubmit} showAlert={alertImage} toggleAlert={toggleAlertImage}/>
                 </Grid>
             </Grid>

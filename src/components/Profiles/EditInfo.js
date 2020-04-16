@@ -55,7 +55,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert}) => {
     }
 
     return (
-        user ? <form onSubmit={handleSubmit}className={classes.paper} >
+        user ? <form onSubmit={handleSubmit}className={classes.paperInfo} >
                 <Typography variant="h6" color="textSecondary">
                     <strong>Personal Info
                     <span role="img" aria-label="memo">📝</span>

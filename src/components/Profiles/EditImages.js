@@ -3,6 +3,7 @@ import {UserSessionContext} from '../../context/userSessionContext'
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
 import {Typography, Button} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 
 const initialImages = {
     photoURL: "",
@@ -11,6 +12,10 @@ const initialImages = {
     image3: "",
     wallpaper: "",
 }
+
+const useStyles = makeStyles(theme =>({
+
+}))
 const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert}) => {
     const [images, setImages] = useState(initialImages)
     const {user} = useContext(UserSessionContext)
@@ -67,7 +72,7 @@ const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert}) => {
 
     }
     return (
-        <form onSubmit={handleSubmit} className={classes.paper}>
+        <form onSubmit={handleSubmit} className={classes.paperImage}>
             <Typography variant="h6" color="textSecondary">
                 <strong>Account Images  <span role="img" aria-label="picture">🖼️</span></strong>
             </Typography>

@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import {firestore} from '../../firebase'
-import {Grid, Typography, Button, TextField, DialogContent,} from '@material-ui/core'
+import {Typography, Button, TextField,} from '@material-ui/core'
 
 import SelectTypes from './SelectTypes'
 
@@ -53,9 +53,6 @@ const EditInfo = ({classes, close, t}) => {
         setEdit({...edit, [e.target.name] : e.target.value})
 
     
-    const checkSubmit = (e) =>{ 
-        e.preventDefault()
-        console.log(edit)}
     const handleSubmit = async e =>{
         e.preventDefault()
 
@@ -77,58 +74,46 @@ const EditInfo = ({classes, close, t}) => {
         close()
     }
     return (
-        // <div className={classes.paper}>
-            <DialogContent>
-                <form onSubmit={handleSubmit} >
-                <Grid item>
-                    <Typography variant="subtitle2" color="textSecondary">
-                        <strong>Personal Info</strong>
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <TextField
-                        name="displayName"
-                        value={displayName}
-                        label="Name"
-                        onChange={handleInputChange}
-                    />
-                </Grid>
-                <Grid>
+            <form onSubmit={handleSubmit}className={classes.paper} >
+                <Typography variant="h6" color="textSecondary">
+                    <strong>Personal Info
+                    <span role="img" aria-label="memo">📝</span>
+                    </strong>
+                </Typography>
+                <TextField
+                    name="displayName"
+                    value={displayName}
+                    label="Name"
+                    onChange={handleInputChange}
+                />
                 <TextField
                     name="whatsapp"
-                    
                     value={number}
                     label="Whatsapp"
                     onChange={handleInputChange}
                 />
-                </Grid>
-                
-                <Grid item style={{marginTop: 50}}>
-                    <Typography variant="subtitle2" color="textSecondary">
-                        <strong>tulis info</strong>
-                    </Typography>
-                </Grid>
-                <Grid>
-                    <SelectTypes t={t} setEdit={setEdit} edit={edit} initialValues={initialProducts}/>
-                </Grid>
-       
-                <Grid item style={{marginBottom: 10}}>
+                <Typography variant="subtitle2" color="textSecondary">
+                    <strong>tulis info</strong>
+                </Typography>
+                <SelectTypes 
+                    classes={classes}
+                    t={t} setEdit={setEdit} edit={edit} initialValues={initialProducts}/>
                 <TextField
                     name="tag"
                     value={tag}
                     label="Special Tag"
                     onChange={handleInputChange}
                 />
-                </Grid>
+               
                 <Button
+                className={classes.button}
                 variant="contained"
                 color="secondary"
                 type="submit">
                     Submit
                 </Button>
-                </form>
-            </DialogContent>
-        // </div>
+            </form>
+  
     );
 }
 

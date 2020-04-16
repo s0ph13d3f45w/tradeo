@@ -2,7 +2,7 @@ import React, {useState, useContext, createRef} from 'react';
 import {UserSessionContext} from '../../context/userSessionContext'
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
-import {Grid, Typography, Button} from '@material-ui/core'
+import {Typography, Button} from '@material-ui/core'
 
 const initialImages = {
     photoURL: "",
@@ -11,7 +11,7 @@ const initialImages = {
     image3: "",
     wallpaper: "",
 }
-const EditImages = ({classes, close}) => {
+const EditImages = ({classes}) => {
     const [images, setImages] = useState(initialImages)
     const {user} = useContext(UserSessionContext)
     const userRef = firestore.doc(`users/${user.uid}`)
@@ -60,24 +60,22 @@ const EditImages = ({classes, close}) => {
             .then(wallpaper => userRef.update({wallpaper}))
             .catch(error => console.error('Error updating image3', error))
         }
-        close()
+
     }
     return (
-        <div className={classes.paper}>
-            <Grid container>
-                <form onSubmit={handleSubmit}>
-                <Grid item>
-                    <Typography variant="h6">Edit Profile</Typography>
-                </Grid>
-                <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
-                <Button
+        <form onSubmit={handleSubmit} className={classes.paper}>
+            <Typography variant="h6" color="textSecondary">
+                <strong>Account Images  <span role="img" aria-label="picture">🖼️</span></strong>
+            </Typography>
+            <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
+            <Button
+                className={classes.button}
+                variant="contained"
                 color="secondary"
                 type="submit">
                     Submit
-                </Button>
-                </form>
-            </Grid>
-        </div>
+            </Button>
+        </form>
     );
 }
 

@@ -10,6 +10,7 @@ import FilterBar from '../components/Feed/FilterBar'
 import {firestore} from '../firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import {Container, Drawer, CircularProgress} from '@material-ui/core'
+import Spinner from '../components/'
 
 const AnimatedUserCard = animated(UserCard)
 
@@ -18,20 +19,8 @@ const useStyles = makeStyles(theme => ({
     marginTop:40,
     backgroundColor: theme.palette.background.default
   },
-  spinner:{
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing(2, 0),
-    height: '100vh'
-  }
+ 
 }))
-
-const Spinner  = ({classObj}) =>
-  <div className={classObj.spinner}>
-    <CircularProgress />
-  </div>
-
-
   const Feed = () =>{
     const { list, dispatch} = useContext(UserContext)
     const {theme} = useContext(TemaContext)
@@ -73,7 +62,7 @@ const Spinner  = ({classObj}) =>
           <FilterBar t={t}/>
           {list.isError && <p>Something went wrong...</p>}
           {list.isLoading 
-            ? <Spinner classObj={classes} />
+            ? <Spinner/>
             : transition.map(({item, key, props}) => (
               <AnimatedUserCard 
                 key={key} 

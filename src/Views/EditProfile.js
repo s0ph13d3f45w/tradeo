@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import EditInfo from '../components/Profiles/EditInfo'
 import EditImages from '../components/Profiles/EditImages'
 import MainLayout from '../layouts/MainLayout'
+import Spinner from '../components/Layout/Spinner'
 import {useTranslation} from 'react-i18next'
 import {Collapse} from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
@@ -79,7 +80,7 @@ const EditProfile = () =>{
                     <EditImages classes={classes} user={user} t={t} AlertSubmit={AlertSubmit} showAlert={alertImage} toggleAlert={toggleAlertImage}/>
                 </Grid>
             </Grid>
-            : <p>Loading ...</p>}
+            : <Spinner />}
 
         </MainLayout>
     )

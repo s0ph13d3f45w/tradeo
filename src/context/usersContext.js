@@ -22,8 +22,6 @@ function shuffle(array) {
     return array;
 }
 
-
-
 const feedReducer = (state, action) =>{
     switch(action.type){
       case 'SET_LIST_INIT':

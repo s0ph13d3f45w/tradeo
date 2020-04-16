@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
-import {TemaContext} from '../context/themeContext'
+import {TemaContext} from '../../context/themeContext'
 import { makeStyles } from '@material-ui/core/styles';
 import {Link, useLocation} from 'react-router-dom'
-import '../i18n'
+import '../../i18n'
 import {Switch, FormControlLabel, AppBar, Toolbar, Typography, Avatar} from '@material-ui/core'
 
 
-import LanguageSelector from '../LanguageSelector'
+import LanguageSelector from '../../LanguageSelector'
 
 const useStyles = makeStyles(theme => ({
   root: {

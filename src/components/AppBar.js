@@ -1,13 +1,9 @@
 import React, {useContext} from 'react';
 import {TemaContext} from '../context/themeContext'
 import { makeStyles } from '@material-ui/core/styles';
+import {Link, useLocation} from 'react-router-dom'
 import '../i18n'
-import {Switch, 
-        FormControlLabel, 
-        AppBar, 
-        Toolbar, 
-        Typography,
-        Avatar} from '@material-ui/core'
+import {Switch, FormControlLabel, AppBar, Toolbar, Typography, Avatar} from '@material-ui/core'
 
 
 import LanguageSelector from '../LanguageSelector'
@@ -26,10 +22,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const LogoNav = ({location}) =>
+  location.pathname === "/userEdit"
+    ? <Link to="/feed">
+        <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+      </Link>
+    : <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+
+
 
 const ButtonAppBar = ()=> {
-  const {toggleTheme, theme} = useContext(TemaContext)
   const classes = useStyles();
+  const {toggleTheme, theme} = useContext(TemaContext)
+  let location = useLocation()
 
   return (
     <div className={classes.root}>
@@ -38,7 +43,7 @@ const ButtonAppBar = ()=> {
       ? (<AppBar position="fixed" color="primary">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+              <LogoNav location={location} />
             </Typography>
             <FormControlLabel
               control={<Switch onClick={toggleTheme} />}
@@ -49,7 +54,7 @@ const ButtonAppBar = ()=> {
     : (<AppBar position="fixed" color="inherit">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+            <LogoNav location={location} />
           </Typography>
           <FormControlLabel 
             control={<Switch onClick={toggleTheme}/>}

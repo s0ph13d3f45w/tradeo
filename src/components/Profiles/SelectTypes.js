@@ -67,9 +67,11 @@ const SelectTypes = ({t, setEdit, edit}) =>{
         setEdit({...edit, subType: e.target.value, skill: ""})
     }
 
-    const handleChangeService = e =>{
+    const handleChangeService = e =>
         setEdit({...edit, subType:e.target.value.type, skill: e.target.value.area})
-    }
+
+    const handleChangeCity = e =>
+        setEdit({...edit, city: e.target.value})
 
     const handleSelectChange = e =>{
         e.target.value === "products"
@@ -81,6 +83,20 @@ const SelectTypes = ({t, setEdit, edit}) =>{
 
         return(
             <div className={classes.selects}>
+            <FormControl variant="outlined" className={classes.formControl} >
+                <Typography color="textSecondary">Choose City:</Typography>
+                <Select onChange={handleChangeCity}>
+                    <MenuItem value="pdc">
+                        <Typography color="textSecondary">Playa del Carmen</Typography>
+                    </MenuItem>
+                    <MenuItem value="cancun">
+                        <Typography color="textSecondary">Cancun</Typography>
+                    </MenuItem>
+                    <MenuItem value="tulum">
+                        <Typography color="textSecondary">Tulum</Typography>
+                    </MenuItem>
+                </Select>
+            </FormControl>
             <FormControl variant="outlined" className={classes.formControl} >
                 <Typography color="textSecondary">Choose Provider:</Typography>
                 <Select onChange={handleSelectChange}>

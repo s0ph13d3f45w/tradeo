@@ -1,31 +1,41 @@
 import React, {useState, useContext} from 'react'
 import {UserContext} from '../../context/usersContext'
-import{Button, Drawer, Grid, IconButton, Typography} from '@material-ui/core' 
+import{Button, Drawer, Grid, IconButton, Typography, Select, MenuItem, FormControl} from '@material-ui/core' 
 import {makeStyles} from '@material-ui/core/styles'
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import ExploreIcon from '@material-ui/icons/Explore';
+
 
 const useStyles = makeStyles(theme =>({
     root:{
         display: 'flex',
         justifyContent: 'end',
-        marginRight: 20,
-        marginTop: 5,
         [theme.breakpoints.up('sm')]:{
             justifyContent: 'center',
             marginLeft: 500
         },
     },
     filters:{
-        height: 30,
+        margin: theme.spacing(2,0,1),
         display: 'flext',
         justifyContent: 'center'
+    },
+    location:{
+        margin: theme.spacing(1,0,0)
+    },
+    locationIcon:{
+        margin: theme.spacing(0.5,1,0)
+    },
+    filterButton:{
+        margin: theme.spacing(0.5, 0, 3, 2)
     }
     
  
 }))
 const FilterBar = ({t}) => {
     const [show, setShow] = useState(false)
+    const [location, setLocation] = useState("pdc")
     const {dispatch} = useContext(UserContext)
     const toggleShow = () => setShow(!show)
 
@@ -41,15 +51,22 @@ const FilterBar = ({t}) => {
             payload: 'services'
         })
 
+    const locationHandler = (e) =>
+        setLocation(e.target.value)
+    
+    const locationFilter = () =>
+        dispatch({
+            type: 'SET_LOCATION_FILTER',
+            payload: location
+        })
+       
+
     const classes = useStyles()
     return (
         <div className={classes.root}>
             <Button onClick={toggleShow}>{t('filter')}</Button>
             <Drawer 
-                anchor="top" open={show} onClose={toggleShow}>
-                    <div style={{height: 50}}>
-
-                    
+                anchor="top" open={show} onClose={toggleShow}>       
                 <Grid container className={classes.filters}>
                     <Grid item>
                         <IconButton
@@ -62,8 +79,6 @@ const FilterBar = ({t}) => {
                                 {t('products')}
                             </Typography>
                         </IconButton>
-                        {/* <Button 
-                            onClick={filterProducts}>{t('products')}</Button> */}
                     </Grid>
                     <Grid item>
                         <IconButton
@@ -75,13 +90,46 @@ const FilterBar = ({t}) => {
                                 {t('services')}
                             </Typography>
                         </IconButton>
-                        {/* <Button
-                            onClick={filterServices}>{t('services')}</Button> */}
+                    </Grid>
+                    <Grid item className={classes.location}>
+                        
+                        <ExploreIcon className={classes.locationIcon} color="secondary" />
+                        <FormControl color='secondary'>
+                            <Select  onChange={locationHandler} value={location}>
+                                <MenuItem value="pdc">
+                                    <Typography variant="subtitle2" color='textSecondary'>
+                                        Playa del Carmen
+                                    </Typography>
+                                </MenuItem>
+                                <MenuItem value="tulum">
+                                    <Typography variant="subtitle2" color='textSecondary'>
+                                        Tulum
+                                    </Typography>
+                                </MenuItem>
+                                <MenuItem value="cancun">
+                                    <Typography variant="subtitle2" color='textSecondary'>
+                                        Cancun
+                                    </Typography>
+                                </MenuItem>
+                               
+                            </Select>
+                        </FormControl>
+                        <Button className={classes.filterButton} color="secondary" size="small"
+                            variant="contained" onClick={locationFilter} >Filter location</Button>
+                        {/* <IconButton
+                        color="secondary"
+                        id="location"
+                        onClick={filterServices}>
+
+
+                            <Typography color="secondary">
+                                {t('services')}
+                            </Typography>
+                        </IconButton> */}
                     </Grid>
                    
               
                 </Grid>
-                </div>
             </Drawer>
         </div>
     );

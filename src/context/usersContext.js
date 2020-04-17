@@ -75,6 +75,12 @@ const feedReducer = (state, action) =>{
             user.tags.includes(action.payload)
           ))
         }
+      case 'SET_LOCATION_FILTER':
+        return{
+          ...state,
+          displayList: shuffle(state.data.filter(user =>
+            user.location.city === action.payload))
+        }
       case 'SET_LOGIN_GOOGLE':
         return{
           ...state,

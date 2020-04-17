@@ -8,7 +8,8 @@ import Terms from './terms'
 import Copyright from './Copyright'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
-const additionalState = {tag: "",number: "",image1: "",image2: "",image3: "",type: "",subType: "",wallpaper: "",}
+const additionalState = {tag: "",number: "",image1: "",image2: "",image3: "",type: "",subType: "",wallpaper: "",
+                        location:{country:"mexico", state:"qroo", city:"pdc"}}
 
 const Fade = forwardRef((props, ref) =>{
     const {in: open, children, onEnter, onExited, ...other} = props;
@@ -57,8 +58,9 @@ const SignUp = ({t,classes,loginAndSendGoogle, toggle,history,authRouter,}) =>{
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            const { tag, number,image1,image2,image3,type,subType,wallpaper} = additionalState
-            await createUserProfileDocument(user,{displayName, tag,image1,image2,image3,type, subType,number,wallpaper})
+            const { tag, number,image1,image2,image3,type,subType,wallpaper, location} = additionalState
+            await createUserProfileDocument(user,{displayName, tag,image1,image2,image3,type,subType,number,wallpaper,
+                                                location})
             if(user){
                 authRouter.login(history.push('/feed'))
                 console.log('pushed')

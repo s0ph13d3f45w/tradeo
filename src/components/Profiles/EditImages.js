@@ -3,17 +3,10 @@ import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
 import {Typography, Button} from '@material-ui/core'
 
-const initialImages = {
-    photoURL: "",
-    image1: "",
-    image2: "",
-    image3: "",
-    wallpaper: "",
-}
+const initialImages = {photoURL: "",image1: "",image2: "",image3: "",wallpaper: ""}
 
 const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert, user}) => {
     const [images, setImages] = useState(initialImages)
-    
     const imageSelectorRef = createRef()
 
     const handleInputChange = e =>

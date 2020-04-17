@@ -1,5 +1,4 @@
-import React, {useState, useContext} from 'react';
-import {UserSessionContext} from '../../context/userSessionContext'
+import React, {useState} from 'react';
 import {firestore} from '../../firebase'
 import {Typography, Button, TextField} from '@material-ui/core'
 
@@ -7,14 +6,7 @@ import {Typography, Button, TextField} from '@material-ui/core'
 import SelectTypes from './SelectTypes'
 
 
-const initialState={
-    displayName: "", 
-    tag:"",
-    number: "",
-    type: "",
-    subType: "",
-    service: "",
-    }
+const initialState={displayName: "", tag:"",number: "",type: "",subType: "",service: "", city: ""}
 
 const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
     const [edit, setEdit] = useState(initialState)
@@ -22,12 +14,12 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
         e.preventDefault()
 
         const userRef = firestore.doc(`users/${user.uid}`)
 
-        const { displayName, tag, number, type, subType, skill } = edit
+        const { displayName, tag, number, type, subType, skill, city } = edit
 
         if (displayName){
             userRef.update({displayName})
@@ -46,6 +38,10 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
         }
         if(skill){
             userRef.update({skill})
+        }
+        if(city){
+            const location = {country: "mexico", state: "qroo", city}
+            userRef.update({location})
         }
         setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", skill: ""})
         toggleAlert()

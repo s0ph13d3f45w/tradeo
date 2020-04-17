@@ -1,5 +1,4 @@
 import React from 'react'
-import {animated} from 'react-spring'
 import ProfileData from './ProfileData'
 import Giver from './Giver'
 import {Container,Breadcrumbs,CardMedia,Card,CardActions,CardContent,Button,Typography} from '@material-ui/core/';
@@ -94,11 +93,11 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                     t={t}
                 /> */}
                 <SelfTag subType={data.subType} t={t}/>
-                <Location location={data.location.city} t={t} />
                 <ProfileData 
                     textSize="h4"
                     name={data.displayName} 
                     img={data.photoURL} />
+                <Location location={data.location.city} t={t} />
                 {/* <Giver skills={data.skills} t={t} classObj={classes} />
                 <br/> 
                 <Receiver interested={data.interested} t={t} /> */}

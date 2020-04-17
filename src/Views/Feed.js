@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
             open={profile} 
             onClose={toggleProfile}
             >
-              <UserProfile user={list.user} />
+              <UserProfile userProfile={list.user} />
           </Drawer>
         </Container>
       </MainLayout>

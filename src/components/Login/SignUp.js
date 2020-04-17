@@ -6,34 +6,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Alert from '@material-ui/lab/Alert';
 import Terms from './terms'
 import Copyright from './Copyright'
+import Fade from '../Layout/Fade'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
-const additionalState = {tag: "",number: "",image1: "",image2: "",image3: "",type: "",subType: "",wallpaper: "",
-                        location:{country:"mexico", state:"qroo", city:"pdc"}}
-
-const Fade = forwardRef((props, ref) =>{
-    const {in: open, children, onEnter, onExited, ...other} = props;
-    const style = useSpring({
-        from: {opacity: 0},
-        to: {opacity: open ? 1: 0},
-        onStart: () =>{
-            if (open && onEnter){
-                onEnter()
-            }
-        },
-        onRest: () =>{
-            if (!open  && onExited){
-                onExited()
-            }
-        }
-    })
-
-    return(
-        <animated.div ref={ref} style={style} {...other}>
-            {children}
-        </animated.div>
-    )
-})
 
 const SignUp = ({t,classes,loginAndSendGoogle, toggle,history,authRouter,}) =>{
     const [signUp, setSignUp] = useState(initialState)
@@ -58,9 +33,7 @@ const SignUp = ({t,classes,loginAndSendGoogle, toggle,history,authRouter,}) =>{
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            const { tag, number,image1,image2,image3,type,subType,wallpaper, location} = additionalState
-            await createUserProfileDocument(user,{displayName, tag,image1,image2,image3,type,subType,number,wallpaper,
-                                                location})
+            await createUserProfileDocument(user,{displayName})
             if(user){
                 authRouter.login(history.push('/feed'))
                 console.log('pushed')

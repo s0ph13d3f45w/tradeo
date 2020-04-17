@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
+import {UserSessionContext} from '../../context/userSessionContext'
 import Description from '../Feed/Description'
 import ProfileImage from './ProfileImage'
-
-import {Container,
-        Typography, 
-        IconButton} from '@material-ui/core';
+import Terms from '../Login/terms'
+import Fade from '../Layout/Fade'
+import {Container,Typography, IconButton, Dialog} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
@@ -81,11 +81,31 @@ const Rating = ({counter, points}) =>{
     )
 }
 
+const ContactButton = ({user, contact}) =>
+    user &&     <IconButton 
+                    color="primary"
+                    onClick={contact}>
+                    <WhatsAppIcon />
+                </IconButton>
 
-const UserProfile = ({user}) =>{
-    const {photoURL, displayName, number} = user
-    const {t} = useTranslation()
+
+const UserProfile = ({userProfile}) =>{
     const classes = useStyles()
+    const {photoURL, displayName, number} = userProfile
+    const {user} = useContext(UserSessionContext)
+    const [openTerms, setOpenTerms] = useState(false)
+    const toggleTermsModal = () => setOpenTerms(!openTerms)
+    const {t} = useTranslation()
+    
+    const contact = () =>{
+        const {firstContact} = user
+        if (firstContact){
+            toggleTermsModal()
+        } else{
+            window.open(`https://api.whatsapp.com/send?phone=${number}`)
+        }
+
+    }
     return(
         <Container className={classes.root}>
             <ProfileImage img={photoURL} classes={classes}/>
@@ -114,14 +134,22 @@ const UserProfile = ({user}) =>{
             <Description 
                 description={user.description} 
                 classes={classes}/> */}
-            {<IconButton 
-                color="primary"
-                onClick={() =>{
-                    window.open(`https://api.whatsapp.com/send?phone=${number}`)
-                }}>
-            <WhatsAppIcon />
-            </IconButton>
-            }
+            <ContactButton user={user} contact={contact} />
+            <Dialog
+                aria-labelledby="spring-dialog-title"
+                aria-describedby="spring-dialog-description"
+                className={classes.modal}
+                open={openTerms}
+                scroll="paper"
+                closeAfterTransition
+       
+            >
+                <Fade in={openTerms}>
+                    <div className={classes.paperTerms}>
+                        <Terms onClose={toggleTermsModal} t={t}/>
+                    </div>
+                </Fade>
+            </Dialog>
         </Container>
     )
 }

@@ -25,9 +25,9 @@ const useStyles = makeStyles(theme => ({
 const LogoNav = ({location}) =>
   location.pathname === "/userEdit"
     ? <Link to="/feed">
-        <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+        <Avatar src="https://firebasestorage.googleapis.com/v0/b/tradeo-ff7fd.appspot.com/o/logo%2FlogoTulispng.png?alt=media&token=cbd91869-9cf1-45e1-a13f-c58b990dea0a" alt="logo"/>
       </Link>
-    : <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+    : <Avatar src="https://firebasestorage.googleapis.com/v0/b/tradeo-ff7fd.appspot.com/o/logo%2FlogoTulispng.png?alt=media&token=cbd91869-9cf1-45e1-a13f-c58b990dea0a" alt="logo"/>
 
 
 

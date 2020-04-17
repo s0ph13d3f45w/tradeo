@@ -10,6 +10,9 @@ import {Container,Typography, IconButton, Dialog} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import EmailIcon from '@material-ui/icons/Email';
+
+
 
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -81,23 +84,29 @@ const Rating = ({counter, points}) =>{
     )
 }
 
-const ContactButton = ({user, contact}) =>
-    user &&     <IconButton 
-                    color="primary"
-                    onClick={contact}>
-                    <WhatsAppIcon />
-                </IconButton>
+const ContactButton = ({method, contact}) =>
+    method === "whatsapp"
+        ?   <IconButton 
+                color="primary"
+                onClick={contact}>
+                <WhatsAppIcon />
+            </IconButton>
+        :   <IconButton 
+                color="primary"
+                onClick={contact}>
+                <EmailIcon />
+            </IconButton>
 
 
 const UserProfile = ({userProfile}) =>{
     const classes = useStyles()
-    const {photoURL, displayName, number} = userProfile
+    const {photoURL, displayName, number, contact} = userProfile
     const {user} = useContext(UserSessionContext)
     const [openTerms, setOpenTerms] = useState(false)
     const toggleTermsModal = () => setOpenTerms(!openTerms)
     const {t} = useTranslation()
     
-    const contact = () =>{
+    const contactHandler = () =>{
         const {firstContact} = user
         if (firstContact){
             toggleTermsModal()
@@ -134,7 +143,7 @@ const UserProfile = ({userProfile}) =>{
             <Description 
                 description={user.description} 
                 classes={classes}/> */}
-            <ContactButton user={user} contact={contact} />
+            {userProfile && <ContactButton method={contact} contact={contactHandler} />}
             <Dialog
                 aria-labelledby="spring-dialog-title"
                 aria-describedby="spring-dialog-description"

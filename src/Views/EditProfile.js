@@ -73,10 +73,10 @@ const EditProfile = () =>{
     return(
         <MainLayout>
            { user ?<Grid container component="main" className={classes.root}>
-                <Grid item xs={12} sm={6} md={6} square >
+                <Grid item xs={12} sm={6} md={6} square="true" >
                     <EditInfo classes={classes} user={user} t={t} AlertSubmit={AlertSubmit} showAlert={alertInfo} toggleAlert={toggleAlertInfo}/>
                 </Grid>
-                <Grid item xs={12} sm={6} md={6} square >
+                <Grid item xs={12} sm={6} md={6} square="true" >
                     <EditImages classes={classes} user={user} t={t} AlertSubmit={AlertSubmit} showAlert={alertImage} toggleAlert={toggleAlertImage}/>
                 </Grid>
             </Grid>

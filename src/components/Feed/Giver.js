@@ -1,40 +1,31 @@
 import React from 'react'
-import {Breadcrumbs, Typography, List} from '@material-ui/core'
+import {Breadcrumbs, Typography} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 
-const Giver = ({t, skills, typeReturn, classObj}) =>
-    typeReturn === 'skills' 
-        ? (
-    
-            <Breadcrumbs 
-                aria-label="breadcrumbs">
-                <List className={classObj.crumbs}
-                aria-label="typography">
-                {skills.map((skills, index) =>
-                <Typography 
-                    align="center"
-                    variant="subtitle2"
-                    key={index}
-                    color="textSecondary">{t(skills)}</Typography>
-                )}
-                </List>
-            </Breadcrumbs>
+const useStyles = makeStyles(theme =>({
+    root:{
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    choices:{
+        margin: theme.spacing(0.6, 0, 0, 1)
+    }
+}))
 
-
+const Giver = ({t, type, subType}) =>{
+    const classes = useStyles()
+    return(
+            type ?  <div className={classes.root}>
+                        <Typography variant="h6" color="textPrimary">
+                            I offer:
+                        </Typography>
+                        <Breadcrumbs className={classes.choices}>
+                            <Typography color="textSecondary">{t(type)}</Typography>
+                            {subType && <Typography color="textSecondary">{t(subType)}</Typography>}
+                        </Breadcrumbs>
+                    </div>
+            : null
         )
-
-        : (
-        <>
-            <Typography variant="h6" component="h2">
-                {t('offer')}
-            </Typography>
-            <Breadcrumbs>
-                {skills.map((skills, index) =>
-                <Typography 
-                    key={index}
-                    color="textSecondary">{t(skills)}</Typography>
-                )}
-            </Breadcrumbs>
-      </>
-    )
-
+}
+    
 export default Giver

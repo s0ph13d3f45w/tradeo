@@ -17,7 +17,7 @@ const initialProducts = [
 const serviceSkills = [
     { type:"academics", area: "class"},
     { type: "accompaniment", area: "procedures"},
-    { type: "babySitting", area: "procedures"},
+    { type: "babySitter", area: "procedures"},
     { type:"bankProcedure", area: "procedures"}, 
     { type:"coaching", area: "health"}, 
     { type:"consulting", area: "health"}, 
@@ -86,7 +86,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
             <div className={classes.selects}>
             <FormControl variant="outlined" className={classes.formControl} >
                 <Typography color="textSecondary">Choose City:</Typography>
-                <Select onChange={handleChangeCity}>
+                <Select onChange={handleChangeCity} value={edit.city}>
                     <MenuItem value="pdc">
                         <Typography color="textSecondary">Playa del Carmen</Typography>
                     </MenuItem>
@@ -100,7 +100,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
             </FormControl>
             <FormControl variant="outlined" className={classes.formControl} >
                 <Typography color="textSecondary">Choose Provider:</Typography>
-                <Select onChange={handleSelectChange}>
+                <Select onChange={handleSelectChange} value={edit.type}>
                     <MenuItem value="products">
                         <Typography color="textSecondary">{t("products")}</Typography>
                     </MenuItem>
@@ -116,7 +116,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                             <Select variant="outlined" onChange={handleChange} value={edit.subType.type}>
                                         {products.map((product, index) =>
                                             <MenuItem key={`${product}${index}`} name={product.type} value={product.type}>
-                                                <Typography color="textSecondary">{product.type}</Typography>
+                                                <Typography color="textSecondary">{t(product.type)}</Typography>
                                             </MenuItem>
                                         )}
                                     </Select>
@@ -126,7 +126,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                             <Select variant="outlined" onChange={handleChangeService} value={edit.subType.type}>
                                         {services.map((service, index) =>
                                             <MenuItem key={`${service}${index}`} name={service.type} value={service}>
-                                                <Typography color="textSecondary" >{service.type}</Typography>
+                                                <Typography color="textSecondary" >{t(service.type)}</Typography>
                                             </MenuItem>
                                           
                                         )}

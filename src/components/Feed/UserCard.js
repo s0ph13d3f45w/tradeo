@@ -4,12 +4,15 @@ import Giver from './Giver'
 import {Container,Breadcrumbs,CardMedia,Card,CardActions,CardContent,Button,Typography} from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
+import ExploreIcon from '@material-ui/icons/Explore';
 
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles(theme =>({
     root: {
         marginTop: 20,
         minWidth: 275,
+        textAlign: 'center'
     },
     bullet: {
       display: 'inline-block',
@@ -25,6 +28,13 @@ const useStyles = makeStyles({
     buttons:{
         justifyContent: 'center'
     },
+    location:{
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    locationText:{
+        margin: theme.spacing(0.5,0,0,1),
+    },
     media:{
         height: 240
     },
@@ -36,15 +46,20 @@ const useStyles = makeStyles({
         margin: '0 auto'
 
     }
-  });
+  }));
 
 const SelfTag = ({t,subType}) =>
     subType ?  <Typography variant="subtitle2" color='textSecondary'>{t(subType)}</Typography>
             : null
 
-const Location = ({t, location}) =>
-  location ? <Typography variant="subtitle2" color='textSecondary'>{t(location)}</Typography>
-    : null
+const Location = ({t, location}) =>{
+    const classes= useStyles()
+    return location ? <div className={classes.location}>
+                            <ExploreIcon color="secondary"/>
+                            <Typography className={classes.locationText} variant="subtitle2" color='textSecondary'>{t(location)}</Typography>
+                        </div>
+                    : null
+}
 const Receiver = ({t, interested}) =>
     <>
         <Typography variant="h5" component="h2">
@@ -92,11 +107,11 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                     classes={classes}
                     t={t}
                 /> */}
-                <SelfTag subType={data.subType} t={t}/>
                 <ProfileData 
                     textSize="h4"
                     name={data.displayName} 
                     img={data.photoURL} />
+                <Giver t={t} type={data.type} subType={data.subType} />
                 <Location location={data.location.city} t={t} />
                 {/* <Giver skills={data.skills} t={t} classObj={classes} />
                 <br/> 

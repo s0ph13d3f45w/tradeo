@@ -72,7 +72,7 @@ const feedReducer = (state, action) =>{
         return{
           ...state,
           displayList: shuffle(state.data.filter(user =>
-            user.tags.includes(action.payload)
+            user.tag.includes(action.payload)
           ))
         }
       case 'SET_LOCATION_FILTER':

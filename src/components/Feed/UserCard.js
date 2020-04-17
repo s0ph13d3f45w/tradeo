@@ -43,7 +43,9 @@ const SelfTag = ({t,subType}) =>
     subType ?  <Typography variant="subtitle2" color='textSecondary'>{t(subType)}</Typography>
             : null
 
-
+const Location = ({t, location}) =>
+  location ? <Typography variant="subtitle2" color='textSecondary'>{t(location)}</Typography>
+    : null
 const Receiver = ({t, interested}) =>
     <>
         <Typography variant="h5" component="h2">
@@ -92,6 +94,7 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                     t={t}
                 /> */}
                 <SelfTag subType={data.subType} t={t}/>
+                <Location location={data.location.city} t={t} />
                 <ProfileData 
                     textSize="h4"
                     name={data.displayName} 

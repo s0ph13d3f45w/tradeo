@@ -7,7 +7,7 @@ import { useTransition, animated } from 'react-spring'
 import UserCard from '../components/Feed/UserCard'
 import UserProfile from '../components/Profiles/UserProfile'
 import FilterBar from '../components/Feed/FilterBar'
-import {firestore} from '../firebase'
+import {firestore, auth} from '../firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import {Container, Drawer} from '@material-ui/core'
 import Spinner from '../components/Layout/Spinner'
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 
         dispatch({
           type: 'SET_LIST_SUCCESS',
-          payload: users
+          payload: users.filter(user => user.uid !== auth.currentUser.uid)
         })
       } catch (error) {
         dispatch({ type: 'SET_LIST_FAILURE'})

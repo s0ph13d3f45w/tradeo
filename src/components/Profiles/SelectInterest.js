@@ -29,13 +29,14 @@ const interests = [
     { type: 'services', area: 'procedures', id: 's6',},
 ]
 
-const SelectInterest = ({t, handlerInterestChange}) =>{
+const SelectInterest = ({t, setEdit,edit}) =>{
     const classes = useStyles()
     const [interestOptions] = useState(interests)
-    const [selectedInterest, setSelectedInterest] = useState(interestOptions[0])
+    const [selectedInterest, setSelectedInterest] = useState(edit.interest)
     const selectedInputChange = (e) => {
         setSelectedInterest(e.target.value)
-        handlerInterestChange(e.target.value)
+        setEdit({...edit, interest:e.target.value})
+        
     }
     return(
         <FormControl variant="outlined" className={classes.root} >

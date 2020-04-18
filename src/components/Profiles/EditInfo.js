@@ -16,9 +16,6 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
-    const handleInterestChange = interest =>
-        setEdit({...edit, interest})
-
     const handleSubmit = async e =>{
         e.preventDefault()
 
@@ -55,7 +52,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
         if(contact){
             userRef.update({contact})
         }
-        if(interest){
+        if(interest.area !== ""){
             userRef.update({interest})
         }
         setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", 
@@ -91,7 +88,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
                     label="Special Tag"
                     onChange={handleInputChange}
                 />
-                <SelectInterest t={t} handlerInterestChange={handleInterestChange}/>
+                <SelectInterest t={t} edit={edit} setEdit={setEdit}/>
                 <SelectContact contact={edit.contact} contactChange={handleInputChange}/>
                 <AlertSubmit alert={showAlert}>Info submitted!</AlertSubmit>
                 <Button

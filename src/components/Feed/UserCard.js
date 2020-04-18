@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfileData from './ProfileData'
 import Giver from './Giver'
+import Interest from './Interest'
 import {Container,Breadcrumbs,CardMedia,Card,CardActions,CardContent,Button,Typography} from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
@@ -112,6 +113,7 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                     name={data.displayName} 
                     img={data.photoURL} />
                 <Giver t={t} type={data.type} subType={data.subType} />
+                <Interest t={t} interest={data.interest} />
                 <Location location={data.location.city} t={t} />
                 {/* <Giver skills={data.skills} t={t} classObj={classes} />
                 <br/> 

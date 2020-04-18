@@ -2,8 +2,9 @@ import React, {useState, useContext} from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
 import {UserSessionContext} from '../../context/userSessionContext'
-import Description from '../Feed/Description'
+import DescriptionUser from '../Feed/DescriptionUser'
 import ProfileImage from './ProfileImage'
+import Gallery from './Gallery'
 import Terms from '../Login/terms'
 import Fade from '../Layout/Fade'
 import {Container,Typography, IconButton, Dialog} from '@material-ui/core';
@@ -13,10 +14,6 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import EmailIcon from '@material-ui/icons/Email';
 
 
-
-
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -48,16 +45,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-const SkillsList = ({skills, t}) =>
-    <>
-        {skills.map((skill, index) =>
-            <Typography 
-                key={index}
-                color="textSecondary">{t(skill)}</Typography>
-        )}
-    </>
-    
 
 
 const Rating = ({counter, points}) =>{
@@ -100,7 +87,8 @@ const ContactButton = ({method, contact}) =>
 
 const UserProfile = ({userProfile}) =>{
     const classes = useStyles()
-    const {photoURL, displayName, number, contact} = userProfile
+    const {photoURL, displayName, number, contact, description, image1, image2, image3} = userProfile
+    const images = [image1, image2, image3]
     const {user} = useContext(UserSessionContext)
     const [openTerms, setOpenTerms] = useState(false)
     const toggleTermsModal = () => setOpenTerms(!openTerms)
@@ -123,26 +111,8 @@ const UserProfile = ({userProfile}) =>{
                 component="h2"
                 color="textPrimary">{displayName}
             </Typography>
-            {/* {user.images
-            ? ( <div >
-                <Carousel showThumbs={false} showStatus={false} width="200px">
-                    {user.images.map((image, index)=>
-                    <div key={index}>
-                        <img src={image} alt="user" style={{height: 175, width: 200}} />
-                    </div>
-                    )}
-                </Carousel>
-                </div>)
-            : null} */}
-           
-            {/* <Rating 
-                {...user.votes} 
-                skills={user.skills} 
-                t={t}/>
-            <SkillsList skills={user.skills} t={t}/>
-            <Description 
-                description={user.description} 
-                classes={classes}/> */}
+            <DescriptionUser description={description} />
+            <Gallery images={images} />
             {userProfile && <ContactButton method={contact} contact={contactHandler} />}
             <Dialog
                 aria-labelledby="spring-dialog-title"

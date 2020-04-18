@@ -2,7 +2,7 @@ import React from 'react'
 import ProfileData from './ProfileData'
 import Giver from './Giver'
 import Interest from './Interest'
-import {Container,Breadcrumbs,CardMedia,Card,CardActions,CardContent,Button,Typography} from '@material-ui/core/';
+import {Container,CardMedia,Card,CardActions,CardContent,Button,Typography} from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import ExploreIcon from '@material-ui/icons/Explore';
@@ -49,10 +49,6 @@ const useStyles = makeStyles(theme =>({
     }
   }));
 
-const SelfTag = ({t,subType}) =>
-    subType ?  <Typography variant="subtitle2" color='textSecondary'>{t(subType)}</Typography>
-            : null
-
 const Location = ({t, location}) =>{
     const classes= useStyles()
     return location ? <div className={classes.location}>
@@ -61,20 +57,6 @@ const Location = ({t, location}) =>{
                         </div>
                     : null
 }
-const Receiver = ({t, interested}) =>
-    <>
-        <Typography variant="h5" component="h2">
-            {t('interest')}
-        </Typography>
-        <Breadcrumbs>
-            {interested.map((interest, index) =>
-            <Typography 
-                key={index}
-                color="textSecondary">{t(interest)}</Typography>
-            )}
-        </Breadcrumbs>
-    </>
-
     
 const UserCard = ({data, setProfile, dispatch, theme, t}) => {
     

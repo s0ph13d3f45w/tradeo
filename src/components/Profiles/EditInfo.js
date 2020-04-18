@@ -4,10 +4,11 @@ import {Typography, Button, TextField} from '@material-ui/core'
 import SelectContact from './SelectContact'
 import SelectTypes from './SelectTypes'
 import SelectInterest from './SelectInterest'
+import Description from './Description'
 
 
 const initialState={displayName: "", tag:"",number: "",type: "",subType: "", city: "", 
-                    contact:"", skill:"", interest:{type:"", area:""}}
+                    contact:"", skill:"", interest:{type:"", area:""}, description:""}
 
 
 
@@ -21,7 +22,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
 
         const userRef = firestore.doc(`users/${user.uid}`)
 
-        const { displayName, tag, number, type, subType, skill, city, contact, interest} = edit
+        const { displayName, tag, number, type, subType, skill, city, contact, interest, description} = edit
 
         if (displayName){
             userRef.update({displayName})
@@ -55,8 +56,11 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
         if(interest.area !== ""){
             userRef.update({interest})
         }
+        if(description){
+            userRef.update({description})
+        }
         setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", 
-                skill: "", interest:{type:"", area:""}})
+                skill: "", interest:{type:"", area:""}, description: ""})
         toggleAlert()
     }
 
@@ -90,6 +94,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
                 />
                 <SelectInterest t={t} edit={edit} setEdit={setEdit}/>
                 <SelectContact contact={edit.contact} contactChange={handleInputChange}/>
+                <Description description={edit.description} onChange={handleInputChange} />
                 <AlertSubmit alert={showAlert}>Info submitted!</AlertSubmit>
                 <Button
                 className={classes.button}

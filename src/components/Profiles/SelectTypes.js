@@ -30,7 +30,7 @@ const serviceSkills = [
     { type:"forex", area: "digital"},
     { type:"graphicDesign", area: "digital"},
     { type: "handcraft", area: "creative"},
-    { type:"installing", area: "technicians"}, 
+    { type:"installing", area: "technic"}, 
     { type:"languages", area: "class"},
     { type: "laundry", area: "procedures"},
     { type:"marketing", area: "digital"}, 

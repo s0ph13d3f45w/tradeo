@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {firestore} from '../../firebase'
 import {Typography, Button, TextField} from '@material-ui/core'
 import SelectContact from './SelectContact'
 import SelectTypes from './SelectTypes'
+import SelectInterest from './SelectInterest'
 
 
-const initialState={displayName: "", tag:"",number: "",type: "",subType: "",service: "", city: "", contact:""}
+const initialState={displayName: "", tag:"",number: "",type: "",subType: "", city: "", 
+                    contact:"", skill:"", interest:{type:"", area:""}}
 
 
 
@@ -14,12 +16,15 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
+    const handleInterestChange = interest =>
+        setEdit({...edit, interest})
+
     const handleSubmit = async e =>{
         e.preventDefault()
 
         const userRef = firestore.doc(`users/${user.uid}`)
 
-        const { displayName, tag, number, type, subType, skill, city, contact} = edit
+        const { displayName, tag, number, type, subType, skill, city, contact, interest} = edit
 
         if (displayName){
             userRef.update({displayName})
@@ -50,7 +55,11 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
         if(contact){
             userRef.update({contact})
         }
-        setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", skill: ""})
+        if(interest){
+            userRef.update({interest})
+        }
+        setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", 
+                skill: "", interest:{type:"", area:""}})
         toggleAlert()
     }
 
@@ -82,6 +91,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
                     label="Special Tag"
                     onChange={handleInputChange}
                 />
+                <SelectInterest t={t} handlerInterestChange={handleInterestChange}/>
                 <SelectContact contact={edit.contact} contactChange={handleInputChange}/>
                 <AlertSubmit alert={showAlert}>Info submitted!</AlertSubmit>
                 <Button

@@ -5,10 +5,16 @@ import {makeStyles} from '@material-ui/core/styles'
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import ExploreIcon from '@material-ui/icons/Explore';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import RefreshIcon from '@material-ui/icons/Refresh';
+
+
+
 
 
 const useStyles = makeStyles(theme =>({
     root:{
+        margin: theme.spacing(2, 0, 1, 30),
         display: 'flex',
         justifyContent: 'end',
         [theme.breakpoints.up('sm')]:{
@@ -59,15 +65,25 @@ const FilterBar = ({t}) => {
             type: 'SET_LOCATION_FILTER',
             payload: location
         })
-       
+    
+    const refresh = () =>  
+        dispatch({type:'SET_FILTER_ALL'})
 
     const classes = useStyles()
     return (
         <div className={classes.root}>
-            <Button onClick={toggleShow}>{t('filter')}</Button>
+            <Button variant="outlined" color="secondary" onClick={toggleShow}>{t('filter')} <FilterListIcon color="secondary"/></Button>
             <Drawer 
                 anchor="top" open={show} onClose={toggleShow}>       
                 <Grid container className={classes.filters}>
+                    <Grid item>
+                            <IconButton
+                            color="secondary"
+                            id="services"
+                            onClick={refresh}>
+                                <RefreshIcon />
+                            </IconButton>
+                    </Grid>
                     <Grid item>
                         <IconButton
                         id="products"
@@ -114,8 +130,10 @@ const FilterBar = ({t}) => {
                                
                             </Select>
                         </FormControl>
+                        
                         <Button className={classes.filterButton} color="secondary" size="small"
                             variant="contained" onClick={locationFilter} >Filter location</Button>
+                     
                         {/* <IconButton
                         color="secondary"
                         id="location"

@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme =>({
       marginBottom: 12,
     },
     buttons:{
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: theme.spacing(1)
     },
     location:{
         display: 'flex',
@@ -102,17 +103,11 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
                 <Receiver interested={data.interested} t={t} /> */}
             </CardContent>
             <CardActions className={classes.buttons}>
-                {theme.palette.type === 'light'
-                    ? (<Button 
+                <Button 
                         onClick={() => openProfile(data)}
                         variant="outlined"
-                        color="inherit"
-                        size="medium">{t('button_contact')}</Button>)
-                    : (<Button 
-                        onClick={() => openProfile(data)}
-                        variant="outlined"
-                        color="inherit"
-                        size="medium">{t('button_contact')}</Button>)}
+                        color="secondary"
+                        size="medium">{t('button_contact')}</Button>
                 <Button
                     color="secondary"
                     size="medium"

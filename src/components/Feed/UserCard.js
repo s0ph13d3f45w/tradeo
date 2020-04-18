@@ -50,6 +50,11 @@ const useStyles = makeStyles(theme =>({
     }
   }));
 
+  const Wallpaper = ({wallpaper})=> {
+    const classes = useStyles()
+     return wallpaper   ? <CardMedia className={classes.media} image={wallpaper} alt="wallpaper"/>
+                        : null}
+
 const Location = ({t, location}) =>{
     const classes= useStyles()
     return location ? <div className={classes.location}>
@@ -59,7 +64,7 @@ const Location = ({t, location}) =>{
                     : null
 }
     
-const UserCard = ({data, setProfile, dispatch, theme, t}) => {
+const UserCard = ({data, setProfile, dispatch, t}) => {
     
     const classes = useStyles();
 
@@ -80,11 +85,7 @@ const UserCard = ({data, setProfile, dispatch, theme, t}) => {
   return (
     <Container maxWidth="sm">
         <Card className={classes.root}>    
-            <CardMedia 
-                    className={classes.media}
-                    image={data.wallpaper}
-                    title="skill"
-                    />
+            <Wallpaper wallpaper={data.wallpaper} />
             <CardContent>
                 {/* <DescriptiveArea 
                     descriptive_area={data.descriptive_area}

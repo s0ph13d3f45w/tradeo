@@ -48,6 +48,7 @@ const ImageSelector = forwardRef(({handleInputChange}) => {
                     <input
                         placeholder="avatar"
                         name="photoURL"
+                        accept=".png, .jpg, .jpeg, .gif"
                         multiple={false}
                         onChange={handleInputChange}
                         type="file"
@@ -61,6 +62,7 @@ const ImageSelector = forwardRef(({handleInputChange}) => {
                     <Button>
                     <input
                         placeholder="wallpaper"
+                        accept=".png, .jpg, .jpeg, .gif"
                         name="wallpaper"
                         multiple={false}
                         onChange={handleInputChange}
@@ -75,6 +77,7 @@ const ImageSelector = forwardRef(({handleInputChange}) => {
                         <Typography variant="subtitle2" color="textSecondary">Gallery image 1:</Typography>
                         <input
                             className={classes.galleryInput}
+                            accept=".png, .jpg, .jpeg, .gif"
                             placeholder="image1"
                             name="image1"
                             multiple={false}
@@ -87,6 +90,7 @@ const ImageSelector = forwardRef(({handleInputChange}) => {
                         <input
                             className={classes.galleryInput}
                             placeholder="image2"
+                            accept=".png, .jpg, .jpeg, .gif"
                             name="image2"
                             multiple={false}
                             onChange={handleInputChange}
@@ -98,6 +102,7 @@ const ImageSelector = forwardRef(({handleInputChange}) => {
                         <input
                             className={classes.galleryInput}
                             placeholder="image3"
+                            accept=".png, .jpg, .jpeg, .gif"
                             name="image3"
                             multiple={false}
                             onChange={handleInputChange}

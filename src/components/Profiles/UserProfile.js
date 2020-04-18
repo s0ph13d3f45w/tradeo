@@ -1,11 +1,12 @@
 import React, {useState, useContext} from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
+import {firestore} from '../../firebase'
 import {UserSessionContext} from '../../context/userSessionContext'
 import DescriptionUser from '../Feed/DescriptionUser'
 import ProfileImage from './ProfileImage'
 import Gallery from './Gallery'
-import Terms from '../Login/terms'
+import FirstContact from './FirstContact'
 import Fade from '../Layout/Fade'
 import {Container,Typography, IconButton, Dialog} from '@material-ui/core';
 
@@ -92,6 +93,10 @@ const UserProfile = ({userProfile}) =>{
     const {user} = useContext(UserSessionContext)
     const [openTerms, setOpenTerms] = useState(false)
     const toggleTermsModal = () => setOpenTerms(!openTerms)
+    const toggleFirstContact = () =>{
+        setOpenTerms(false)
+        firestore.doc(`users/${user.uid}`).update({firstContact: false})
+    }
     const {t} = useTranslation()
     
     const contactHandler = () =>{
@@ -120,12 +125,11 @@ const UserProfile = ({userProfile}) =>{
                 className={classes.modal}
                 open={openTerms}
                 scroll="paper"
-                closeAfterTransition
-       
+                closeAfterTransition     
             >
                 <Fade in={openTerms}>
                     <div className={classes.paperTerms}>
-                        <Terms onClose={toggleTermsModal} t={t}/>
+                        <FirstContact onClose={toggleFirstContact} t={t}/>
                     </div>
                 </Fade>
             </Dialog>

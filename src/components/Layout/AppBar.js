@@ -17,8 +17,12 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
   },
   title: {
+    marginLeft: theme.spacing(0.7),
     flexGrow: 1,
-    fontWeight: 'bold'
+    display: 'flex',
+    color: 'white',
+    fontWeight: 'bold',
+    fontStyle: 'italic'
   },
 }));
 
@@ -42,8 +46,9 @@ const ButtonAppBar = ()=> {
       {theme.palette.type === 'light' 
       ? (<AppBar position="fixed" color="primary">
           <Toolbar>
+            <LogoNav location={location} />
             <Typography variant="h6" className={classes.title}>
-              <LogoNav location={location} />
+              beta
             </Typography>
             <FormControlLabel
               control={<Switch onClick={toggleTheme} />}
@@ -53,8 +58,9 @@ const ButtonAppBar = ()=> {
         </AppBar>)
     : (<AppBar position="fixed" color="inherit">
         <Toolbar>
+          <LogoNav location={location} />
           <Typography variant="h6" className={classes.title}>
-            <LogoNav location={location} />
+            beta
           </Typography>
           <FormControlLabel 
             control={<Switch onClick={toggleTheme}/>}

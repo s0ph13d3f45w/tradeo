@@ -52,8 +52,8 @@ const UserOwnProfile = forwardRef(({history, user, t}, ref) => {
             {number && <WhatsappIcon number={number} showNumber={true} />}
               {/* {whatsapp && <ContactWay classes={classes} user={user}/>}
             {image1 && <Gallery user={user} />} */}
-            <Button style={{marginBottom: 8}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>Edit Account</Button>
-            <Button onClick={signOut}>Sign out</Button>
+            <Button style={{marginBottom: 8}}color="secondary" variant="contained" size="small" onClick={handleToggleEdit}>{t("editProfile")}</Button>
+            <Button onClick={signOut}>{t("signOut")}</Button>
         </Grid>
     );
 })

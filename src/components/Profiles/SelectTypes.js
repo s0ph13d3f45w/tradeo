@@ -85,7 +85,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
         return(
             <div className={classes.selects}>
             <FormControl variant="outlined" className={classes.formControl} >
-                <Typography color="textSecondary">Choose City:</Typography>
+                <Typography color="textSecondary">{t("chooseCity")}:</Typography>
                 <Select onChange={handleChangeCity} value={edit.city}>
                     <MenuItem value="pdc">
                         <Typography color="textSecondary">Playa del Carmen</Typography>
@@ -99,7 +99,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                 </Select>
             </FormControl>
             <FormControl variant="outlined" className={classes.formControl} >
-                <Typography color="textSecondary">Choose Provider:</Typography>
+                <Typography color="textSecondary">{t("chooseProfile")}:</Typography>
                 <Select onChange={handleSelectChange} value={edit.type}>
                     <MenuItem value="products">
                         <Typography color="textSecondary">{t("products")}</Typography>
@@ -112,7 +112,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                 {edit.type 
                 ? edit.type === "products"
                     ?   <FormControl variant="outlined" className={classes.formControl}>
-                            <Typography color="textSecondary">Products area:</Typography>
+                            <Typography color="textSecondary">{t("productsArea")}:</Typography>
                             <Select variant="outlined" onChange={handleChange} value={edit.subType.type}>
                                         {products.map((product, index) =>
                                             <MenuItem key={`${product}${index}`} name={product.type} value={product.type}>
@@ -122,7 +122,7 @@ const SelectTypes = ({t, setEdit, edit}) =>{
                                     </Select>
                             </FormControl>
                     :   <FormControl variant="outlined" className={classes.formControl}>
-                            <Typography color="textSecondary">Service area:</Typography>
+                            <Typography color="textSecondary">{t("servicesArea")}:</Typography>
                             <Select variant="outlined" onChange={handleChangeService} value={edit.subType.type}>
                                         {services.map((service, index) =>
                                             <MenuItem key={`${service}${index}`} name={service.type} value={service}>

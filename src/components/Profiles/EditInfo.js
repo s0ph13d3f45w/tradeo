@@ -67,14 +67,14 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
     return (
         user ? <form onSubmit={handleSubmit}className={classes.paperInfo} >
                 <Typography variant="h6" color="textSecondary">
-                    <strong>Personal Info
+                    <strong>{t("personalInfo")}
                     <span role="img" aria-label="memo">📝</span>
                     </strong>
                 </Typography>
                 <TextField
                     name="displayName"
                     value={edit.displayName}
-                    label="Name"
+                    label={t("name")}
                     onChange={handleInputChange}
                 />
                 <TextField

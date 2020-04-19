@@ -132,7 +132,7 @@ const FilterBar = ({t}) => {
                         </FormControl>
                         
                         <Button className={classes.filterButton} color="secondary" size="small"
-                            variant="contained" onClick={locationFilter} >Filter location</Button>
+                            variant="contained" onClick={locationFilter} >{t("filterLocation")}</Button>
                      
                         {/* <IconButton
                         color="secondary"

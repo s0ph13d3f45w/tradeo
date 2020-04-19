@@ -55,9 +55,11 @@ return(
                 {t('signUp')}
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
-                {alert && <Collapse in={alert}><Alert severity="error">
+               <Collapse in={alert}>
+                   <Alert severity="error">
                         Email already in use                    
-                    </Alert></Collapse>}
+                    </Alert>
+                </Collapse>
                 <TextField
                     variant="outlined"
                     margin="normal"

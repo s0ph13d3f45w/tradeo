@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useRef} from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
 import {firestore} from '../../firebase'
@@ -8,11 +8,13 @@ import ProfileImage from './ProfileImage'
 import Gallery from './Gallery'
 import FirstContact from './FirstContact'
 import Fade from '../Layout/Fade'
-import {Container,Typography, IconButton, Dialog} from '@material-ui/core';
+import {Container,Typography, IconButton, Dialog, Collapse} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import EmailIcon from '@material-ui/icons/Email';
+import Alert from '@material-ui/lab/Alert';
+
 
 
 
@@ -88,7 +90,17 @@ const ContactButton = ({method, contact}) =>
 
 const UserProfile = ({userProfile}) =>{
     const classes = useStyles()
-    const {photoURL, displayName, number, contact, description, image1, image2, image3} = userProfile
+    const {photoURL, displayName, number, email,
+        contact, description, image1, image2, image3} = userProfile
+    const [alertEmail, setAlertEmail] = useState(false)
+    const copyEmail = ()=>{
+        navigator.clipboard.writeText(email)
+        setAlertEmail(true)
+        setTimeout(()=>{
+            setAlertEmail(false)
+        },3000)
+    }
+    
     const images = [image1, image2, image3]
     const {user} = useContext(UserSessionContext)
     const [openTerms, setOpenTerms] = useState(false)
@@ -104,7 +116,11 @@ const UserProfile = ({userProfile}) =>{
         if (firstContact){
             toggleTermsModal()
         } else{
-            window.open(`https://api.whatsapp.com/send?phone=${number}`)
+            if(contact === "whatsapp"){
+                window.open(`https://api.whatsapp.com/send?phone=${number}`)
+            } else {
+                copyEmail()
+            }
         }
 
     }
@@ -118,6 +134,9 @@ const UserProfile = ({userProfile}) =>{
             </Typography>
             <DescriptionUser description={description} />
             <Gallery images={images} />
+            <Collapse in={alertEmail}>
+                <Alert severity="success">Copiado!</Alert>
+            </Collapse>
             {userProfile && <ContactButton method={contact} contact={contactHandler} />}
             <Dialog
                 aria-labelledby="spring-dialog-title"

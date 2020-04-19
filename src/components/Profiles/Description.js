@@ -7,13 +7,13 @@ const useStyles = makeStyles(theme =>({
         minWidth: 250
     }
 }))
-const Description = ({description, onChange}) => {
+const Description = ({t,description, onChange}) => {
     const classes = useStyles()
     return(
             <TextField 
                 className={classes.root}
                 variant="filled"
-                label="Description"
+                label={t("description")}
                 name="description"
                 multiline
                 rows={4}

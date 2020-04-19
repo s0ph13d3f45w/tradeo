@@ -12,12 +12,12 @@ const useStyles = makeStyles(theme =>({
 
 const interests = [
     { type: 'products', area:'food', id: 'p1'},
-    { type: 'products', area:"prime", id:'p3'}, 
+    { type: 'products', area:"rawMaterial", id:'p3'}, 
     { type: 'products', area:"supplements", id:'p4'}, 
     { type: 'products', area: "home", id:'p5'},
     { type: 'products', area: "books", id:'p6'},
-    { type: 'products', area: "clothing", id:'p7'},
-    { type: 'products', area: "sport" , id:'p8'},
+    { type: 'products', area: "clothes", id:'p7'},
+    { type: 'products', area: "exercise" , id:'p8'},
     { type: 'products', area: "toys" , id:'p9'},
     { type: 'products', area: "electronics" , id:'p10'},
     { type: 'products', area: "videogames", id:'p11'},
@@ -40,7 +40,7 @@ const SelectInterest = ({t, setEdit,edit}) =>{
     }
     return(
         <FormControl variant="outlined" className={classes.root} >
-            <Typography color="textSecondary">Choose interest:</Typography>
+            <Typography color="textSecondary">{t("chooseInterest")}</Typography>
             <Select onChange={selectedInputChange} value={selectedInterest}>
                 {interestOptions.map(interest =>
                     <MenuItem key={interest.id} name={interest.area} value={interest}>

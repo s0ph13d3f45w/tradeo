@@ -5,7 +5,7 @@ import {Typography, Button} from '@material-ui/core'
 
 const initialImages = {photoURL: "",image1: "",image2: "",image3: "",wallpaper: ""}
 
-const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert, user}) => {
+const EditImages = ({t, classes, AlertSubmit, showAlert, toggleAlert, user}) => {
     const [images, setImages] = useState(initialImages)
     const imageSelectorRef = createRef()
 
@@ -59,7 +59,7 @@ const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert, user}) => {
     return (
         <form onSubmit={handleSubmit} className={classes.paperImage}>
             <Typography variant="h6" color="textSecondary">
-                <strong>Account Images  <span role="img" aria-label="picture">🖼️</span></strong>
+                <strong>{t("profileImages")}  <span role="img" aria-label="picture">🖼️</span></strong>
             </Typography>
             <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
             <AlertSubmit alert={showAlert}>Images submitted!</AlertSubmit>
@@ -68,7 +68,7 @@ const EditImages = ({classes, AlertSubmit, showAlert, toggleAlert, user}) => {
                 variant="contained"
                 color="secondary"
                 type="submit">
-                    Submit
+                    {t("submit")}
             </Button>
         </form>
     );

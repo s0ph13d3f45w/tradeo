@@ -89,19 +89,19 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
                 <TextField
                     name="tag"
                     value={edit.tag}
-                    label="Special Tag"
+                    label={t("tag")}
                     onChange={handleInputChange}
                 />
                 <SelectInterest t={t} edit={edit} setEdit={setEdit}/>
-                <SelectContact contact={edit.contact} contactChange={handleInputChange}/>
-                <Description description={edit.description} onChange={handleInputChange} />
+                <SelectContact t={t} contact={edit.contact} contactChange={handleInputChange}/>
+                <Description t={t} description={edit.description} onChange={handleInputChange} />
                 <AlertSubmit alert={showAlert}>Info submitted!</AlertSubmit>
                 <Button
                 className={classes.button}
                 variant="contained"
                 color="secondary"
                 type="submit">
-                    Submit
+                    {t("submit")}
                 </Button>
             </form>
         

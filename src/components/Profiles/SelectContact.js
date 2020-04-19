@@ -9,11 +9,11 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
-const SelectContact = ({contact, contactChange}) =>{
+const SelectContact = ({t,contact, contactChange}) =>{
     const classes = useStyles()
     return(
         <FormControl className={classes.root} component="fieldset">
-            <FormLabel component="legend">Contact method:</FormLabel>
+            <FormLabel component="legend">{t("contactMethod")}</FormLabel>
             <RadioGroup row aria-label="contact" name="contactMethod" value={contact} onChange={contactChange}>
                 <FormControlLabel name="contact" value="whatsapp" control={<Radio />} label="Whatsapp"/>
                 <FormControlLabel name="contact" value="email" control={<Radio />} label="Email"/>

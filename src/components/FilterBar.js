@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {UserContext} from '../../context/usersContext'
+import {UserContext} from '../context/usersContext'
 import{Button, Drawer, Grid, IconButton, Typography, Select, MenuItem, FormControl} from '@material-ui/core' 
 import {makeStyles} from '@material-ui/core/styles'
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';

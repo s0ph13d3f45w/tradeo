@@ -1,9 +1,9 @@
-import React, {useState, useContext, useRef} from 'react'
+import React, {useState, useContext} from 'react'
 import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
 import {firestore} from '../../firebase'
 import {UserSessionContext} from '../../context/userSessionContext'
-import DescriptionUser from '../Feed/DescriptionUser'
+import DescriptionUser from '../DescriptionUser'
 import ProfileImage from './ProfileImage'
 import Gallery from './Gallery'
 import FirstContact from './FirstContact'
@@ -146,11 +146,11 @@ const UserProfile = ({userProfile}) =>{
                 scroll="paper"
                 closeAfterTransition     
             >
-                <Fade in={openTerms}>
-                    <div className={classes.paperTerms}>
-                        <FirstContact onClose={toggleFirstContact} t={t}/>
-                    </div>
-                </Fade>
+            <Fade in={openTerms}>
+                <div className={classes.paperTerms}>
+                    <FirstContact onClose={toggleFirstContact} t={t}/>
+                </div>
+            </Fade>
             </Dialog>
         </Container>
     )

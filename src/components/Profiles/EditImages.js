@@ -2,10 +2,10 @@ import React, {useState, createRef} from 'react';
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
 import {Typography, Button} from '@material-ui/core'
-
+import AlertMessage from '../Login/AlertMessage'
 const initialImages = {photoURL: "",image1: "",image2: "",image3: "",wallpaper: ""}
 
-const EditImages = ({t, classes, AlertSubmit, showAlert, toggleAlert, user}) => {
+const EditImages = ({t, classes, showAlert, toggleAlert, user}) => {
     const [images, setImages] = useState(initialImages)
     const [limitImage, setLimitImage] = useState(false)
     const imageSelectorRef = createRef()
@@ -69,8 +69,8 @@ const EditImages = ({t, classes, AlertSubmit, showAlert, toggleAlert, user}) => 
                 <strong>{t("profileImages")}  <span role="img" aria-label="picture">🖼️</span></strong>
             </Typography>
             <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
-            <AlertSubmit severity="success" alert={showAlert}>Images submitted!</AlertSubmit>
-            <AlertSubmit severity="error" alert={limitImage}>Image must be lower than 2 mb</AlertSubmit>
+            <AlertMessage severity="success" alert={showAlert}>Images submitted!</AlertMessage>
+            <AlertMessage severity="error" alert={limitImage}>Image must be lower than 2 mb</AlertMessage>
             <Button
                 className={classes.button}
                 disabled={limitImage}

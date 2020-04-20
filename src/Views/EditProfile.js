@@ -7,14 +7,6 @@ import EditImages from '../components/Profiles/EditImages'
 import MainLayout from '../layouts/MainLayout'
 import Spinner from '../components/Layout/Spinner'
 import {useTranslation} from 'react-i18next'
-import {Collapse} from '@material-ui/core'
-import Alert from '@material-ui/lab/Alert'
-
-const AlertSubmit = ({alert, children, severity}) =>
-    <Collapse in={alert}><Alert severity={severity}>
-        {children}
-    </Alert></Collapse>
-
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -74,10 +66,10 @@ const EditProfile = () =>{
         <MainLayout>
            { user ?<Grid container component="main" className={classes.root}>
                 <Grid item xs={12} sm={6} md={6} square="true" >
-                    <EditInfo classes={classes} user={user} t={t} AlertSubmit={AlertSubmit} showAlert={alertInfo} toggleAlert={toggleAlertInfo}/>
+                    <EditInfo classes={classes} user={user} t={t} showAlert={alertInfo} toggleAlert={toggleAlertInfo}/>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} square="true" >
-                    <EditImages classes={classes} user={user} t={t} AlertSubmit={AlertSubmit} showAlert={alertImage} toggleAlert={toggleAlertImage}/>
+                    <EditImages classes={classes} user={user} t={t} showAlert={alertImage} toggleAlert={toggleAlertImage}/>
                 </Grid>
             </Grid>
             : <Spinner />}

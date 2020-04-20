@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react'
-import StarRatings from 'react-star-ratings';
 import {useTranslation} from 'react-i18next'
 import {firestore} from '../../firebase'
 import {UserSessionContext} from '../../context/userSessionContext'
@@ -9,16 +8,13 @@ import Gallery from './Gallery'
 import FirstContact from './FirstContact'
 import DialogConditions from '../Login/DialogContidions'
 import Fade from '../Layout/Fade'
-import {Container, IconButton, Collapse} from '@material-ui/core';
+import {Container, IconButton} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import EmailIcon from '@material-ui/icons/Email';
-import Alert from '@material-ui/lab/Alert';
 import Title from '../Login/Title';
-
-
-
+import AlertMessage from '../Login/AlertMessage'
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -35,13 +31,6 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(13),
         marginBottom: 5,
     },
-    rater:{
-        display: 'flex',
-        flexFlow: 'row wrap',
-        marginTop: 5,
-        padding: 10,
-  
-    },
     textDescription:{
         textAlign: 'justify',
         marginTop: 5
@@ -49,32 +38,6 @@ const useStyles = makeStyles(theme => ({
    
 }))
 
-
-
-
-const Rating = ({counter, points}) =>{
-    let result = points / counter
-    if (Object.is(result, NaN)) {result = 0}
-
-    const classes = useStyles()
-    return(
-        <div className={classes.rater}>
-                <Title 
-                    color="textSecondary">
-                        <strong>
-                        {result}
-                        </strong>
-                </Title>
-                <StarRatings 
-                    rating={result}
-                    starDimension="18px"
-                    starSpacing="2px"
-                    starRatedColor="yellow"
-                    numberOfStars={5}
-                /> 
-        </div>
-    )
-}
 
 const ContactButton = ({method, contact}) =>
     method === "whatsapp"
@@ -134,9 +97,7 @@ const UserProfile = ({userProfile}) =>{
             </Title>
             <DescriptionUser description={description} />
             <Gallery images={images} />
-            <Collapse in={alertEmail}>
-                <Alert severity="success">Copiado!</Alert>
-            </Collapse>
+            <AlertMessage severity="success" alert={alertEmail}>Copiado!</AlertMessage>
             {userProfile && <ContactButton method={contact} contact={contactHandler} />}
             <DialogConditions open={openTerms}>
                 <Fade in={openTerms}>

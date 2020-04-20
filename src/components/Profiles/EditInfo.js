@@ -5,6 +5,7 @@ import SelectContact from './SelectContact'
 import SelectTypes from './SelectTypes'
 import SelectInterest from './SelectInterest'
 import Description from './Description'
+import AlertMessage from '../Login/AlertMessage'
 
 
 const initialState={displayName: "", tag:"",number: "",type: "",subType: "", city: "", 
@@ -12,7 +13,7 @@ const initialState={displayName: "", tag:"",number: "",type: "",subType: "", cit
 
 
 
-const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
+const EditInfo = ({classes, t, toggleAlert, showAlert, user}) => {
     const [edit, setEdit] = useState(initialState)
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
@@ -95,7 +96,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
                 <SelectInterest t={t} edit={edit} setEdit={setEdit}/>
                 <SelectContact t={t} contact={edit.contact} contactChange={handleInputChange}/>
                 <Description t={t} description={edit.description} onChange={handleInputChange} />
-                <AlertSubmit severity="success" alert={showAlert}>Info submitted!</AlertSubmit>
+                <AlertMessage severity="success" alert={showAlert}>Info submitted!</AlertMessage>
                 <Button
                 className={classes.button}
                 variant="contained"

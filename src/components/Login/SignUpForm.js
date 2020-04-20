@@ -1,17 +1,14 @@
 import React from 'react'
-import {Typography,TextField,Button,Radio,Link,Collapse,Box, Grid} from '@material-ui/core'
-import Alert from '@material-ui/lab/Alert';
-import Copyright from './Copyright'
+import {Typography,TextField,Button,Radio,Link, Grid} from '@material-ui/core'
+import AlertMessage from './AlertMessage'
 
 const SignUpForm = ({classes, t, handleSubmit, displayName, handleInputs, email,
     password, confirmation, toggleTerms, terms, toggleTermsModal,
     toggle, loginAndSendGoogle, alert})=>
     <form className={classes.form} onSubmit={handleSubmit}>
-        <Collapse in={alert}>
-            <Alert severity="error">
-                Email already in use                    
-            </Alert>
-        </Collapse>
+        <AlertMessage in={alert} severity="error">
+            Email already in use
+        </AlertMessage>
         <TextField
             variant="outlined"
             margin="normal"
@@ -105,16 +102,6 @@ const SignUpForm = ({classes, t, handleSubmit, displayName, handleInputs, email,
         >
             Google
         </Button>
-        <Grid container>
-            <Grid item>
-                <Link href="#" variant="body2" color="inherit" onClick={toggle}>
-                    {t("alreadyUser")}
-                </Link>
-            </Grid>
-        </Grid>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
     </form>
 
 export default SignUpForm

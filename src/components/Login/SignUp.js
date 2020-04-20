@@ -7,6 +7,8 @@ import Terms from './terms'
 import Fade from '../Layout/Fade'
 import SignUpForm from './SignUpForm'
 import DialogConditions from './DialogContidions'
+import Copyright from './Copyright'
+import LoginLinks from './LoginLinks'
 
 const initialState = {displayName: "", email:"", password: "", confirmation: ""}
 
@@ -62,6 +64,8 @@ return(
                 terms={terms} toggleTermsModal={toggleTermsModal} toggle={toggle}
                 loginAndSendGoogle={loginAndSendGoogle} classes={classes}
                 {...signUp}/>
+            <LoginLinks t={t} toggle={toggle} login="signUp" />
+            <Copyright />
             <DialogConditions open={openTerms} classes={classes}>
                 <Fade in={openTerms}>
                     <div className={classes.paperTerms}>

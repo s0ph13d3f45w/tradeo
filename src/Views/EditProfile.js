@@ -10,8 +10,8 @@ import {useTranslation} from 'react-i18next'
 import {Collapse} from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 
-const AlertSubmit = ({alert, children}) =>
-    <Collapse in={alert}><Alert severity="success">
+const AlertSubmit = ({alert, children, severity}) =>
+    <Collapse in={alert}><Alert severity={severity}>
         {children}
     </Alert></Collapse>
 

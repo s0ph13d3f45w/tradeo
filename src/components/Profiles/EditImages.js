@@ -7,10 +7,17 @@ const initialImages = {photoURL: "",image1: "",image2: "",image3: "",wallpaper: 
 
 const EditImages = ({t, classes, AlertSubmit, showAlert, toggleAlert, user}) => {
     const [images, setImages] = useState(initialImages)
+    const [limitImage, setLimitImage] = useState(false)
     const imageSelectorRef = createRef()
 
-    const handleInputChange = e =>
-         setImages({...images, [e.target.name] : e.target.files[0]})
+    const handleInputChange = e =>{
+        if(e.target.files[0].size > 2000000){
+            setLimitImage(true)
+            return
+        }
+        setLimitImage(false)
+        setImages({...images, [e.target.name] : e.target.files[0]})
+    }
 
     const handleSubmit = async e =>{
         e.preventDefault()
@@ -62,9 +69,11 @@ const EditImages = ({t, classes, AlertSubmit, showAlert, toggleAlert, user}) => 
                 <strong>{t("profileImages")}  <span role="img" aria-label="picture">🖼️</span></strong>
             </Typography>
             <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
-            <AlertSubmit alert={showAlert}>Images submitted!</AlertSubmit>
+            <AlertSubmit severity="success" alert={showAlert}>Images submitted!</AlertSubmit>
+            <AlertSubmit severity="error" alert={limitImage}>Image must be lower than 2 mb</AlertSubmit>
             <Button
                 className={classes.button}
+                disabled={limitImage}
                 variant="contained"
                 color="secondary"
                 type="submit">

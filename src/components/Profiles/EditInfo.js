@@ -95,7 +95,7 @@ const EditInfo = ({classes, t, AlertSubmit, toggleAlert, showAlert, user}) => {
                 <SelectInterest t={t} edit={edit} setEdit={setEdit}/>
                 <SelectContact t={t} contact={edit.contact} contactChange={handleInputChange}/>
                 <Description t={t} description={edit.description} onChange={handleInputChange} />
-                <AlertSubmit alert={showAlert}>Info submitted!</AlertSubmit>
+                <AlertSubmit severity="success" alert={showAlert}>Info submitted!</AlertSubmit>
                 <Button
                 className={classes.button}
                 variant="contained"

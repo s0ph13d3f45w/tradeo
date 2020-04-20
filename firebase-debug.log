@@ -1,0 +1,44 @@
+[debug] [2020-04-19T22:57:06.050Z] ----------------------------------------------------------------------
+[debug] [2020-04-19T22:57:06.054Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-04-19T22:57:06.055Z] CLI Version:   8.0.2
+[debug] [2020-04-19T22:57:06.055Z] Platform:      darwin
+[debug] [2020-04-19T22:57:06.055Z] Node Version:  v12.15.0
+[debug] [2020-04-19T22:57:06.164Z] Time:          Sun Apr 19 2020 17:57:06 GMT-0500 (Eastern Standard Time)
+[debug] [2020-04-19T22:57:06.165Z] ----------------------------------------------------------------------
+[debug] [2020-04-19T22:57:06.165Z] 
+[debug] [2020-04-19T22:57:06.211Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-19T22:57:06.212Z] > authorizing via signed-in user
+[debug] [2020-04-19T22:57:06.213Z] [iam] checking project tradeo-ff7fd for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-04-19T22:57:06.218Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-04-19T22:57:06.218Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-04-19T22:58:21.750Z] [iam] error while checking permissions, command may fail: FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2020-04-19T22:58:21.752Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-04-19T22:58:21.752Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-04-19T22:59:36.876Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2020-04-19T22:59:37.172Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/auth.js:23:32)
+    at Module._compile (internal/modules/cjs/loader.js:955:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)
+    at Module.load (internal/modules/cjs/loader.js:811:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:723:14)
+    at Module.require (internal/modules/cjs/loader.js:848:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/commands/login.js:8:12)
+    at Module._compile (internal/modules/cjs/loader.js:955:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)
+    at Module.load (internal/modules/cjs/loader.js:811:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:723:14)
+    at Module.require (internal/modules/cjs/loader.js:848:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at loadCommand (/usr/local/lib/node_modules/firebase-tools/lib/commands/index.js:5:19)
+    at module.exports (/usr/local/lib/node_modules/firebase-tools/lib/commands/index.js:84:20)
+[error] 
+[error] Error: Failed to get Firebase project tradeo-ff7fd. Please make sure the project exists and your account has permission to access it.

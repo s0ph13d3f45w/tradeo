@@ -21,6 +21,7 @@ const serviceSkills = [
     { type:"bankProcedure", area: "procedures"}, 
     { type:"coaching", area: "health"}, 
     { type:"consulting", area: "health"}, 
+    { type:"content_writer", area: "creative"}, 
     { type:"cooking", area: "class"}, 
     { type: "design", area: "creative"},
     { type: "drawing", area: "creative"},
@@ -34,17 +35,14 @@ const serviceSkills = [
     { type: "laundry", area: "procedures"},
     { type:"marketing", area: "digital"}, 
     { type:"music", area: "class"},
-    { type:"musicComposition", area: "creative"}, 
+    { type:"musicProduction", area: "creative"}, 
     { type: "petWalker", area: "procedures"},
     { type: "psicology", area: "health"},
     { type:"portrait", area: "creative"}, 
     { type:"programmer", area: "digital"},
-    { type:"repair", area: "technicians"}, 
     { type:"shopping", area: "procedures"}, 
-    { type:"techniques", area: "class"},
     { type:"transportation", area: "procedures"}, 
     { type:"uxui", area: "digital"},
-    { type:"writing", area: "creative"}, 
 
 ]
 

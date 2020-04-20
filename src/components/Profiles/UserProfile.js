@@ -7,13 +7,15 @@ import DescriptionUser from '../DescriptionUser'
 import ProfileImage from './ProfileImage'
 import Gallery from './Gallery'
 import FirstContact from './FirstContact'
+import DialogConditions from '../Login/DialogContidions'
 import Fade from '../Layout/Fade'
-import {Container,Typography, IconButton, Dialog, Collapse} from '@material-ui/core';
+import {Container, IconButton, Collapse} from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import EmailIcon from '@material-ui/icons/Email';
 import Alert from '@material-ui/lab/Alert';
+import Title from '../Login/Title';
 
 
 
@@ -57,12 +59,12 @@ const Rating = ({counter, points}) =>{
     const classes = useStyles()
     return(
         <div className={classes.rater}>
-                <Typography 
+                <Title 
                     color="textSecondary">
                         <strong>
                         {result}
                         </strong>
-                </Typography>
+                </Title>
                 <StarRatings 
                     rating={result}
                     starDimension="18px"
@@ -127,31 +129,22 @@ const UserProfile = ({userProfile}) =>{
     return(
         <Container className={classes.root}>
             <ProfileImage img={photoURL} classes={classes}/>
-            <Typography 
-                variant="h4"
-                component="h2"
-                color="textPrimary">{displayName}
-            </Typography>
+            <Title component="h2" variant="h4" color="textPrimary">
+                {displayName}
+            </Title>
             <DescriptionUser description={description} />
             <Gallery images={images} />
             <Collapse in={alertEmail}>
                 <Alert severity="success">Copiado!</Alert>
             </Collapse>
             {userProfile && <ContactButton method={contact} contact={contactHandler} />}
-            <Dialog
-                aria-labelledby="spring-dialog-title"
-                aria-describedby="spring-dialog-description"
-                className={classes.modal}
-                open={openTerms}
-                scroll="paper"
-                closeAfterTransition     
-            >
-            <Fade in={openTerms}>
-                <div className={classes.paperTerms}>
-                    <FirstContact onClose={toggleFirstContact} t={t}/>
-                </div>
-            </Fade>
-            </Dialog>
+            <DialogConditions open={openTerms}>
+                <Fade in={openTerms}>
+                    <div className={classes.paperTerms}>
+                        <FirstContact onClose={toggleFirstContact} t={t}/>
+                    </div>
+                </Fade>
+            </DialogConditions>
         </Container>
     )
 }

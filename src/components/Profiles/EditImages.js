@@ -1,82 +1,85 @@
-import React, {useState, useContext} from 'react';
-import {UserSessionContext} from '../../context/userSessionContext'
+import React, {useState, createRef} from 'react';
 import ImageSelector from './ImageSelector'
 import {firestore, storage} from '../../firebase'
-import {Grid, Typography, Button} from '@material-ui/core'
+import {Typography, Button} from '@material-ui/core'
+import AlertMessage from '../Login/AlertMessage'
+const initialImages = {photoURL: "",image1: "",image2: "",image3: "",wallpaper: ""}
 
-const initialImages = {
-    photoURL: "",
-    image1: "",
-    image2: "",
-    image3: "",
-    wallpaper: "",
-}
-const EditImages = ({classes, close}) => {
+const EditImages = ({t, classes, showAlert, toggleAlert, user}) => {
     const [images, setImages] = useState(initialImages)
-    const {user} = useContext(UserSessionContext)
-    const userRef = firestore.doc(`users/${user.uid}`)
-  
-    const {image1, image2, image3, photoURL, wallpaper} = images
+    const [limitImage, setLimitImage] = useState(false)
+    const imageSelectorRef = createRef()
 
-    const handleInputChange = e =>
-         setImages({...images, [e.target.name] : e.target.files[0]})
+    const handleInputChange = e =>{
+        if(e.target.files[0].size > 2000000){
+            setLimitImage(true)
+            return
+        }
+        setLimitImage(false)
+        setImages({...images, [e.target.name] : e.target.files[0]})
+    }
 
     const handleSubmit = async e =>{
         e.preventDefault()
 
+        const userRef = firestore.doc(`users/${user.uid}`)
+        const {image1, image2, image3, photoURL, wallpaper} = images
+
         if(photoURL !== ''){
-            storage.ref(`profileAvatars/${user.uid}/${photoURL.name}`)
+            storage.ref(`profileAvatars/${user.uid}`)
             .put(photoURL)
             .then(response => response.ref.getDownloadURL())
             .then(photoURL => userRef.update({photoURL}))
             .catch(error => console.error('Error updating avatar image', error))
         }
         if(image1 !== ''){
-            storage.ref(`galleryImages/${user.uid}/${image1.name}`)
+            storage.ref(`galleryImage1/${user.uid}`)
             .put(image1)
             .then(response => response.ref.getDownloadURL())
             .then(image1 => userRef.update({image1}))
             .catch(error => console.error('Error updating image1', error))
         }
         if(image2 !== ''){
-            storage.ref(`galleryImages/${user.uid}/${image2.name}`)
+            storage.ref(`galleryImage2/${user.uid}`)
             .put(image2)
             .then(response => response.ref.getDownloadURL())
             .then(image2 => userRef.update({image2}))
             .catch(error => console.error('Error updating image2', error))
         }
         if(image3 !== ''){
-            storage.ref(`galleryImages/${user.uid}/${image3.name}`)
+            storage.ref(`galleryImage3/${user.uid}`)
             .put(image3)
             .then(response => response.ref.getDownloadURL())
             .then(image3 => userRef.update({image3}))
             .catch(error => console.error('Error updating image3', error))
         }
         if(wallpaper !== ''){
-            storage.ref(`wallpapers/${user.uid}/${wallpaper.name}`)
+            storage.ref(`wallpapers/${user.uid}`)
             .put(wallpaper)
             .then(response => response.ref.getDownloadURL())
             .then(wallpaper => userRef.update({wallpaper}))
             .catch(error => console.error('Error updating image3', error))
         }
-        close()
+        toggleAlert()
+
     }
     return (
-        <div className={classes.paper}>
-            <Grid container>
-                <form onSubmit={handleSubmit}>
-                <Grid item>
-                    <Typography variant="h6">Edit Profile</Typography>
-                </Grid>
-                <ImageSelector classes={classes} handleInputChange={handleInputChange} />
-                <Button
+        <form onSubmit={handleSubmit} className={classes.paperImage}>
+            <Typography variant="h6" color="textSecondary">
+                <strong>{t("profileImages")}  <span role="img" aria-label="picture">🖼️</span></strong>
+            </Typography>
+            <ImageSelector ref={imageSelectorRef} classes={classes} handleInputChange={handleInputChange} />
+            <AlertMessage severity="success" alert={showAlert}>Images submitted!</AlertMessage>
+            <AlertMessage severity="error" alert={limitImage}>Image must be lower than 2 mb</AlertMessage>
+            <Button
+                className={classes.button}
+                disabled={limitImage}
+                variant="contained"
                 color="secondary"
                 type="submit">
-                    Submit
-                </Button>
-                </form>
-            </Grid>
-        </div>
+                    {t("submit")}
+            </Button>
+        </form>
     );
 }
 

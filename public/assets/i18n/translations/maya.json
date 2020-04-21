@@ -9,7 +9,7 @@
     "design_female": "diseñadora 🖍️",
     "design_male": "diseñador 🖍️",
     "handcraft": "U meyaj màako'ob ku meentko'ob ba'alo'ob yèetel u k'abo'ob 🎨",
-    "handcraft_person": "Máak ku meentik ba'alo'ob yèetel u k'ab 🎨"
+    "handcraft_person": "Máak ku meentik ba'alo'ob yèetel u k'ab 🎨",
     "interest": "Tin K'áatik:",
     "offer": "Bíin in kaansaj / Tin kóoyik:",
     "repairment": "Utskins 🛠️",
@@ -31,7 +31,7 @@
     "teaching_music_female": "xkaambesaj ti' Paax 🎵",
     "teaching_language": "Xook ti' t'aan 📓",
     "teaching_language_male": "jkaambesaj ti't'aan 📓",
-    "teaching_language_male": "xkaambesaj ti' t'aan📓",
+    "teaching_language_female": "xkaambesaj ti' t'aan📓",
     "teaching_academic": "Xook ti' u najil tu'ux ku much'tal máako'ob u yojelo'ob ya'ab ba'al 📚",
     "teaching_academic_male": "jkaambesaj ti' u najil tu'ux ku much'tal máako'ob u yojelo'ob ya'ab ba'al 📚",
     "teaching_academic_female": "xkaambesaj ti'u najil tu'ux ku much'tal máako'ob u yojelo'ob ya'ab ba'al 📚",
@@ -62,11 +62,11 @@
     "teaching_photos_female": "xkaambesaj ti' fotografía 📷 ",
     "Coach": "Coaching 🙌",
     "coach_person":"Coach 🙌",
-    "Spiritual_guide”: “aj bej iik' ”,
+    "Spiritual_guide": "aj bej iik' ",
     "spiritual_religion": "iik yéetel ok'óolal",
     "cristian_guide": "Pastor",
     "jewish_guide": "Rabino",
-    "muslim_guide”: “Iman",
+    "muslim_guide": "Iman",
     "psicology": "Psicología 🧠",
     "psicology_male": "Psicologo 🧠",
     "psicology_female": "Psicologa 🧠",
@@ -84,11 +84,11 @@
     "sewing": "Chuuuy 🧵",
     "sewing_male": "Jchuuy 🧵",
     "sewing_female": "Xchuuy 🧵",
-    "teaching_sewing": "Xook ti' Chuuuy"
+    "teaching_sewing": "Xook ti' Chuuuy",
     "actor_male":"Actor 🎭",
     "actor_female":"Actríz 🎭",
     "acting":"beet 🎭",
-    "acting_classes":"Xook ti' beet"
+    "acting_classes":"Xook ti' beet",
     "digital_music_production": "Producción musical digital 🎧",
     "digital_music_production_male": "Productor de música digital 🎧",
     "digital_music_production_female": "Productora de música digital 🎧",
@@ -102,38 +102,38 @@
     "carpentry":"u kúuchil u 🔨",
     "carpentry_male":"jpóol che' 🔨",
     "carpentry_female":"xpóol che' 🔨",
-    "login":"Jo'op' "
-    "email":"correo"
-    "sing_in":"Jo'op' "
-    "password":"contraseña"
-    "google":"google"
-    "forgot_password":"Tin p'aataj le contraseña"
-    "sing_up":" ma' Yaantech ts'iib k'aaba' ma' beeta'aki' . Ts'iibech k'aaba' waye' "
-    "Copyright":"Derechos de autor"
-    "search":"KAX"
-    "filter":"CH'AJ"
-    "example_search":"... Ixi'im"
-    "english":"Inglés"
-    "spanish": "Kastela'an"
-    "Maya":"Mayaa t'aan"
-    "sign_out":"K'AL SESIÓN"
-    "products": "U joochilo'ob"
-    "services": "Meyaj"
-    "name": "K'aaba'"
-    "surname": "U k'aaba' ch'i'ibal"
-    "phone_number": "Xook Whatsapp"
-    "photo": "Yoochel je' ba' axake' "
-    "accept_terms": "Chíin jo'ol Condiciones"
-    "age": "Ja'abil"
-    "city": "Kaaj"
-    "descripction":"Tsool"
-    "rules": "Tulis a'almaj t'aan"
-    "welcome": "K'aam yéetel uts"
-    "what_do_you_offer": "Ba'ax ka kóoy tic"
-    "What_do_you_need": "K'abéetkunajtik"
-        "tag":"K'ajóol"
+    "login":"Jo'op' ",
+    "email":"correo",
+    "sing_in":"Jo'op' ",
+    "password":"contraseña",
+    "google":"google",
+    "forgot_password":"Tin p'aataj le contraseña",
+    "sing_up":" ma' Yaantech ts'iib k'aaba' ma' beeta'aki' . Ts'iibech k'aaba' waye' ",
+    "Copyright":"Derechos de autor",
+    "search":"KAX",
+    "filter":"CH'AJ",
+    "example_search":"... Ixi'im",
+    "english":"Inglés",
+    "spanish": "Kastela'an",
+    "Maya":"Mayaa t'aan",
+    "sign_out":"K'AL SESIÓN",
+    "products": "U joochilo'ob",
+    "services": "Meyaj",
+    "name": "K'aaba'",
+    "surname": "U k'aaba' ch'i'ibal",
+    "phone_number": "Xook Whatsapp",
+    "photo": "Yoochel je' ba' axake' ",
+    "accept_terms": "Chíin jo'ol Condiciones",
+    "age": "Ja'abil",
+    "city": "Kaaj",
+    "descripction":"Tsool",
+    "rules": "Tulis a'almaj t'aan",
+    "welcome": "K'aam yéetel uts",
+    "what_do_you_offer": "Ba'ax ka kóoy tic",
+    "What_do_you_need": "K'abéetkunajtik",
+    "tag":"K'ajóol",
     "chooseInterest": "Ich Interés”,     
-    "contactMethod": "Ich bix u beeta'al ba'al" 
+    "contactMethod": "Ich bix u beeta'al ba'al", 
     "submit": "Túux",
     "profileImages": "a Oochel 🖼️ ”,
     "rawMaterial": "Puj🧱”,    
@@ -162,12 +162,79 @@
     "shopping": "Maan 🛒",
     "transportation": "Biis🚗”,
     "uxui": "UX UI 📲”,
-    "editProfile”: “Jelbes Perfil”
-    "signOut”: “K'AL SESIÓN”
-    "filterLocation” : “Filtrar Kaaj”
+    "editProfile”: “Jelbes Perfil",
+    "signOut”: “K'AL SESIÓN",
+    "filterLocation” : “Filtrar Kaaj",
+    "personalInfo": "A Ts'aa t'aan",
+    "chooseCity": "Ich Kaaj",
+    "chooseProfile" : "Elegir tipo de Perfil",
+    "productsArea" : "U joochil”,
+    "login":"Jo'op' ",
+    "email":"correo",
+    "sing_in":"Jo'op' ",
+    "password":"contraseña",
+    "google":"google",
+    "forgot_password":"Tin p'aataj le contraseña",
+    "sing_up":" ma' Yaantech ts'iib k'aaba' ma' beeta'aki' . Ts'iibech k'aaba' waye' ",
+    "Copyright":"Derechos de autor",
+    "search":"KAX",
+    "filter":"CH'AJ",
+    "example_search":"... Ixi'im",
+    "english":"Inglés",
+    "spanish": "Kastela'an",
+    "Maya":"Mayaa t'aan",
+    "sign_out":"K'AL SESIÓN",
+    "products": "U joochilo'ob",
+    "services": "Meyaj",
+    "name": "K'aaba'",
+    "surname": "U k'aaba' ch'i'ibal",
+    "phone_number": "Xook Whatsapp",
+    "photo": "Yoochel je' ba' axake' ",
+    "accept_terms": "Chíin jo'ol Condiciones",
+    "age": "Ja'abil",
+    "city": "Kaaj",
+    "descripction":"Tsool",
+    "rules": "Tulis a'almaj t'aan",
+    "welcome": "K'aam yéetel uts",
+    "what_do_you_offer": "Ba'ax ka kóoy tic",
+    "What_do_you_need": "K'abéetkunajtik",
+    "tag":"K'ajóol"
+    "chooseInterest": "Ich Interés”,     
+    "contactMethod": "Ich bix u beeta'al ba'al" 
+    "submit": "Túux",
+    "profileImages": "a Oochel 🖼️ ",
+    "rawMaterial": "Puj🧱”,    
+    "supplements": "Jel 🥛 ",
+    "home": "Naj 🏡",
+    "books": "Áanalte 📚”,
+    "clothes": "Nook' 👖”,
+    "exercise": "bàaxal 🎽“,
+    "toys": "bàaxal 🧸”,
+    "electronics": "Electrónicos 📱",
+    "videogames": "Videojuegos 🕹️,
+    "bankProcedure": "Proceso Bancario 🏦”,
+    "coaching" : "Coaching 🎓 ”,
+    "consulting": "Consultas 💡“,
+    "cooking": "janal 🍳”,
+    "petWalker": "Xiímabal peek' 🐕”, 
+    "finances": "Taa'in 📊",
+    "forex": "Forex 💹"       
+    "graphicDesign": "Diseño gráfico 🔠”,
+    "facilities": "Utskins 🛠️”,
+    "languages": "t'aan 🈯”,
+    "marketing": "Marketing 👥",
+    "musicProduction": "Producción musical 🔉 ”,
+    "portrait": "Oochel 🖼️",
+    "programmer": "Programación💻”,
+    "shopping": "Maan 🛒”,
+    "transportation": "Biis🚗”,
+    "uxui": "UX UI 📲”,
+    "editProfile”: “Jelbes Perfil"
+    "signOut”: “K'AL SESIÓN"
+    "filterLocation” : “Filtrar Kaaj"
     "personalInfo": "A Ts'aa t'aan"
-    "chooseCity": "Ich Kaaj”
-    "chooseProfile" : "Elegir tipo de Perfil"
-    "productsArea" : "U joochil”
-    "servicesArea" : "Meyaj"
+    "chooseCity”: “Ich Kaaj”
+    "chooseProfile” : “Elegir tipo de Perfil"
+    "productsArea” : “U joochil”
+    "servicesArea” : “Meyaj"
     }

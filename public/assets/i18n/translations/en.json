@@ -1,40 +1,80 @@
 
 {
+    "academics": "Academic 🔬",
     "accept": "Accept",
+    "accompaniment": "Accompaniment 🤝",
     "all": "All",
     "alreadyUser": "Already have an account?",
+    "babySitter": "Baby sitter 👶",
+    "bankProcedure": "Bank Procedure 🏦",
+    "books": "Books 📚",
     "button_contact": "contact",
-    "content_writer": "Content writer ✍️",
+    "cancun": "Cancún",
+    "chooseCity": "Choose City",
+    "chooseInterest": "Choose interest",
+    "chooseProfile": "Choose type of Profile",
+    "clothes": "Clothes 👖",
+    "coaching" : "Coaching 🎓",
     "confirm": "confirm password",
+    "consulting": "Consulting 💡",
+    "contactMethod": "Contact method",
+    "content_writer": "Content writer ✍️",
+    "cooking": "Cooking 🍳",
+    "creative": "Creative 🎨",
     "creative_writer": "creative writer ✍️",
     "creative_writer_female": "creative writer ✍️",
     "creative_writer_male": "creative writer ✍️",
     "description": "Description",
-    "design": "design 🖍️",
-    "design_male": "designer 🖍️",
-    "design_female": "designer 🖍️",
+    "design": "Design 🖍️",
     "dontHaveAccount": "Don't have an account?",
-    "email": "email",
-    "filter": "filter",
+    "drawing": "Drawing 🖍️",
+    "editProfile": "Edit Profile",
+    "electronics": "Electronics 📱",
+    "exercise": "Exercise 🎽",
+    "facilities": "Facilities 🛠️",
+    "filterLocation": "Filter Location",
+    "finances": "Finances 📊",
     "food": "Food 🥫",
+    "forex": "Forex 💹",
     "forgotPassword": "Forgot password?",
     "handcraft": "Handcraft 🎨",
+
+    "home": "Home 🏡",
     "interest": "I'm interested in:",
-    "name": "name",
+    "languages": "Languages 🈯",
+    "laundry": "Laundry 🧺",
+    "graphicDesign": "Graphic design 🔠",
+    "marketing": "Marketing 👥",
+    "musicProduction": "Music production 🔉",
     "offer": "I teach & offer:",
-    "password": "password",
     "passwordMust": "Password must be longer than 6 characters and include 1 special character !#$%*",
-    "products": "Products",
+    "personalInfo": "Personal Info",
+    "petWalker": "Pet walker 🐕",
+    "portrait": "Portrait 🖼️",
+    "productsArea": "Products area:",
     "profile": "Profile",
-    "search": "Search",
-    "services": "Services",
+    "profileImages": "Profile Images",
+    "programmer": "Programmer 💻",
+    "servicesArea": "Services area",
+    "pdc": "Playa del Carmen",
+    "shopping": "Shopping 🛒",
     "signIn": "Sign in",
     "signUp": "Sign up",
+    "signOut": "Sign Out",
+    "submit": "Submit",
+    "supplements": "Supplements 🥛",
+    "rawMaterial": "Raw material 🧱",
     "readTerms": "read them",
     "repairment": "Repairment 🛠️",
+    "tag": "Tag",
     "teaching": "Teaching 💻",
     "terms": "Accept terms and conditions 📖",
+    "toys": "Toys 🧸",
+    "transportation": "Transportation 🚗",
+    "tulum": "Tulum",
     "type": "type",
+    "uxui": "UX UI 📲",
+    "videogames": "Videogames 🕹️",
     "web_dev": "Web development 🌐",
     "ux_dev": " UX development 📲",
     "teaching_cocking": "Cooking Lessons🍳 ",
@@ -52,17 +92,16 @@
     "teaching_music_female": "Music teacher 🎵",
     "teaching_language": "Language lessons 📓",
     "teaching_language_male": "Language teacher 📓",
-    "teaching_language_male": "Language teacher 📓",
     "teaching_academic": "Academic lessons 📚",
     "teaching_academic_male": "Academic teacher 📚",
     "teaching_academic_female": "Academic teacher  📚",
     "teaching_yoga": "Yoga lessons 🍃",
     "teaching_yoga_male": "Yoga teacher 🧘‍",
     "teaching_yoga_female": "Yoga teacher 🧘‍",
-    "teaching_sports": "Sports lessons" 🏀",
+    "teaching_sports": "Sports lessons 🏀",
     "teaching_sports_male": "Sports teacher 🏀",
     "teaching_sports_female": "Sports teacher 🏀 ",
-    "health": "Health",
+    "health": "Health ⚕️",
     "medicine": "Medicine 🌡",
     "alternative_medicine": "Alternative medicine🌿",
     "doctor_male": "Doctor🌡",
@@ -121,32 +160,32 @@
     "carpentry":"Carpintry 🔨",
     "carpentry_male":"Carpinter 🔨",
     "carpentry_female":"Carpinter 🔨",
-    "login":"login"
-    "email":"email"
-    "sing_in":"sign in"
-    "password":"password"
-    "google":"google
-    "forgot_password":"Forgot password?"
-    "sing_up":"Don't have an account? Sign up"
-    "Copyright":"Copyright"
-    "search":"SEARCH"
-    "filter":"FILTER"
-    "example_search":"...Corn"
-    "english":"English"
-    "spanish": "Spanish"
-    "Maya":"Mayan"
-    "sign_out":"SING OUT"
-    "products": "Products"
-    "services": "Services"
-    "name": "Name"
-    "surname": "Surname"
-    "phone_number": "Phone number"
-    "photo": "Photo"
-    "accept_terms": "I accept terms and conditions "
-    "age": "Age"
-    "city": "City"
-    "rules": "Tulis rules"
-    "welcome": "Welcome"
-    "what_do_you_offer": "What do you offer?"
+    "login":"login",
+    "email":"email",
+    "sing_in":"sign in",
+    "password":"password",
+    "google":"google",
+    "forgot_password":"Forgot password?",
+    "sing_up":"Don't have an account? Sign up",
+    "Copyright":"Copyright",
+    "search":"SEARCH",
+    "filter":"FILTER",
+    "example_search":"...Corn",
+    "english":"English",
+    "spanish": "Spanish",
+    "Maya":"Mayan",
+    "sign_out":"SING OUT",
+    "products": "Products",
+    "services": "Services",
+    "name": "Name",
+    "surname": "Surname",
+    "phone_number": "Phone number",
+    "photo": "Photo",
+    "acceptTerms": "I accept terms and conditions ",
+    "age": "Age",
+    "city": "City",
+    "rules": "Tulis rules",
+    "welcome": "Welcome",
+    "what_do_you_offer": "What do you offer?",
     "What_do_you_need": "What do you need?"
 }

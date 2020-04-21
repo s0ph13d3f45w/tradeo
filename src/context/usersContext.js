@@ -22,8 +22,6 @@ function shuffle(array) {
     return array;
 }
 
-
-
 const feedReducer = (state, action) =>{
     switch(action.type){
       case 'SET_LIST_INIT':
@@ -74,8 +72,14 @@ const feedReducer = (state, action) =>{
         return{
           ...state,
           displayList: shuffle(state.data.filter(user =>
-            user.tags.includes(action.payload)
+            user.tag.includes(action.payload)
           ))
+        }
+      case 'SET_LOCATION_FILTER':
+        return{
+          ...state,
+          displayList: shuffle(state.data.filter(user =>
+            user.location.city === action.payload))
         }
       case 'SET_LOGIN_GOOGLE':
         return{

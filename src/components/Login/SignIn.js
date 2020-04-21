@@ -1,17 +1,11 @@
 import React, {useState} from 'react'
 import {auth} from '../../firebase'
-import {
-        Grid,
-        Paper,
-        Avatar,
-        Typography,
-        TextField,
-        Button,
-        Link,
-        Box
-    } from '@material-ui/core'
+import {Grid,Paper,Avatar} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Copyright from './Copyright'
+import Title from './Title'
+import SignInForm from './SignInForm'
+import LoginLinks from './LoginLinks'
 
 const initialState = { email:"", password: ""}
 
@@ -38,73 +32,16 @@ const SignIn = ({t,classes, loginAndSendGoogle, toggle, authRouter, history}) =>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Title component="h1" variant="h5" color="textPrimary">
                     {t('signIn')}
-                </Typography>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id='email'
-                        label={t('email')}
-                        name="email"
-                        autoComplete={t("email")}
-                        autoFocus
-                        value={email}
-                        onChange={handleInputChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        type="password"
-                        id="password"
-                        name="password"
-                        label={t('password')}
-                        autoComplete={t('password')}
-                        value={password}
-                        onChange={handleInputChange}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={handleSubmit}
-                    >
-                        {t('signIn')}
-                    </Button>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className={classes.submit}
-                        onClick={loginAndSendGoogle}
-                    >
-                        Google
-                    </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2" color="inherit">
-                                {t("forgotPassword")}
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2" color="inherit" onClick={toggle}>
-                                {t("dontHaveAccount")}
-                            </Link>
-                        </Grid>
-                        </Grid>
-                            <Box mt={5}>
-                                <Copyright />
-                            </Box>
-                        </form>
-                    </div>
-            </Grid>
+                </Title>
+                <SignInForm t={t} classes={classes} handleSubmit={handleSubmit} 
+                    email={email} handleInputChange={handleInputChange} 
+                    password={password} loginAndSendGoogle={loginAndSendGoogle}/>
+                <LoginLinks t={t} toggle={toggle} login="signIn"/>
+                <Copyright />        
+            </div>
+        </Grid>
         )
     }
 export default SignIn    

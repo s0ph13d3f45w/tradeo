@@ -1,36 +1,29 @@
-import React, {useState, useContext} from 'react';
-import {UserSessionContext} from '../../context/userSessionContext'
+import React, {useState} from 'react';
 import {firestore} from '../../firebase'
-import {Grid, Typography, Button, TextField} from '@material-ui/core'
-
-const initialState={
-    displayName: "", 
-    tag:"",
-    whatsapp: "",
-    type: "",
-    subType: "",
-    }
+import {Typography, Button, TextField} from '@material-ui/core'
+import SelectContact from './SelectContact'
+import SelectTypes from './SelectTypes'
+import SelectInterest from './SelectInterest'
+import Description from './Description'
+import AlertMessage from '../Login/AlertMessage'
 
 
-const EditInfo = ({classes, close}) => {
+const initialState={displayName: "", tag:"",number: "",type: "",subType: "", city: "", 
+                    contact:"", skill:"", interest:{type:"", area:""}, description:""}
+
+
+
+const EditInfo = ({classes, t, toggleAlert, showAlert, user}) => {
     const [edit, setEdit] = useState(initialState)
-    const {user} = useContext(UserSessionContext)
-    const userRef = firestore.doc(`users/${user.uid}`)
-    const {
-            displayName, 
-            tag,
-            whatsapp,
-            type,
-            subType,
-            } = edit
-
     const handleInputChange = e =>
         setEdit({...edit, [e.target.name] : e.target.value})
 
-    
-
     const handleSubmit = async e =>{
         e.preventDefault()
+
+        const userRef = firestore.doc(`users/${user.uid}`)
+
+        const { displayName, tag, number, type, subType, skill, city, contact, interest, description} = edit
 
         if (displayName){
             userRef.update({displayName})
@@ -42,53 +35,79 @@ const EditInfo = ({classes, close}) => {
             userRef.update({type})
         }
         if(subType){
-            userRef.update({subType})
+            userRef.update({subType, skill: ""})
         }
-        if(whatsapp){
-            userRef.update({whatsapp})
+        if(number){
+            if (number[0] !== "+"){
+                userRef.update({number:`+52${number}`})
+            } else {
+                userRef.update({number})
+            }
         }
-        close()
+        if(skill){
+            userRef.update({skill})
+        }
+        if(city){
+            const location = {country: "mexico", state: "qroo", city}
+            userRef.update({location})
+        }
+        if(contact){
+            userRef.update({contact})
+        }
+        if(interest.area !== ""){
+            userRef.update({interest})
+        }
+        if(description){
+            userRef.update({description})
+        }
+        setEdit({...edit, displayName: "", tag: "", type: "", subType: "", number: "", 
+                skill: "", interest:{type:"", area:""}, description: ""})
+        toggleAlert()
     }
+
     return (
-        <div className={classes.paper}>
-            <Grid container>
-                <form onSubmit={handleSubmit}>
-                <Grid item>
-                    <Typography variant="h6">Edit Profile</Typography>
-                </Grid>
-                <Grid item>
-                    <TextField
-                        name="displayName"
-                        value={displayName}
-                        label="Name"
-                        onChange={handleInputChange}
-                    />
-                </Grid>
-                <Grid>
+        user ? <form onSubmit={handleSubmit}className={classes.paperInfo} >
+                <Typography variant="h6" color="textSecondary">
+                    <strong>{t("personalInfo")}
+                    <span role="img" aria-label="memo">📝</span>
+                    </strong>
+                </Typography>
                 <TextField
-                    name="whatsapp"
-                    
-                    value={whatsapp}
+                    name="displayName"
+                    value={edit.displayName}
+                    label={t("name")}
+                    onChange={handleInputChange}
+                />
+                <TextField
+                    name="number"
+                    value={edit.number}
                     label="Whatsapp"
                     onChange={handleInputChange}
                 />
-                </Grid>
-                <Grid>
+                <SelectTypes 
+                    classes={classes}
+                    t={t} setEdit={setEdit} edit={edit} />
                 <TextField
                     name="tag"
-                    value={tag}
-                    label="Special Tag"
+                    value={edit.tag}
+                    label={t("tag")}
                     onChange={handleInputChange}
                 />
-                </Grid>
+                <SelectInterest t={t} edit={edit} setEdit={setEdit}/>
+                <SelectContact t={t} contact={edit.contact} contactChange={handleInputChange}/>
+                <Description t={t} description={edit.description} onChange={handleInputChange} />
+                <AlertMessage severity="success" alert={showAlert}>Info submitted!</AlertMessage>
                 <Button
+                className={classes.button}
+                variant="contained"
                 color="secondary"
                 type="submit">
-                    Submit
+                    {t("submit")}
                 </Button>
-                </form>
-            </Grid>
-        </div>
+            </form>
+        
+        : <p>Loading...</p>
+  
     );
 }
 

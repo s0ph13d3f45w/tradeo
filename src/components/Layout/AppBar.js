@@ -1,16 +1,12 @@
 import React, {useContext} from 'react';
-import {TemaContext} from '../context/themeContext'
+import {TemaContext} from '../../context/themeContext'
 import { makeStyles } from '@material-ui/core/styles';
-import '../i18n'
-import {Switch, 
-        FormControlLabel, 
-        AppBar, 
-        Toolbar, 
-        Typography,
-        Avatar} from '@material-ui/core'
+import {Link, useLocation} from 'react-router-dom'
+import '../../i18n'
+import {Switch, FormControlLabel, AppBar, Toolbar, Typography, Avatar} from '@material-ui/core'
 
 
-import LanguageSelector from '../LanguageSelector'
+import LanguageSelector from '../../LanguageSelector'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,15 +17,28 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
   },
   title: {
+    marginLeft: theme.spacing(0.7),
     flexGrow: 1,
-    fontWeight: 'bold'
+    display: 'flex',
+    color: 'white',
+    fontWeight: 'bold',
+    fontStyle: 'italic'
   },
 }));
 
+const LogoNav = ({location}) =>
+  location.pathname === "/userEdit"
+    ? <Link to="/feed">
+        <Avatar src="https://firebasestorage.googleapis.com/v0/b/tradeo-ff7fd.appspot.com/o/logo%2FlogoTulispng.png?alt=media&token=cbd91869-9cf1-45e1-a13f-c58b990dea0a" alt="logo"/>
+      </Link>
+    : <Avatar src="https://firebasestorage.googleapis.com/v0/b/tradeo-ff7fd.appspot.com/o/logo%2FlogoTulispng.png?alt=media&token=cbd91869-9cf1-45e1-a13f-c58b990dea0a" alt="logo"/>
+
+
 
 const ButtonAppBar = ()=> {
-  const {toggleTheme, theme} = useContext(TemaContext)
   const classes = useStyles();
+  const {toggleTheme, theme} = useContext(TemaContext)
+  let location = useLocation()
 
   return (
     <div className={classes.root}>
@@ -37,8 +46,9 @@ const ButtonAppBar = ()=> {
       {theme.palette.type === 'light' 
       ? (<AppBar position="fixed" color="primary">
           <Toolbar>
+            <LogoNav location={location} />
             <Typography variant="h6" className={classes.title}>
-              <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+              beta
             </Typography>
             <FormControlLabel
               control={<Switch onClick={toggleTheme} />}
@@ -48,8 +58,9 @@ const ButtonAppBar = ()=> {
         </AppBar>)
     : (<AppBar position="fixed" color="inherit">
         <Toolbar>
+          <LogoNav location={location} />
           <Typography variant="h6" className={classes.title}>
-            <Avatar src="https://i.ibb.co/VTVphQg/logo-Tulispng.png" alt="logo"/>
+            beta
           </Typography>
           <FormControlLabel 
             control={<Switch onClick={toggleTheme}/>}

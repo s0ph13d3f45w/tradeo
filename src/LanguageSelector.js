@@ -45,6 +45,9 @@ const LanguageSelector = () =>{
                 <MenuItem id="es"value="es">
                     Español
                 </MenuItem>
+                <MenuItem id="es"value="maya">
+                    Maya
+                </MenuItem>
             </Select>
         </FormControl>
     )
